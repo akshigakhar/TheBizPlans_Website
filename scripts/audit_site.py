@@ -92,7 +92,7 @@ for page in html_files:
             financing_pathways[page.name]=pathway.group(1)
             if 'business plan FAQ' not in pathway.group(1) and 'business plan FAQs' not in pathway.group(1):
                 errors.append(f'{page.name}: missing visible financing FAQ section')
-            for target in {'financial-modeling.html','business-plan-review.html','sample-other-plan.html','contact.html'}:
+            for target in {'financial-modeling.html','business-plan-review.html','sample-other-plan.html','https://calendly.com/atul_jagga/business-plan-free-consult'}:
                 if f'href="{target}"' not in pathway.group(1): errors.append(f'{page.name}: financing pathway missing {target}')
             if page.name != 'bank-loan-business-plans.html' and 'href="bank-loan-business-plans.html"' not in pathway.group(1):
                 errors.append(f'{page.name}: financing pathway missing bank-loan-business-plans.html')
