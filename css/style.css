@@ -87,7 +87,14 @@ h6,
 
 .navbar {
     padding: 11px 0 !important;
-    height: 75px;
+    min-height: 75px;
+}
+
+.navbar-brand img {
+    display: block;
+    max-width: 72px;
+    width: 100%;
+    height: auto;
 }
 
 .navbar .navbar-nav .nav-link {
@@ -168,9 +175,6 @@ h6,
 .hero-section .container {
   position: relative;
   z-index: 2;
-  margin-top: -75px;
-    background: url(../img/hero-bizplans.png) center center no-repeat;
-    background-size: cover;
 }
 /*** Hero Header ***/
 .hero-header {
