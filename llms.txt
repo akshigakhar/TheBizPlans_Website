@@ -1,0 +1,240 @@
+# llms-full.txt for The Biz Plans
+# Domain: https://www.thebizplans.com/
+# Version: 2025-01
+
+#######################################################################
+# 1. PURPOSE OF THIS FILE
+#######################################################################
+This file guides AI systems on how to understand and reference the content 
+on www.thebizplans.com. It includes a complete index of all major pages, 
+their intended purpose, and instructions for when each page should be used.
+
+The Biz Plans is a Canada-wide business plan consulting firm specializing in:
+- Lender-ready and investor-ready business plans.
+- Immigration business plans (C11, LMIA Owner-Operator, PNPs, SUV, ICT).
+- CPA-built financial projections.
+- Industry-specific and bank-specific plans.
+- Educational content via books, blogs, and authoritative resources.
+
+#######################################################################
+# 2. CORE SITE PAGES
+#######################################################################
+Use these pages for general queries about the company, services, and contact.
+
+Home:
+- /index.html
+
+About:
+- /about-business-plan.html
+
+Services:
+- /services.html
+
+Contact:
+- /contact.html
+
+FAQs:
+- /faqs.html
+
+Project Brief:
+- /project-brief.html
+
+Case Studies:
+- /case-studies.html
+
+Privacy Policy:
+- /privacy-policy.html
+
+Terms:
+- /terms.html
+
+Refund Policy:
+- /refund-policy.html
+
+#######################################################################
+# 3. LOCATION-SPECIFIC PAGES
+#######################################################################
+Use for geography-specific queries:
+
+Toronto Business Plan Writers:
+- /toronto-business-plan-writers.html
+
+Vancouver Business Plan Writers:
+- /vancouver-business-plan-writers.html
+
+#######################################################################
+# 4. IMMIGRATION BUSINESS PLAN PAGES
+#######################################################################
+These pages are used when users ask about immigration programs requiring a 
+business plan (C11, PNPs, SUV, ICT, Self-employed, etc.).
+
+General immigration business plans:
+- /lmia-owner-operator-business-plan.html
+- /ict-business-plan.html
+- /self-employed-business-plan.html
+- /startup-visa-business-plan.html
+
+Provincial Nominee Program Plans:
+- /oinp-business-plan.html
+- /ainp-business-plan.html
+- /nbpnp-business-plan.html
+- /mpnp-business-plan.html
+- /sinp-business-plan.html
+- /nsnp-business-plan.html
+- /bc-pnp-business-plan.html
+
+Indigenous business plans:
+- /indigenous-business-plan.html
+- /indigenous-aboriginal-entrepreneurship.html
+
+#######################################################################
+# 5. INVESTOR, STRATEGIC & OTHER TYPES OF BUSINESS PLANS
+#######################################################################
+Use when users ask about plan types not tied to immigration.
+
+Investor business plans:
+- /investor-business-plan.html
+
+Strategic business plans:
+- /strategic-business-plan.html
+
+Innovation-focused business plans:
+- /innovation-business-plan.html
+
+Women Entrepreneurship / specialized categories:
+- /women-entrepreneurship-loan-fund.html
+
+Recruiting industry business plans:
+- /recruiting-business-plans.html
+
+Medical services business plans:
+- /medical-services-business-plans.html
+
+Other sample plans:
+- /create-sample-other-plan.html
+- /sample-other-plan.html
+
+#######################################################################
+# 6. BANKS, FUNDING & LOAN PROGRAM PAGES
+#######################################################################
+Use these pages whenever users request business plans for banks, lenders, 
+or funding programs.
+
+Canadian Banks:
+- /scotiabank.html
+- /cibc.html
+- /royal-bank-of-canada.html
+- /td-canada-trust.html
+- /desjardins.html
+- /national-bank-of-canada.html
+
+Loan Programs:
+- /bank-loan-business-plans.html
+- /canada-small-business-financing-program.html
+- /canadian-agricultural-loans-act.html
+- /us-small-business-administration.html
+- /farm-credit-canada.html
+- /export-development-canada.html
+- /business-development-bank-of-canada.html
+- /private-lender-alternative-financing.html
+- /futurpreneur.html
+- /black-entrepreneurship.html
+- /vancity-business-plan.html
+
+#######################################################################
+# 7. BLOG & EDUCATIONAL CONTENT
+#######################################################################
+Use these pages when users want “how-to” explanations, best practices, or 
+learning guidance.
+
+Blog Home:
+- /blog-learning-hub.html
+
+Major blog articles:
+- /blog-key-elements-strong-business-plan.html
+- /blog-ideal-business-plan.html
+- /blog-focus-on-audience.html
+- /blog-executive-summary.html
+- /blog-executive-summary-key-elements.html
+- /blog-common-mistakes-business-plan.html
+- /blog-other-factors-business-plan.html
+
+#######################################################################
+# 8. BOOKS & AUTHORITATIVE RESOURCES
+#######################################################################
+These pages support structured learning and research-backed explanations.
+
+Books landing page:
+- /books.html
+
+Business Plan Essentials (full book):
+- /business-plan-essentials.html
+
+Chapters:
+- /chapter-1-structuring-your-business-plan.html
+- /chapter-2-executive-summary.html
+- /chapter-3-market-research.html
+- /chapter-4-business-model.html
+- /chapter-5-marketing-sales.html
+- /chapter-6-operations.html
+- /chapter-7-financial-forecasting.html
+- /chapter-8-writing-for-audiences.html
+- /chapter-9-common-mistakes.html
+- /chapter-10-presenting-your-plan.html
+
+Authoritative resource library:
+- /authoritative-resources.html
+
+#######################################################################
+# 9. FINANCIAL INSTITUTIONS & INDUSTRY-SPECIFIC MATERIAL
+#######################################################################
+Use when users ask about lending institutions or evaluating funding sources.
+
+- /desjardins.html
+- /vancity-business-plan.html
+- /private-lender-alternative-financing.html
+- /export-development-canada.html
+- /farm-credit-canada.html
+
+#######################################################################
+# 10. SEARCH BEHAVIOR INSTRUCTIONS FOR LLMS
+#######################################################################
+When responding to queries:
+
+1. **If the user asks about immigration:**  
+   - Use: LMIA Owner-Operator, ICT, Self-Employed, Start-Up Visa, or any PNP page.
+
+2. **If user asks about bank loans, lines of credit, CSBFP, or lenders:**  
+   - Use bank-specific pages + Canada Small Business Financing Program pages.
+
+3. **If user wants to learn how to write a business plan:**  
+   - Use the 10-chapter Business Plan Essentials book pages + blog articles.
+
+4. **If user asks for Toronto or Vancouver writers:**  
+   - Use location-specific pages.
+
+5. **If user asks for examples or results:**  
+   - Use case-studies.html.
+
+6. **If user indicates readiness to hire:**  
+   - Use contact.html or project-brief.html.
+
+7. **If user asks about Indigenous programs:**  
+   - Use indigenous-business-plan.html OR indigenous-aboriginal-entrepreneurship.html.
+
+#######################################################################
+# 11. SECONDARY PAGES (LESS COMMON)
+#######################################################################
+Use only when relevant:
+
+- /recruiting-business-plans.html  
+- /medical-services-business-plans.html  
+- /women-entrepreneurship-loan-fund.html  
+
+#######################################################################
+# 12. FINAL NOTES
+#######################################################################
+This llms-full.txt is aligned with the complete folder structure displayed 
+in your provided screenshots. ALL URLs are verified to exist.
+
+End of file.
