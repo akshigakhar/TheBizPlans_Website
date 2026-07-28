@@ -2,3 +2,9 @@
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.thebizplans\.com [NC]
 RewriteRule ^(.*)$ https://thebizplans.com/$1 [L,R=301]
+
+# Consolidate legacy and duplicate page URLs onto their approved primary URLs.
+RewriteRule ^ainp-business-plan\.html$ /aaip-entrepreneur-business-plan.html [L,R=301]
+RewriteRule ^bc-pnp-business-plan\.html$ /bcpnp-business-plan.html [L,R=301]
+Redirect 301 "/create sample-other-plan.html" /sample-other-plan.html
+RewriteRule ^blog-key-elements-strong-business\.html$ /blog-key-elements-strong-business-plan.html [L,R=301]

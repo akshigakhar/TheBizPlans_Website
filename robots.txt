@@ -1,4 +1,4 @@
-# robots.txt for https://www.thebizplans.com
+# robots.txt for https://thebizplans.com
 
 User-agent: *
 # Allow essential assets
@@ -22,4 +22,4 @@ Allow: /
 Crawl-delay: 5
 
 # Sitemap
-Sitemap: https://www.thebizplans.com/sitemap.xml
+Sitemap: https://thebizplans.com/sitemap.xml
