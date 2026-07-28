@@ -569,3 +569,150 @@ h6,
 .whatsapp-icon {
     font-size: 28px;
 }
+.content-review-note {
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 .5rem .5rem 0;
+    background: #f2f7ff;
+    color: #26354a;
+    line-height: 1.65;
+}
+
+.related-pathways {
+    padding: 1.5rem;
+    border: 1px solid #dce4ee;
+    border-radius: .75rem;
+    background: #fff;
+}
+
+.related-pathways a {
+    display: block;
+    height: 100%;
+    padding: .85rem 1rem;
+    border-radius: .5rem;
+    background: #f7f9fc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.related-pathways a:hover,
+.related-pathways a:focus-visible {
+    background: #eaf2ff;
+    text-decoration: underline;
+}
+
+/*** Commercial pathways and topic clusters ***/
+.commercial-pathway {
+    border-top: 1px solid #e1e8f0;
+    background: linear-gradient(180deg, #f7faff 0%, #fff 100%);
+}
+
+.commercial-pathway .section-kicker {
+    margin-bottom: .5rem;
+    color: var(--primary);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.conversion-card {
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    border: 1px solid #d9e4f2;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 18px 45px rgba(20, 24, 62, .09);
+}
+
+.check-list,
+.process-list {
+    padding-left: 1.25rem;
+}
+
+.check-list li,
+.process-list li {
+    margin-bottom: .75rem;
+}
+
+.topic-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.topic-links a {
+    display: flex;
+    min-height: 7rem;
+    padding: 1.1rem;
+    border: 1px solid #dce5f0;
+    border-radius: .75rem;
+    background: #fff;
+    color: var(--dark);
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.topic-links a:hover,
+.topic-links a:focus-visible {
+    border-color: var(--primary);
+    box-shadow: 0 10px 24px rgba(19, 99, 198, .1);
+    transform: translateY(-2px);
+}
+
+.topic-links span {
+    margin-top: .6rem;
+    color: #65758a;
+    font-size: .88rem;
+}
+
+.topic-links-six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cta-inline {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border: 1px solid #cfe0f5;
+    border-radius: .75rem;
+    background: #fff;
+}
+
+.cta-inline p { margin: 0; }
+
+.cta-final {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 1rem;
+    background: var(--primary);
+    color: #fff;
+}
+
+.cta-final .section-kicker,
+.cta-final h2 { color: #fff; }
+
+.financing-faq {
+    height: 100%;
+    padding: 1.25rem;
+    border: 1px solid #dce5f0;
+    border-radius: .75rem;
+    background: #fff;
+}
+
+@media (max-width: 991.98px) {
+    .topic-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 575.98px) {
+    .topic-links { grid-template-columns: 1fr; }
+    .topic-links a { min-height: auto; }
+    .cta-inline,
+    .cta-final { align-items: stretch; flex-direction: column; }
+}
