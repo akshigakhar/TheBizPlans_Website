@@ -775,3 +775,39 @@ h6,
     .cta-inline,
     .cta-final { align-items: stretch; flex-direction: column; }
 }
+
+/*** Pricing page ***/
+.pricing-packages {
+    background: radial-gradient(circle at 12% 15%, rgba(19, 99, 198, .1), transparent 32%), #f7f9fc;
+}
+
+.pricing-card {
+    position: relative;
+    padding: clamp(1.75rem, 4vw, 3rem);
+    overflow: hidden;
+    border: 1px solid #dce5f0;
+    border-radius: 1.5rem;
+    background: #fff;
+    box-shadow: 0 20px 55px rgba(20, 24, 62, .1);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.pricing-card:hover { transform: translateY(-6px); box-shadow: 0 26px 65px rgba(20, 24, 62, .15); }
+.pricing-card-featured { border: 2px solid var(--primary); }
+.pricing-card-featured::after {
+    position: absolute; top: -70px; right: -70px; width: 180px; height: 180px;
+    border-radius: 50%; background: rgba(19, 99, 198, .07); content: "";
+}
+.pricing-badge { display: inline-block; margin-bottom: 1.5rem; padding: .45rem .85rem; border-radius: 2rem; background: var(--primary); color: #fff; font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
+.pricing-badge-light { background: #eaf2ff; color: var(--primary); }
+.pricing-icon { display: grid; width: 3.5rem; height: 3.5rem; margin-bottom: 1.25rem; border-radius: 1rem; background: #eaf2ff; color: var(--primary); font-size: 1.35rem; place-items: center; }
+.pricing-amount { margin: 1.25rem 0; color: var(--dark); font-family: "Ubuntu", sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1; }
+.pricing-amount > span { margin-right: .15rem; font-size: 1.25rem; vertical-align: top; }
+.pricing-amount small { color: #65758a; font-family: "Open Sans", sans-serif; font-size: .9rem; font-weight: 600; white-space: nowrap; }
+.pricing-feature-list { min-height: 16.5rem; margin: 1.5rem 0; padding: 0; list-style: none; }
+.pricing-feature-list li { display: flex; gap: .75rem; margin-bottom: .9rem; color: #3f4c5d; }
+.pricing-feature-list i { margin-top: .25rem; color: var(--primary); }
+.pricing-note { display: flex; gap: 1rem; align-items: center; padding: 1.25rem 1.5rem; border: 1px solid #cfe0f5; border-radius: 1rem; background: #fff; }
+.pricing-note > i { color: var(--primary); font-size: 1.5rem; }
+
+@media (max-width: 991.98px) { .pricing-feature-list { min-height: auto; } }
