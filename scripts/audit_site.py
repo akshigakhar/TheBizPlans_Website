@@ -3,7 +3,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
-import re, sys, xml.etree.ElementTree as ET
+import json, re, sys, xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
 HOST='https://thebizplans.com'
 class AuditParser(HTMLParser):
@@ -80,6 +80,18 @@ for page in html_files:
     else: seen_descriptions[parser.descriptions[0]]=page.name
     if parser.h1_count != 1: errors.append(f'{page.name}: expected one h1, found {parser.h1_count}')
     if parser.og_urls and parser.og_urls != [expected]: errors.append(f'{page.name}: og:url must be {expected}')
+    if page.name != 'faqs.html':
+        faq=re.search(r'<!-- PAGE-FAQ:START -->(.*?)<!-- PAGE-FAQ:END -->',source,re.S)
+        if not faq: errors.append(f'{page.name}: missing generated page FAQ')
+        else:
+            visible_count=faq.group(1).count('<details ')
+            if not 5 <= visible_count <= 10: errors.append(f'{page.name}: expected 5-10 visible FAQs, found {visible_count}')
+            schemas=re.findall(r'<script type="application/ld\+json" data-page-faq>(.*?)</script>',faq.group(1),re.S)
+            try:
+                schema_count=len(json.loads(schemas[0]).get('mainEntity',[])) if len(schemas) == 1 else -1
+            except json.JSONDecodeError:
+                schema_count=-1
+            if schema_count != visible_count: errors.append(f'{page.name}: FAQPage schema does not match visible FAQs')
     needs_pathway = page.name in commercial_landing_pages or (page.name.startswith('blog-') and page.name != 'blog-learning-hub.html')
     if needs_pathway and source.count('<!-- COMMERCIAL-PATHWAY:START -->') != 1:
         errors.append(f'{page.name}: missing one commercial pathway')
