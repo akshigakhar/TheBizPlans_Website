@@ -7,20 +7,6 @@
 }
 
 
-/*** Spinner ***/
-#spinner {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity .5s ease-out, visibility 0s linear .5s;
-    z-index: 99999;
-}
-
-#spinner.show {
-    transition: opacity .5s ease-out, visibility 0s linear 0s;
-    visibility: visible;
-    opacity: 1;
-}
-
 .back-to-top {
     position: fixed;
     display: none;
@@ -175,6 +161,12 @@ h6,
 .hero-section .container {
   position: relative;
   z-index: 2;
+}
+
+/* Skip layout and paint work for sections that are well below the viewport. */
+body > section:not(.hero-section) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
 }
 /*** Hero Header ***/
 .hero-header {
