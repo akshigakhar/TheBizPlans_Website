@@ -111,7 +111,6 @@ Medical services business plans:
 - /medical-services-business-plans.html
 
 Other sample plans:
-- /create-sample-other-plan.html
 - /sample-other-plan.html
 
 #######################################################################
