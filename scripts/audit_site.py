@@ -120,6 +120,7 @@ seen_descriptions: dict[str, str] = {}
 internal_links: list[tuple[str, str]] = []
 inbound: Counter[str] = Counter()
 missing_alt: list[str] = []
+unoptimized_images: list[str] = []
 missing_schema: list[str] = []
 
 for page in pages:
@@ -142,8 +143,15 @@ for page in pages:
         if not (ROOT / target).exists():
             errors.append(f"{page.name}: broken {tag} target {raw}")
     for image in parser.images:
+        src = image.get("src", "(missing src)")
         if "alt" not in image or not image["alt"].strip():
-            missing_alt.append(f"{page.name}: {image.get('src', '(missing src)')}")
+            missing_alt.append(f"{page.name}: {src}")
+        if image.get("loading", "").lower() != "lazy":
+            unoptimized_images.append(f"{page.name}: {src} is not lazy-loaded")
+        for dimension in ("width", "height"):
+            value = image.get(dimension, "")
+            if not value.isdigit() or int(value) < 1:
+                unoptimized_images.append(f"{page.name}: {src} has no valid {dimension}")
     expected = HOST + ("/" if page.name == "index.html" else "/" + page.name)
     if parser.canonicals != [expected]:
         errors.append(f"{page.name}: canonical must be {expected}")
@@ -185,6 +193,8 @@ for page in pages:
 
 for item in missing_alt:
     errors.append(f"{item}: image has missing or empty alt text")
+for item in unoptimized_images:
+    errors.append(f"unoptimized image: {item}")
 for item in missing_schema:
     errors.append(f"{item}: page has no valid JSON-LD schema")
 
@@ -229,6 +239,7 @@ findings = {
     "Duplicate H1s": [error for error in errors if "duplicate h1" in error],
     "Missing H1s": [error for error in errors if "expected one non-empty h1" in error],
     "Images without alt tags": missing_alt,
+    "Images without complete optimization attributes": unoptimized_images,
     f"Oversized images (over {MAX_IMAGE_BYTES:,} bytes)": oversized,
     "Missing canonical URLs": [error for error in errors if "canonical must" in error],
     "Redirect chains": redirect_chains,
