@@ -2,6 +2,14 @@
 (function ($) {
     "use strict";
 
+    // The page spinner must not remain over the content after the document has
+    // loaded. Remove it before initializing optional plugins so a missing or
+    // failed third-party script cannot leave the full-screen overlay visible.
+    const spinner = document.getElementById('spinner');
+    if (spinner) {
+        spinner.remove();
+    }
+
     // Initiate the wowjs
     new WOW().init();
 
