@@ -84,11 +84,11 @@ h6,
 }
 
 .navbar .navbar-nav .nav-link {
-    margin-right: 35px;
+    margin-right: 14px;
     padding: 0;
     color: rgba(37, 36, 36, 0.95);
 	font-weight:900;
-	font-size:20px;
+	font-size:15px;
     outline: none;
 }
 
@@ -161,6 +161,17 @@ h6,
 .hero-section .container {
   position: relative;
   z-index: 2;
+}
+
+.navbar .nav-cta {
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.navbar .dropdown-menu {
+    min-width: 15rem;
 }
 
 /* Skip layout and paint work for sections that are well below the viewport. */
