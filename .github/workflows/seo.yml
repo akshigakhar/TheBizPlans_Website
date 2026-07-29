@@ -1,0 +1,18 @@
+name: SEO integrity
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  generated-seo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Verify generated canonicals, sitemap, robots, and links
+        run: python3 scripts/generate_seo.py --check
+      - name: Run the full site audit
+        run: python3 scripts/audit_site.py
