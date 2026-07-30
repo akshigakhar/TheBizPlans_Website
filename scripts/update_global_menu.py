@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Keep the primary navigation identical across the static site."""
 
+import argparse
 from pathlib import Path
 import re
 
@@ -115,7 +116,32 @@ CLUSTER_NAV_PATTERN = re.compile(
 )
 
 
+def menu_drift() -> list[str]:
+    """Return pages that do not contain exactly the canonical menu once."""
+    drift = []
+    for page in ROOT.glob("*.html"):
+        matches = NAV_PATTERN.findall(page.read_text(encoding="utf-8"))
+        if matches != [MENU]:
+            drift.append(page.name)
+    return drift
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="verify every HTML page uses the canonical menu without changing files",
+    )
+    args = parser.parse_args()
+
+    if args.check:
+        drift = menu_drift()
+        if drift:
+            raise RuntimeError(f"Non-canonical menu in: {', '.join(drift)}")
+        print(f"Canonical menu verified in {len(list(ROOT.glob('*.html')))} pages")
+        return
+
     updated = 0
     for page in ROOT.glob("*.html"):
         source = page.read_bytes().decode("utf-8")
@@ -131,6 +157,10 @@ def main() -> None:
         if count and result != source:
             page.write_bytes(result.encode("utf-8"))
             updated += 1
+
+    drift = menu_drift()
+    if drift:
+        raise RuntimeError(f"Non-canonical menu in: {', '.join(drift)}")
     print(f"Updated navigation in {updated} pages")
 
 
