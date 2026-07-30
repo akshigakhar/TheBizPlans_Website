@@ -35,7 +35,7 @@ MENU = """<div class="container-fluid sticky-top">
               <li><a href="financial-due-diligence-essentials.html" class="dropdown-item">Financial Due Diligence</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mega-menu-parent">
             <a href="bank-loan-business-plans.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Financing</a>
             <div class="dropdown-menu mega-menu bg-light mt-2" role="menu">
               <a href="bank-loan-business-plans.html" class="dropdown-item fw-bold mb-2">Financing Resource Centre</a>
@@ -54,7 +54,7 @@ MENU = """<div class="container-fluid sticky-top">
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mega-menu-parent">
             <a href="immigration-business-plans.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Immigration</a>
             <div class="dropdown-menu mega-menu mega-menu--compact bg-light mt-2" role="menu">
               <a href="immigration-business-plans.html" class="dropdown-item fw-bold mb-2">All Immigration Business Plans</a>
@@ -64,7 +64,7 @@ MENU = """<div class="container-fluid sticky-top">
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mega-menu-parent">
             <a href="industry-business-plans.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Industries</a>
             <div class="dropdown-menu mega-menu mega-menu--compact bg-light mt-2 mega-menu-end" role="menu">
               <a href="industry-business-plans.html" class="dropdown-item fw-bold mb-2">All Industries</a>
