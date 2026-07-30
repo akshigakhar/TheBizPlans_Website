@@ -174,6 +174,73 @@ h6,
     min-width: 15rem;
 }
 
+/* The larger navigation groups use an editorial mega-menu so visitors can
+   scan the full site structure without stepping through nested fly-outs. */
+.navbar .mega-menu {
+    width: min(92vw, 880px);
+    max-height: calc(100vh - 110px);
+    padding: 1.25rem;
+    overflow-y: auto;
+}
+
+.navbar .mega-menu--compact {
+    width: min(92vw, 680px);
+}
+
+.navbar .mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem 1.75rem;
+}
+
+.navbar .mega-menu-section {
+    min-width: 0;
+}
+
+.navbar .mega-menu-heading {
+    display: block;
+    margin: 0 0 .4rem;
+    padding: .25rem 1rem;
+    color: var(--primary);
+    font-family: "Ubuntu", sans-serif;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.navbar .mega-menu .dropdown-item {
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    white-space: normal;
+}
+
+@media (min-width: 992px) {
+    .navbar .mega-menu-end {
+        right: 0;
+        left: auto;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar .mega-menu,
+    .navbar .mega-menu--compact {
+        width: 100%;
+        max-height: none;
+        padding: .75rem;
+        overflow: visible;
+    }
+
+    .navbar .mega-menu-grid {
+        grid-template-columns: 1fr;
+        gap: .75rem;
+    }
+
+    .navbar .mega-menu-heading {
+        padding-left: .75rem;
+    }
+}
+
 /* Skip layout and paint work for sections that are well below the viewport. */
 body > section:not(.hero-section) {
   content-visibility: auto;
