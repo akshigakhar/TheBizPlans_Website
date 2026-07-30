@@ -21,3 +21,23 @@ test('contact form posts every required lead field directly to Web3Forms', async
 
     await expect(page.getByRole('button', { name: 'Send Message' })).toHaveAttribute('type', 'submit');
 });
+
+test('contact form submits without leaving the contact page', async ({ page }) => {
+    await page.route('https://api.web3forms.com/submit', async (route) => {
+        await route.fulfill({
+            status: 200,
+            contentType: 'application/json',
+            body: JSON.stringify({ success: true })
+        });
+    });
+    await page.goto('/contact.html');
+
+    await page.locator('[name="name"]').fill('Test User');
+    await page.locator('[name="email"]').fill('test@example.com');
+    await page.locator('[name="phone"]').fill('555-0100');
+    await page.locator('[name="message"]').fill('Test message');
+    await page.getByRole('button', { name: 'Send Message' }).click();
+
+    await expect(page).toHaveURL(/\/contact\.html$/);
+    await expect(page.getByRole('status')).toHaveText('Thank you! Your message has been sent.');
+});
