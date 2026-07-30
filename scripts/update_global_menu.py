@@ -17,7 +17,7 @@ MENU = """<div class="container-fluid sticky-top">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav list-unstyled ms-auto align-items-lg-center">
+        <ul class="navbar-nav list-unstyled ms-auto align-items-lg-center d-none d-lg-flex">
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
           <li class="nav-item dropdown">
             <a href="services.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
@@ -87,6 +87,17 @@ MENU = """<div class="container-fluid sticky-top">
           </li>
           <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
           <li class="nav-item"><a href="contact.html" class="btn btn-light rounded-pill ms-lg-2 nav-cta">Book a Consult</a></li>
+        </ul>
+        <ul class="navbar-nav list-unstyled d-lg-none mobile-nav" aria-label="Mobile navigation">
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="bank-loan-business-plans.html" class="nav-link">Financing</a></li>
+          <li class="nav-item"><a href="immigration-business-plans.html" class="nav-link">Immigration</a></li>
+          <li class="nav-item"><a href="industry-business-plans.html" class="nav-link">Industries</a></li>
+          <li class="nav-item"><a href="blog-learning-hub.html" class="nav-link">Learn</a></li>
+          <li class="nav-item"><a href="case-studies.html" class="nav-link">Results</a></li>
+          <li class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></li>
+          <li class="nav-item"><a href="contact.html" class="btn btn-light rounded-pill nav-cta my-3">Book a Consult</a></li>
         </ul>
       </div>
     </nav>
