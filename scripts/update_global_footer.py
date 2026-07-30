@@ -2,6 +2,7 @@
 """Install the shared, comprehensive site footer on every static page."""
 
 from pathlib import Path
+import argparse
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,7 +22,9 @@ def group(title: str, items: list[tuple[str, str]]) -> str:
 
 
 GROUPS = [
-    ("Company", [("About &amp; Credentials", "about-business-plan.html"), ("Case Studies", "case-studies.html"), ("Testimonials", "testimonials.html"), ("Pricing", "pricing.html"), ("Toronto Business Plan Writers", "toronto-business-plan-writers.html"), ("Vancouver Business Plan Writers", "vancouver-business-plan-writers.html"), ("Contact", "contact.html"), ("Book a Consult", "contact.html")]),
+    ("Canada", [("Toronto", "toronto-business-plan-writers.html"), ("Montreal", "montreal-business-plan-writers.html"), ("Vancouver", "vancouver-business-plan-writers.html"), ("Calgary", "calgary-business-plan-writers.html"), ("Edmonton", "edmonton-business-plan-writers.html"), ("Ottawa", "ottawa-business-plan-writers.html"), ("Winnipeg", "winnipeg-business-plan-writers.html"), ("Quebec City", "quebec-city-business-plan-writers.html"), ("Hamilton", "hamilton-business-plan-writers.html"), ("Kitchener-Waterloo", "kitchener-waterloo-business-plan-writers.html"), ("Halifax", "halifax-business-plan-writers.html"), ("Victoria", "victoria-business-plan-writers.html"), ("Saskatoon", "saskatoon-business-plan-writers.html"), ("Regina", "regina-business-plan-writers.html"), ("St. John's", "st-johns-business-plan-writers.html")]),
+    ("United States", [("New York City", "new-york-city-business-plan-writers.html"), ("Los Angeles", "los-angeles-business-plan-writers.html"), ("Chicago", "chicago-business-plan-writers.html"), ("Houston", "houston-business-plan-writers.html"), ("Phoenix", "phoenix-business-plan-writers.html"), ("Philadelphia", "philadelphia-business-plan-writers.html"), ("San Antonio", "san-antonio-business-plan-writers.html"), ("San Diego", "san-diego-business-plan-writers.html"), ("Dallas", "dallas-business-plan-writers.html"), ("San Jose", "san-jose-business-plan-writers.html")]),
+    ("Company", [("About &amp; Credentials", "about-business-plan.html"), ("Case Studies", "case-studies.html"), ("Testimonials", "testimonials.html"), ("Pricing", "pricing.html"), ("Contact", "contact.html"), ("Book a Consult", "contact.html")]),
     ("Legal", [("Editorial Policy", "editorial-policy.html"), ("Privacy Policy", "privacy-policy.html"), ("Refund Policy", "refund-policy.html"), ("Terms and Conditions", "terms.html")]),
 ]
 
@@ -51,7 +54,32 @@ FOOTER = f'''<footer id="footer" class="site-footer">
 FOOTER_PATTERN = re.compile(r'<footer\b[^>]*>.*?</footer>', re.DOTALL)
 
 
+def footer_drift() -> list[str]:
+    """Return pages that do not contain exactly the canonical footer once."""
+    drift = []
+    for page in ROOT.glob("*.html"):
+        matches = FOOTER_PATTERN.findall(page.read_text(encoding="utf-8"))
+        if matches != [FOOTER]:
+            drift.append(page.name)
+    return drift
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="verify every HTML page uses the canonical footer without changing files",
+    )
+    args = parser.parse_args()
+
+    if args.check:
+        drift = footer_drift()
+        if drift:
+            raise RuntimeError(f"Non-canonical footer in: {', '.join(drift)}")
+        print(f"Canonical footer verified in {len(list(ROOT.glob('*.html')))} pages")
+        return
+
     updated = 0
     installed = 0
     for page in ROOT.glob("*.html"):
@@ -65,9 +93,9 @@ def main() -> None:
             page.write_bytes(result.encode("utf-8"))
             updated += 1
 
-    missing = [page.name for page in ROOT.glob("*.html") if not FOOTER_PATTERN.search(page.read_text(encoding="utf-8"))]
-    if missing:
-        raise RuntimeError(f"Footer is missing from: {', '.join(missing)}")
+    drift = footer_drift()
+    if drift:
+        raise RuntimeError(f"Non-canonical footer in: {', '.join(drift)}")
     print(f"Updated footer in {updated} pages ({installed} newly installed)")
 
 
