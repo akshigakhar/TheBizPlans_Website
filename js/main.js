@@ -36,6 +36,53 @@
         });
     }
 
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const submitButton = contactForm.querySelector('[type="submit"]');
+        const statusMessage = document.createElement('p');
+        statusMessage.className = 'mt-3 mb-0';
+        statusMessage.setAttribute('role', 'status');
+        statusMessage.setAttribute('aria-live', 'polite');
+        contactForm.appendChild(statusMessage);
+
+        contactForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            statusMessage.className = 'mt-3 mb-0 text-muted';
+            statusMessage.textContent = 'Sending your message…';
+
+            if (submitButton) {
+                submitButton.disabled = true;
+            }
+
+            try {
+                const response = await window.fetch(contactForm.action, {
+                    method: contactForm.method,
+                    body: new window.FormData(contactForm),
+                    headers: {
+                        Accept: 'application/json'
+                    }
+                });
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Unable to send your message.');
+                }
+
+                contactForm.reset();
+                statusMessage.className = 'mt-3 mb-0 text-success';
+                statusMessage.textContent = 'Thank you! Your message has been sent.';
+            } catch (error) {
+                statusMessage.className = 'mt-3 mb-0 text-danger';
+                statusMessage.textContent = error.message || 'Unable to send your message. Please try again.';
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                }
+            }
+        });
+    }
+
     // The remaining enhancements are optional. Pages may include only the
     // libraries needed by their markup without breaking shared behavior.
     const $ = window.jQuery;
