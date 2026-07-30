@@ -120,10 +120,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <!-- Libraries Stylesheet -->
-
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -1238,13 +1234,7 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="lib/wow/wow.min.js" defer></script>
-    <script src="lib/easing/easing.min.js" defer></script>
-    <script src="lib/waypoints/waypoints.min.js" defer></script>
-    <script src="lib/counterup/counterup.min.js" defer></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js" defer></script>
@@ -1269,93 +1259,7 @@
     });
   }, { once: true });
 
-  const reviews = document.querySelector('.testimonial-carousel');
-  if (reviews) {
-    const loadReviews = function () {
-      loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyBzivKbGSOrBfoNNPoKlsTAoFJi-MYlZPg&libraries=places&callback=initGbpReviews');
-    };
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          observer.disconnect();
-          loadReviews();
-        }
-      }, { rootMargin: '600px' });
-      observer.observe(reviews);
-    } else {
-      window.addEventListener('load', loadReviews, { once: true });
-    }
-  }
 }());
-</script>
-
-<script>
-/* Populate Owl Carousel with Google reviews */
-function initGbpReviews() {
-  const PLACE_ID = 'ChIJW-QMrNzirkIR41FSzCtpjaE'; // e.g., ChIJxxxxxxxxxxxxxxxxx
-  const service = new google.maps.places.PlacesService(document.createElement('div'));
-
-  service.getDetails({
-    placeId: PLACE_ID,
-    fields: ['name','url','rating','user_ratings_total','reviews']
-  }, function(place, status) {
-    if (status !== google.maps.places.PlacesServiceStatus.OK) return;
-
-    // Set “See more” link and aggregate text
-    if (place.url) {
-      const link = document.getElementById('gbp-link');
-      link.textContent = 'See all reviews on Google';
-      link.href = place.url;
-    }
-    if (place.rating && place.user_ratings_total != null) {
-      document.getElementById('gbp-aggregate').textContent =
-        `Avg ${place.rating.toFixed(1)}★ from ${place.user_ratings_total} reviews`;
-    }
-
-    const reviews = (place.reviews || []).sort((a,b) => b.time - a.time).slice(0, 6);
-    const $carousel = $('.testimonial-carousel');
-    $carousel.empty();
-
-    reviews.forEach(r => {
-      const stars = '★'.repeat(Math.round(r.rating || 5)) + '☆'.repeat(5 - Math.round(r.rating || 5));
-      const text = (r.text || '').trim();
-      const clipped = text.length > 420 ? text.slice(0, 417) + '…' : text;
-      const author = r.author_name || 'Google User';
-
-      const item = `
-        <div class="testimonial-item ps-5">
-          <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-          <p class="fs-5">"${escapeHtml(clipped)}"</p>
-          <div class="d-flex align-items-center">
-            <div class="ps-3">
-              <h5 class="mb-1">${escapeHtml(author)}</h5>
-              <span>${stars} on Google</span>
-            </div>
-          </div>
-        </div>
-      `;
-      $carousel.append(item);
-    });
-
-    // (Re)initialize Owl after injecting slides
-    $carousel.owlCarousel({
-      items: 1,
-      autoplay: true,
-      loop: true,
-      dots: true,
-      nav: false,
-      autoplayTimeout: 6000,
-      autoplayHoverPause: true
-    });
-  });
-}
-
-// Basic XSS-safe HTML escape
-function escapeHtml(str) {
-  return String(str).replace(/[&<>"']/g, s => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  }[s]));
-}
 </script>
 
 </body>

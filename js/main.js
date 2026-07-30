@@ -1,63 +1,66 @@
-
-(function ($) {
+(function (window, document) {
     "use strict";
 
-    // The page spinner must not remain over the content after the document has
-    // loaded. Remove it before initializing optional plugins so a missing or
-    // failed third-party script cannot leave the full-screen overlay visible.
     const spinner = document.getElementById('spinner');
     if (spinner) {
         spinner.remove();
     }
 
-    // Initiate the wowjs
-    new WOW().init();
+    if (typeof window.WOW === 'function') {
+        new window.WOW().init();
+    }
 
+    const stickyNavbar = document.querySelector('.sticky-top');
+    const backToTop = document.querySelector('.back-to-top');
 
-    // Sticky Navbar
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.sticky-top').addClass('bg-primary shadow-sm').css('top', '0px');
-        } else {
-            $('.sticky-top').removeClass('bg-primary shadow-sm').css('top', '-150px');
+    function updateScrollControls() {
+        if (stickyNavbar) {
+            const isSticky = window.scrollY > 300;
+            stickyNavbar.classList.toggle('bg-primary', isSticky);
+            stickyNavbar.classList.toggle('shadow-sm', isSticky);
+            stickyNavbar.style.top = isSticky ? '0px' : '-150px';
         }
-    });
 
-
-    // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
-    });
-    
-    
-    // Back to top button
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.back-to-top').fadeIn('slow');
-        } else {
-            $('.back-to-top').fadeOut('slow');
+        if (backToTop) {
+            backToTop.hidden = window.scrollY <= 100;
         }
-    });
-    $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-        return false;
-    });
+    }
 
+    window.addEventListener('scroll', updateScrollControls, { passive: true });
+    updateScrollControls();
 
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        items: 1,
-        autoplay: true,
-        smartSpeed: 1000,
-        dots: true,
-        loop: true,
-        nav: true,
-        navText : [
-            '<i class="bi bi-chevron-left"></i>',
-            '<i class="bi bi-chevron-right"></i>'
-        ]
-    });
-    
-})(jQuery);
+    if (backToTop) {
+        backToTop.addEventListener('click', function (event) {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
+    // The remaining enhancements are optional. Pages may include only the
+    // libraries needed by their markup without breaking shared behavior.
+    const $ = window.jQuery;
+    if (!$ || !$.fn) {
+        return;
+    }
+
+    const counters = $('[data-toggle="counter-up"]');
+    if (counters.length && typeof $.fn.counterUp === 'function') {
+        counters.counterUp({ delay: 10, time: 2000 });
+    }
+
+    const testimonials = $('.testimonial-carousel');
+    if (testimonials.length && typeof $.fn.owlCarousel === 'function') {
+        testimonials.owlCarousel({
+            items: 1,
+            autoplay: true,
+            smartSpeed: 1000,
+            dots: true,
+            loop: true,
+            nav: true,
+            navText: [
+                '<i class="bi bi-chevron-left"></i>',
+                '<i class="bi bi-chevron-right"></i>'
+            ]
+        });
+    }
+})(window, document);
