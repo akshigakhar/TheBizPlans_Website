@@ -111,7 +111,13 @@ args_parser.add_argument("--report", type=Path, help="write a Markdown inventory
 args = args_parser.parse_args()
 errors: list[str] = []
 current_page = ""
-pages = sorted(ROOT.glob("*.html"))
+redirects = parse_redirects()
+redirect_sources = set(redirects)
+# A redirect source is not a deployable HTML page: Apache serves the redirect
+# before its on-disk document. Exclude such files from every indexability check
+# so an obsolete file cannot be encouraged to self-canonicalize or enter the
+# sitemap merely because it still exists in the repository.
+pages = sorted(page for page in ROOT.glob("*.html") if page.name not in redirect_sources)
 page_names = {page.name for page in pages}
 canonical_urls: set[str] = set()
 seen_titles: dict[str, str] = {}
@@ -206,7 +212,6 @@ orphans = sorted(page_names - {"index.html"} - set(inbound))
 for item in orphans:
     errors.append(f"{item}: orphan page with no incoming internal link")
 
-redirects = parse_redirects()
 redirect_chains: list[str] = []
 for source, target in redirects.items():
     visited = {source}
@@ -222,13 +227,19 @@ for source, target in redirects.items():
         redirect_chains.append(" -> ".join(route))
 for route in redirect_chains:
     errors.append(f"redirect chain: {route}")
-redirect_sources = set(redirects)
 for source, target in internal_links:
     if target in redirect_sources:
         errors.append(f"{source}: internal link points through redirect {target}")
 
 namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap = {node.text for node in ET.parse(ROOT / "sitemap.xml").findall(".//s:loc", namespace)}
+sitemap_redirect_sources = {
+    url
+    for url in sitemap
+    if (target := local_target(url)) is not None and target.as_posix() in redirect_sources
+}
+for url in sorted(sitemap_redirect_sources):
+    errors.append(f"sitemap URL must not be a redirect source: {url}")
 if sitemap != canonical_urls:
     errors.append(f"sitemap mismatch: missing={sorted(canonical_urls - sitemap)}, extra={sorted(sitemap - canonical_urls)}")
 
