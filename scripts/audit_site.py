@@ -128,6 +128,10 @@ inbound: Counter[str] = Counter()
 missing_alt: list[str] = []
 unoptimized_images: list[str] = []
 missing_schema: list[str] = []
+shared_markup: dict[str, dict[str, list[str]]] = {
+    "header": {},
+    "footer": {},
+}
 
 for page in pages:
     current_page = page.name
@@ -138,6 +142,9 @@ for page in pages:
     footer = re.search(r"<footer\b.*?</footer>", source, re.S)
     if not header or not footer:
         errors.append(f"{page.name}: missing shared header or footer")
+    for component, match in (("header", header), ("footer", footer)):
+        if match:
+            shared_markup[component].setdefault(match.group(), []).append(page.name)
     for tag, raw in parser.refs:
         target = local_target(raw)
         if target is None:
@@ -203,6 +210,20 @@ for item in unoptimized_images:
     errors.append(f"unoptimized image: {item}")
 for item in missing_schema:
     errors.append(f"{item}: page has no valid JSON-LD schema")
+
+# A static site can only keep copied global components maintainable when drift is
+# caught immediately. Include the pages in each variant in the error so a
+# developer can identify and repair the outliers without manually diffing every
+# document.
+for component, variants in shared_markup.items():
+    if len(variants) > 1:
+        distribution = "; ".join(
+            f"{len(files)} page(s): {', '.join(sorted(files))}"
+            for files in variants.values()
+        )
+        errors.append(
+            f"shared {component} has {len(variants)} variants ({distribution})"
+        )
 
 oversized = [f"{p.relative_to(ROOT)} ({p.stat().st_size:,} bytes)" for p in (ROOT / "img").glob("*") if p.is_file() and p.stat().st_size > MAX_IMAGE_BYTES]
 for item in oversized:
