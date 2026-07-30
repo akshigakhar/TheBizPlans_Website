@@ -21,8 +21,14 @@ test('contact form requires every lead field and displays the confirmation', asy
 
     await page.goto('/contact.html');
 
-    for (const field of ['name', 'phone', 'email', 'message']) {
+    for (const field of ['name', 'email', 'phone', 'message']) {
         await expect(page.locator(`[name="${field}"]`)).toHaveAttribute('required', '');
+    }
+
+    const leadFields = page.locator('#contact-form .form-control');
+    await expect(leadFields).toHaveCount(4);
+    for (const [index, field] of ['name', 'email', 'phone', 'message'].entries()) {
+        await expect(leadFields.nth(index)).toHaveAttribute('name', field);
     }
 
     await page.locator('[name="name"]').fill('Taylor');
@@ -33,8 +39,8 @@ test('contact form requires every lead field and displays the confirmation', asy
 
     const confirmation = page.locator('#contact-success');
     await expect(confirmation).toBeVisible();
-    await expect(confirmation).toContainText('Your message has been received by the team.');
-    await expect(confirmation).toContainText('You will hear back from us in 24–48 hours.');
+    await expect(confirmation).toContainText('We have received your message.');
+    await expect(confirmation).toContainText('Please expect a response from our team within 48 hours.');
     await expect(confirmation.getByRole('link', { name: 'Call Us' })).toBeVisible();
     await expect(confirmation.getByRole('link', { name: 'Book a Consult' })).toBeVisible();
 });
