@@ -148,9 +148,9 @@ h6,
 .navbar .navbar-nav .nav-link {
     margin-right: 14px;
     padding: 0;
-    color: rgba(37, 36, 36, 0.95);
+	color: rgba(37, 36, 36, 0.95);
 	font-weight:900;
-	font-size: 17px;
+	font-size: 20px;
     outline: none;
 }
 
@@ -226,7 +226,6 @@ h6,
 }
 
 @media (min-width: 1600px) {
-    .navbar .navbar-nav .nav-link,
     .navbar .nav-cta {
         font-size: 27px;
     }
