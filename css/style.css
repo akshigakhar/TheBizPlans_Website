@@ -85,11 +85,21 @@ h6,
 
 .site-footer__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
     gap: 3rem 2rem;
 }
 
 .site-footer__brand { grid-column: auto; }
+.site-footer__group[aria-label="Canada"] { grid-column: span 2; }
+.site-footer__group[aria-label="Canada"] ul {
+    columns: 2;
+    column-gap: 2rem;
+}
+.site-footer__group[aria-label="Canada"] li {
+    margin: 0 0 .55rem;
+    break-inside: avoid;
+}
+.site-footer__group[aria-label="United States"] ul { display: block; }
 .site-footer__brand img { margin-bottom: 1rem; object-fit: contain; }
 .site-footer h2 { margin-bottom: 1rem; color: #fff; font-size: 1rem; }
 .site-footer__brand h2 { font-size: 1.4rem; }
@@ -134,6 +144,8 @@ h6,
 @media (max-width: 575.98px) {
     .site-footer__grid { grid-template-columns: 1fr; gap: 2.25rem; }
     .site-footer__brand { grid-column: auto; }
+    .site-footer__group[aria-label="Canada"] { grid-column: auto; }
+    .site-footer__group[aria-label="Canada"] ul { column-gap: 1.25rem; }
     .site-footer__bottom { flex-wrap: wrap; }
     .site-footer__bottom p { flex-basis: 100%; }
 }
