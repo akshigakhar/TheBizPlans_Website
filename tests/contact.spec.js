@@ -1,25 +1,13 @@
 const { test, expect } = require('@playwright/test');
 
-test('contact form requires every lead field and displays the confirmation', async ({ page }) => {
-    await page.route('https://api.web3forms.com/submit', async route => {
-        const request = route.request();
-        const body = request.postData() || '';
-
-        expect(body).toContain('name=Taylor');
-        expect(body).toContain('phone=647');
-        expect(body).toContain('email=taylor%40example.com');
-        expect(body).toContain('message=I+need+a+business+plan');
-        expect(body).toContain('access_key=df77cdd7-6ba9-470c-bc93-726ca8d2bca2');
-        expect(body).toContain('subject=New+website+enquiry+from+The+Biz+Plans');
-
-        await route.fulfill({
-            status: 200,
-            contentType: 'application/json',
-            body: JSON.stringify({ success: true })
-        });
-    });
-
+test('contact form posts every required lead field directly to Web3Forms', async ({ page }) => {
     await page.goto('/contact.html');
+
+    const form = page.locator('#contact-form');
+    await expect(form).toHaveAttribute('action', 'https://api.web3forms.com/submit');
+    await expect(form).toHaveAttribute('method', 'post');
+    await expect(form.locator('[name="access_key"]')).toHaveValue('df77cdd7-6ba9-470c-bc93-726ca8d2bca2');
+    await expect(form.locator('[name="subject"]')).toHaveValue('New website enquiry from The Biz Plans');
 
     for (const field of ['name', 'email', 'phone', 'message']) {
         await expect(page.locator(`[name="${field}"]`)).toHaveAttribute('required', '');
@@ -31,37 +19,5 @@ test('contact form requires every lead field and displays the confirmation', asy
         await expect(leadFields.nth(index)).toHaveAttribute('name', field);
     }
 
-    await page.locator('[name="name"]').fill('Taylor');
-    await page.locator('[name="phone"]').fill('647 555 0100');
-    await page.locator('[name="email"]').fill('taylor@example.com');
-    await page.locator('[name="message"]').fill('I need a business plan');
-    await page.getByRole('button', { name: 'Send Message' }).click();
-
-    const confirmation = page.locator('#contact-success');
-    await expect(confirmation).toBeVisible();
-    await expect(confirmation).toContainText('We have received your message.');
-    await expect(confirmation).toContainText('Please expect a response from our team within 48 hours.');
-    await expect(confirmation.getByRole('link', { name: 'Call Us' })).toBeVisible();
-    await expect(confirmation.getByRole('link', { name: 'Book a Consult' })).toBeVisible();
-});
-
-test('contact form handles a non-JSON server error without exposing a parsing error', async ({ page }) => {
-    await page.route('https://api.web3forms.com/submit', route => route.fulfill({
-        status: 405,
-        contentType: 'text/html',
-        body: '<html><head><title>Method Not Allowed</title></head></html>'
-    }));
-
-    await page.goto('/contact.html');
-    await page.locator('[name="name"]').fill('Taylor');
-    await page.locator('[name="phone"]').fill('647 555 0100');
-    await page.locator('[name="email"]').fill('taylor@example.com');
-    await page.locator('[name="message"]').fill('I need a business plan');
-    await page.getByRole('button', { name: 'Send Message' }).click();
-
-    const status = page.locator('.contact-form-status');
-    await expect(status).toContainText('We could not send your message online.');
-    await expect(status).toContainText('info@thebizplans.com');
-    await expect(status).not.toContainText('Unexpected token');
-    await expect(page.getByRole('button', { name: 'Send Message' })).toBeEnabled();
+    await expect(page.getByRole('button', { name: 'Send Message' })).toHaveAttribute('type', 'submit');
 });
