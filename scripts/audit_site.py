@@ -240,8 +240,16 @@ for page in pages:
                     errors.append(
                         f"{page.name}: serviceType is only valid on a Service schema"
                     )
-                if "HowTo" in node_types and not node.get("step"):
-                    errors.append(f"{page.name}: HowTo schema has no steps")
+                if "HowTo" in node_types:
+                    if not str(node.get("name", "")).strip():
+                        errors.append(f"{page.name}: HowTo schema has no name")
+                    if not node.get("step"):
+                        errors.append(f"{page.name}: HowTo schema has no steps")
+                if {"LocalBusiness", "ProfessionalService"}.intersection(node_types):
+                    if not node.get("address"):
+                        errors.append(
+                            f"{page.name}: local business schema has no address"
+                        )
         except json.JSONDecodeError:
             errors.append(f"{page.name}: invalid JSON-LD schema")
     if not valid_schema:
