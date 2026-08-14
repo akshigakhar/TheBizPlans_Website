@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opening WhatsApp | The Biz Plans</title>
+  <script>
+    const message = new URLSearchParams(window.location.search).get('text');
+    const destination = new URL('https://' + 'api.whatsapp.com/send');
+    destination.searchParams.set('phone', '16478968362');
+    if (message) destination.searchParams.set('text', message);
+    window.location.replace(destination.toString());
+  </script>
+</head>
+<body>
+  <main>
+    <h1>Opening WhatsApp…</h1>
+    <p>Please wait while we connect you with The Biz Plans.</p>
+    <p>If WhatsApp does not open, call <a href="tel:+16478968362">+1 647-896-8362</a>.</p>
+  </main>
+</body>
+</html>
