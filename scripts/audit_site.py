@@ -15,6 +15,12 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 HOST = "https://thebizplans.com"
 MAX_IMAGE_BYTES = 4_000_000
+RETIRED_EXTERNAL_URL_PREFIXES = {
+    "https://www.toronto.ca/business-economy/new-businesses-startups/financing-your-business/",
+    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/start-visa",
+    "https://www.gov.nl.ca/iet/business/",
+    "https://futurpreneur.ca/en/offering/",
+}
 
 
 class AuditParser(HTMLParser):
@@ -84,6 +90,17 @@ def local_target(raw: str) -> Path | None:
     return Path(path.lstrip("/"))
 
 
+def schema_nodes(value: object):
+    """Yield every JSON-LD object so property/type mistakes cannot hide in a graph."""
+    if isinstance(value, dict):
+        yield value
+        for child in value.values():
+            yield from schema_nodes(child)
+    elif isinstance(value, list):
+        for child in value:
+            yield from schema_nodes(child)
+
+
 def parse_redirects() -> dict[str, str]:
     redirects: dict[str, str] = {}
     source = (ROOT / ".htaccess").read_text(encoding="utf-8")
@@ -113,6 +130,16 @@ errors: list[str] = []
 current_page = ""
 redirects = parse_redirects()
 redirect_sources = set(redirects)
+htaccess = (ROOT / ".htaccess").read_text(encoding="utf-8")
+if not re.search(
+    r'<FilesMatch "\\\.\(\?:css\|js\)\$">\s*'
+    r'Header always set X-Robots-Tag "noindex"\s*</FilesMatch>',
+    htaccess,
+    re.S,
+):
+    errors.append(
+        ".htaccess: CSS and JavaScript responses must send X-Robots-Tag noindex"
+    )
 # A redirect source is not a deployable HTML page: Apache serves the redirect
 # before its on-disk document. Exclude such files from every indexability check
 # so an obsolete file cannot be encouraged to self-canonicalize or enter the
@@ -146,6 +173,11 @@ for page in pages:
         if match:
             shared_markup[component].setdefault(match.group(), []).append(page.name)
     for tag, raw in parser.refs:
+        if tag == "a" and any(
+            raw == retired or raw.startswith(f"{retired}/")
+            for retired in RETIRED_EXTERNAL_URL_PREFIXES
+        ):
+            errors.append(f"{page.name}: link uses retired external URL {raw}")
         target = local_target(raw)
         if target is None:
             continue
@@ -198,7 +230,18 @@ for page in pages:
     valid_schema = False
     for raw_schema in parser.schemas:
         try:
-            valid_schema = bool(json.loads(raw_schema.strip())) or valid_schema
+            schema_data = json.loads(raw_schema.strip())
+            valid_schema = bool(schema_data) or valid_schema
+            for node in schema_nodes(schema_data):
+                node_types = node.get("@type", [])
+                if isinstance(node_types, str):
+                    node_types = [node_types]
+                if "serviceType" in node and "Service" not in node_types:
+                    errors.append(
+                        f"{page.name}: serviceType is only valid on a Service schema"
+                    )
+                if "HowTo" in node_types and not node.get("step"):
+                    errors.append(f"{page.name}: HowTo schema has no steps")
         except json.JSONDecodeError:
             errors.append(f"{page.name}: invalid JSON-LD schema")
     if not valid_schema:

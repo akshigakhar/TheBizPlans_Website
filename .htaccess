@@ -29,6 +29,13 @@ RewriteRule ^create-sample-other-plan\.html$ /sample-other-plan.html [L,R=301]
         Header set Cache-Control "no-cache, must-revalidate"
     </FilesMatch>
 
+    # Search engines need to fetch these files to render pages, but the files
+    # themselves are not search results. Keep crawling enabled and prevent
+    # standalone CSS/JavaScript URLs from being indexed.
+    <FilesMatch "\.(?:css|js)$">
+        Header always set X-Robots-Tag "noindex"
+    </FilesMatch>
+
     # Hash-named assets may be cached permanently. Examples matched include
     # app.3f2a1c9e.js and styles-a8b7c6d5.css (8+ hex characters).
     <FilesMatch "(?:[.-][0-9a-fA-F]{8,})\.(?:css|js|gif|ico|jpe?g|png|svg|webp|woff2?)$">
