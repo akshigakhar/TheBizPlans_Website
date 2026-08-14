@@ -41,3 +41,10 @@ test('contact form submits without leaving the contact page', async ({ page }) =
     await expect(page).toHaveURL(/\/contact\.html$/);
     await expect(page.getByRole('status')).toHaveText('Thank you! Your message has been sent.');
 });
+
+test('WhatsApp calls to action use the on-site redirect instead of a rate-limited crawl URL', async ({ page }) => {
+    await page.goto('/contact.html');
+
+    await expect(page.getByRole('link', { name: 'Connect on WhatsApp' }))
+        .toHaveAttribute('href', /^whatsapp\.html\?text=/);
+});
