@@ -7,6 +7,7 @@ RewriteRule ^ https://thebizplans.com%{REQUEST_URI} [L,R=301,NE]
 # Consolidate legacy and duplicate page URLs onto their approved primary URLs.
 RewriteRule ^ainp-business-plan\.html$ /aaip-entrepreneur-business-plan.html [L,R=301]
 RewriteRule ^bc-pnp-business-plan\.html$ /bcpnp-business-plan.html [L,R=301]
+RewriteRule ^business-plans-for-investor\.html$ /investor-business-plan.html [L,R=301]
 Redirect 301 "/create sample-other-plan.html" /sample-other-plan.html
 RewriteRule ^blog-key-elements-strong-business\.html$ /blog-key-elements-strong-business-plan.html [L,R=301]
 RewriteRule ^create-sample-other-plan\.html$ /sample-other-plan.html [L,R=301]
