@@ -131,6 +131,11 @@ current_page = ""
 redirects = parse_redirects()
 redirect_sources = set(redirects)
 htaccess = (ROOT / ".htaccess").read_text(encoding="utf-8")
+llms_text = (ROOT / "llms.txt").read_text(encoding="utf-8")
+if "www.thebizplans.com" in llms_text:
+    errors.append(
+        "llms.txt: www hostname conflicts with the canonical apex hostname"
+    )
 if not re.search(
     r'<FilesMatch "\\\.\(\?:css\|js\)\$">\s*'
     r'Header always set X-Robots-Tag "noindex"\s*</FilesMatch>',

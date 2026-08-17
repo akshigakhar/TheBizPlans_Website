@@ -1,12 +1,12 @@
 # llms-full.txt for The Biz Plans
-# Domain: https://www.thebizplans.com/
+# Domain: https://thebizplans.com/
 # Version: 2025-01
 
 #######################################################################
 # 1. PURPOSE OF THIS FILE
 #######################################################################
 This file guides AI systems on how to understand and reference the content 
-on www.thebizplans.com. It includes a complete index of all major pages, 
+on thebizplans.com. It includes a complete index of all major pages,
 their intended purpose, and instructions for when each page should be used.
 
 The Biz Plans is a Canada-wide business plan consulting firm specializing in:
