@@ -115,6 +115,10 @@
   const graph = [{
     '@type': 'Organization', '@id': ORGANIZATION_ID, name: 'The Biz Plans', url: SITE_URL,
     logo: `${SITE_URL}img/bizplanlogo.png`, email: 'info@thebizplans.com', telephone: '+1-647-896-8362',
+    address: {
+      '@type': 'PostalAddress', streetAddress: '51 Burnhamill Pl', addressLocality: 'Toronto',
+      addressRegion: 'ON', postalCode: 'M9C 3S3', addressCountry: 'CA'
+    },
     sameAs: ['https://www.instagram.com/thebizplans/', 'https://www.facebook.com/people/The-biz-plans/61550125095965/', 'https://www.linkedin.com/company/thebizplans']
   }];
   const addUnlessPresent = (node) => {
