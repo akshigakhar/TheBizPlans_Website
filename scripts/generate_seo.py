@@ -113,13 +113,17 @@ def main() -> int:
         source = page.read_text(encoding="utf-8")
         parser = PageParser()
         parser.feed(source)
-        if "noindex" not in parser.robots:
+        is_indexable = "noindex" not in parser.robots
+        if is_indexable:
             indexed_pages.append(page)
         for raw in parser.links:
             target = local_html_target(raw)
             if target and target not in page_names:
                 broken.append(f"{page.name}: {raw}")
-        update(page, set_canonical(source, canonical_url(page), page), args.check, stale)
+        # Deliberate utility/noindex pages do not need canonical enforcement.
+        # Their robots directive, rather than a canonical hint, controls indexing.
+        if is_indexable:
+            update(page, set_canonical(source, canonical_url(page), page), args.check, stale)
 
     update(ROOT / "sitemap.xml", generated_sitemap(indexed_pages), args.check, stale)
     update(ROOT / "robots.txt", generated_robots(), args.check, stale)
