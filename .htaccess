@@ -1,5 +1,12 @@
-# Canonicalize every request in one hop: HTTPS and the apex hostname.
+# Disable content negotiation so extensionless paths cannot resolve to .html files.
+Options -MultiViews
+
+# Send the duplicate homepage filename directly to the canonical homepage on
+# every host and scheme, avoiding a hostname/scheme normalization hop first.
 RewriteEngine On
+RewriteRule ^index\.html$ https://thebizplans.com/ [L,R=301]
+
+# Canonicalize every other request in one hop: HTTPS and the apex hostname.
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^thebizplans\.com$ [NC]
 RewriteRule ^ https://thebizplans.com%{REQUEST_URI} [L,R=301,NE]

@@ -35,6 +35,7 @@ class AuditParser(HTMLParser):
         self.schemas: list[str] = []
         self.descriptions: list[str] = []
         self.og_urls: list[str] = []
+        self.robots: list[str] = []
         self._capture: str | None = None
 
     def handle_data(self, data: str) -> None:
@@ -55,6 +56,8 @@ class AuditParser(HTMLParser):
             self._capture = "schema"
         if tag == "meta" and attrs.get("name", "").lower() == "description":
             self.descriptions.append(attrs.get("content", "").strip())
+        if tag == "meta" and attrs.get("name", "").lower() == "robots":
+            self.robots.extend(value.strip().lower() for value in attrs.get("content", "").split(","))
         if tag == "meta" and attrs.get("name", "").lower() == "keywords":
             errors.append(f"{current_page}: obsolete meta keywords tag")
         if tag == "meta" and attrs.get("property", "").lower() == "og:url":
@@ -129,7 +132,10 @@ args = args_parser.parse_args()
 errors: list[str] = []
 current_page = ""
 redirects = parse_redirects()
-redirect_sources = set(redirects)
+# The index.html rule redirects only the explicit duplicate filename. The same
+# file still backs `/`, so repository targets normalized to index.html (such as
+# `/` and the sitemap homepage URL) remain canonical rather than redirecting.
+redirect_sources = set(redirects) - {"index.html"}
 htaccess = (ROOT / ".htaccess").read_text(encoding="utf-8")
 llms_text = (ROOT / "llms.txt").read_text(encoding="utf-8")
 if "www.thebizplans.com" in llms_text:
@@ -170,6 +176,10 @@ for page in pages:
     source = page.read_text(encoding="utf-8")
     parser = AuditParser()
     parser.feed(source)
+    # Utility pages intentionally excluded from search results are outside the
+    # indexable-page canonical and on-page SEO contract.
+    if "noindex" in parser.robots:
+        continue
     header = re.search(r'<div class="container-fluid sticky-top">.*?</nav>\s*</div>\s*</div>', source, re.S)
     footer = re.search(r"<footer\b.*?</footer>", source, re.S)
     if not header or not footer:
@@ -207,7 +217,7 @@ for page in pages:
         errors.append(f"{page.name}: canonical must be {expected}")
     else:
         canonical_urls.add(expected)
-    required_css = {"css/bootstrap.min.css", "css/style.css"}
+    required_css = {"css/bootstrap.min.css", "css/style.min.css"}
     if not required_css.issubset(parser.styles):
         errors.append(f"{page.name}: missing shared CSS")
     title = " ".join("".join(parser.titles).split())
@@ -340,4 +350,4 @@ if args.report:
 if errors:
     print("\n".join(errors))
     sys.exit(1)
-print(f"OK: {len(pages)} URLs, {len(internal_links)} internal links, no crawlability or on-page SEO issues.")
+print(f"OK: {len(canonical_urls)} indexable URLs, {len(internal_links)} internal links, no crawlability or on-page SEO issues.")
