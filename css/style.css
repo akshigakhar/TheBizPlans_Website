@@ -1184,3 +1184,32 @@ body > section:not(.hero-section) {
 article table th { color: #173f55; }
 article table td, article table th { vertical-align: top; }
 @media (max-width: 767.98px) { .content-index ul { columns: 1; } }
+
+/* Compact homepage trust sections. */
+.founder-compact img {
+  width: min(100%, 330px);
+  max-height: 330px;
+  object-fit: cover;
+}
+.client-proof-intro { max-width: 780px; }
+.trust-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid #dce5f0;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(20, 24, 62, .07);
+}
+.trust-card p { flex-grow: 1; }
+.book-cover-home {
+  width: min(100%, 300px);
+  max-height: 430px;
+  object-fit: cover;
+}
+@media (max-width: 767.98px) {
+  .founder-compact img { max-height: 280px; }
+  .book-cover-home { width: min(100%, 240px); max-height: 385px; }
+  .trust-card .btn { white-space: normal; }
+}
