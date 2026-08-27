@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex, nofollow">
+  <!-- Keep this utility page out of search results without blocking audit crawlers. -->
+  <meta name="robots" content="noindex, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Opening WhatsApp | The Biz Plans</title>
   <script>
-    const message = new URLSearchParams(window.location.search).get('text');
+    // Store the optional message in the fragment so crawlers never request a
+    // query-string URL (query strings are intentionally blocked in robots.txt).
+    const message = new URLSearchParams(window.location.hash.slice(1)).get('text');
     const destination = new URL('https://' + 'api.whatsapp.com/send');
     destination.searchParams.set('phone', '16478968362');
     if (message) destination.searchParams.set('text', message);
