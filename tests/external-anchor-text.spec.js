@@ -33,7 +33,13 @@ test('known retired external resource URLs are not linked', async ({ page }) => 
         ['/dallas-business-plan-writers.html', 'small-business-center.aspx'],
         ['/export-development-canada.html', '/en/insights-and-resources.html'],
         ['/export-development-canada.html', '/en/articles.html'],
-        ['/authoritative-resources.html', '/en/articles.html']
+        ['/authoritative-resources.html', '/en/articles.html'],
+        ['/quebec-city-business-plan-writers.html', '/en/business-support'],
+        ['/san-antonio-business-plan-writers.html', '/135/Small-Business-Entrepreneurship-Department'],
+        ['/small-business-financing-canada.html', '/en/explore/core-startup/'],
+        ['/st-johns-business-plan-writers.html', '/industry/'],
+        ['/startup-visa-business-plan.html', 'guide-5759-application-permanent-residence-start-visa-program.html'],
+        ['/whitby-business-plan-writers.html', 'economic-development.aspx?redirect=true']
     ];
 
     for (const [sitePage, retiredPath] of retiredLinks) {
