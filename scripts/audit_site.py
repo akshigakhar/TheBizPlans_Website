@@ -16,6 +16,12 @@ ROOT = Path(__file__).resolve().parents[1]
 HOST = "https://thebizplans.com"
 MAX_IMAGE_BYTES = 4_000_000
 RETIRED_EXTERNAL_URL_PREFIXES = {
+    "https://dallascityhall.com/departments/sbc/",
+    "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/permit",
+    "https://www.edc.ca/en/export-help.html",
+    "https://www.edc.ca/en/insights-and-resources.html",
+    "https://www.gov.nl.ca/immigration/",
+    "https://www.gov.nl.ca/industry/",
     "https://www.toronto.ca/business-economy/new-businesses-startups/financing-your-business/",
     "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/start-visa",
     "https://www.gov.nl.ca/iet/business/",
