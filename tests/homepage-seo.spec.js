@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 
 test('homepage preserves primary SEO signals and valid structured data', async ({ page }) => {
   await page.goto('/');
-  await expect(page).toHaveTitle('Professional Business Plan Writers in Canada | The Biz Plans');
+  await expect(page).toHaveTitle('Professional Business Plan Writer Canada | The Biz Plans');
   await expect(page.locator('h1')).toHaveCount(1);
   await expect(page.locator('h1')).toHaveText('Professional Business Plan Writers in Canada');
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
