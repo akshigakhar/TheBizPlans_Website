@@ -3,6 +3,7 @@
 
   const SITE_URL = 'https://thebizplans.com/';
   const ORGANIZATION_ID = `${SITE_URL}#organization`;
+  const PERSON_ID = `${SITE_URL}#atul-jagga`;
   const path = window.location.pathname;
   const fileName = path.split('/').pop() || 'index.html';
   const isHome = path === '/' || fileName === 'index.html';
@@ -114,12 +115,19 @@
 
   const graph = [{
     '@type': 'Organization', '@id': ORGANIZATION_ID, name: 'The Biz Plans', url: SITE_URL,
+    description: 'A Canadian business plan writing and consulting firm preparing business plans, financial projections and supporting research for financing, investment, acquisitions and growth.',
     logo: `${SITE_URL}img/bizplanlogo.png`, email: 'info@thebizplans.com', telephone: '+1-647-896-8362',
     address: {
       '@type': 'PostalAddress', streetAddress: '51 Burnhamill Pl', addressLocality: 'Toronto',
       addressRegion: 'ON', postalCode: 'M9C 3S3', addressCountry: 'CA'
     },
+    founder: { '@id': PERSON_ID },
     sameAs: ['https://www.instagram.com/thebizplans/', 'https://www.facebook.com/people/The-biz-plans/61550125095965/', 'https://www.linkedin.com/company/thebizplans']
+  }, {
+    '@type': 'Person', '@id': PERSON_ID, name: 'Atul Jagga', url: `${SITE_URL}about-business-plan.html#atul-jagga`,
+    jobTitle: 'Founder and Lead Consultant', worksFor: { '@id': ORGANIZATION_ID },
+    knowsAbout: ['Business planning', 'Financial modelling', 'Market research', 'Business financing'],
+    sameAs: ['https://www.linkedin.com/in/atul-jagga-68208827/']
   }];
   const addUnlessPresent = (node) => {
     const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
@@ -137,9 +145,16 @@
         ...(!item.current ? { item: item.url } : {})
       }))
     });
-    const isArticle = fileName.startsWith('blog-') || fileName.startsWith('chapter-') || ogType === 'article';
+    const reviewedGuides = new Set([
+      'canadian-bank-loan-business-plan-guide.html', 'how-banks-evaluate-business-plans.html',
+      'royal-bank-of-canada.html', 'business-development-bank-of-canada.html',
+      'canada-small-business-financing-program.html', 'td-canada-trust.html', 'scotiabank.html'
+    ]);
+    const isArticle = fileName.startsWith('blog-') || fileName.startsWith('chapter-') || reviewedGuides.has(fileName) || ogType === 'article';
+    const isAbout = fileName === 'about-business-plan.html';
     const isService = /business-plan|services|financial-modeling|marketing-growth-strategy|pricing/.test(fileName) || /business plans?|business planning/i.test(pageName);
-    if (isArticle) addUnlessPresent({ '@type': 'Article', '@id': `${pageUrl}#article`, headline: pageName, description, mainEntityOfPage: pageUrl, ...(ogImage ? { image: ogImage } : {}), author: { '@type': 'Person', name: 'Atul Jagga' }, publisher: { '@id': ORGANIZATION_ID }, inLanguage: 'en-CA' });
+    if (isArticle) addUnlessPresent({ '@type': 'Article', '@id': `${pageUrl}#article`, headline: pageName, description, mainEntityOfPage: pageUrl, ...(ogImage ? { image: ogImage } : {}), author: { '@id': PERSON_ID }, reviewedBy: { '@id': PERSON_ID }, publisher: { '@id': ORGANIZATION_ID }, about: { '@id': ORGANIZATION_ID }, inLanguage: 'en-CA' });
+    else if (isAbout) addUnlessPresent({ '@type': 'AboutPage', '@id': `${pageUrl}#webpage`, url: pageUrl, name: pageName, description, mainEntity: { '@id': ORGANIZATION_ID }, about: [{ '@id': ORGANIZATION_ID }, { '@id': PERSON_ID }], isPartOf: { '@id': `${SITE_URL}#website` }, inLanguage: 'en-CA' });
     else if (isService) addUnlessPresent({ '@type': 'Service', '@id': `${pageUrl}#service`, name: pageName, description, url: pageUrl, provider: { '@id': ORGANIZATION_ID }, areaServed: { '@type': 'Country', name: 'Canada' } });
     else addUnlessPresent({ '@type': 'WebPage', '@id': `${pageUrl}#webpage`, url: pageUrl, name: pageName, description, isPartOf: { '@id': `${SITE_URL}#website` }, about: { '@id': ORGANIZATION_ID }, inLanguage: 'en-CA' });
   }
