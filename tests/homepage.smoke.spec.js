@@ -11,6 +11,21 @@ test('homepage loads without uncaught JavaScript exceptions', async ({ page }) =
     expect(errors).toEqual([]);
 });
 
+test('homepage stylesheets load without blocking the initial render', async ({ page }) => {
+    await page.goto('/');
+
+    for (const href of [
+        'css/bootstrap.min.css',
+        'css/style.min.css',
+        'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap'
+    ]) {
+        const stylesheet = page.locator(`head > link[href="${href}"]`).first();
+        await expect(stylesheet).toHaveAttribute('as', 'style');
+        await expect(stylesheet).toHaveAttribute('onload', "this.onload=null;this.rel='stylesheet'");
+        await expect(stylesheet).toHaveAttribute('rel', /^(preload|stylesheet)$/);
+    }
+});
+
 test('consultation menu buttons open Calendly while contact links stay on-site', async ({ page }) => {
     await page.goto('/');
 

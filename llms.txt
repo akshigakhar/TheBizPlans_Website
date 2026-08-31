@@ -1,6 +1,6 @@
 # The Biz Plans
 
-> Domain: https://thebizplans.com/
+> Website: [The Biz Plans](https://thebizplans.com/)
 > Version: 2025-01
 
 ## 1. PURPOSE OF THIS FILE
