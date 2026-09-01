@@ -11,26 +11,30 @@ test('homepage loads without uncaught JavaScript exceptions', async ({ page }) =
     expect(errors).toEqual([]);
 });
 
-test('homepage stylesheets load without blocking the initial render', async ({ page }) => {
+test('homepage uses its lightweight local stylesheet without legacy UI dependencies', async ({ page }) => {
     await page.goto('/');
+    await expect(page.locator('link[rel="stylesheet"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="stylesheet"]')).toHaveAttribute('href', 'css/homepage.css');
+    await expect(page.locator('link[href*="fonts.googleapis.com"]')).toHaveCount(0);
+    await expect(page.locator('script[src*="bootstrap"]')).toHaveCount(0);
+    await expect(page.locator('script[src*="owl"]')).toHaveCount(0);
+});
 
-    for (const href of [
-        'css/bootstrap.min.css',
-        'css/style.min.css',
-        'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap'
-    ]) {
-        const stylesheet = page.locator(`head > link[href="${href}"]`).first();
-        await expect(stylesheet).toHaveAttribute('as', 'style');
-        await expect(stylesheet).toHaveAttribute('onload', "this.onload=null;this.rel='stylesheet'");
-        await expect(stylesheet).toHaveAttribute('rel', /^(preload|stylesheet)$/);
-    }
+test('mobile navigation exposes accessible state and opens without a framework', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 800 });
+    await page.goto('/');
+    const toggle = page.getByRole('button', { name: /menu/i });
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('#primary-menu')).toHaveClass(/open/);
 });
 
 test('consultation menu buttons open Calendly while contact links stay on-site', async ({ page }) => {
     await page.goto('/');
 
     const consultButtons = page.locator('.nav-cta');
-    await expect(consultButtons).toHaveCount(2);
+    await expect(consultButtons).toHaveCount(1);
     for (const button of await consultButtons.all()) {
         await expect(button).toHaveAttribute('href', 'https://calendly.com/atul_jagga/business-plan-free-consult');
         await expect(button).toHaveAttribute('target', '_blank');

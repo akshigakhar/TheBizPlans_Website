@@ -16,6 +16,8 @@ test('homepage preserves primary SEO signals and valid structured data', async (
   const organizations = nodes.filter(node => node['@type'] === 'Organization');
   expect(organizations).toHaveLength(1);
   expect(organizations[0].url).toBe('https://thebizplans.com/');
+  expect(organizations[0]['@id']).toBe('https://thebizplans.com/#organization');
+  expect(organizations[0].founder['@id']).toBe('https://thebizplans.com/#atul-jagga');
 });
 
 test('commercial journey and homepage links work at desktop, tablet and mobile widths', async ({ page }) => {
@@ -31,9 +33,10 @@ test('commercial journey and homepage links work at desktop, tablet and mobile w
   const expectedLinks = [
     'services.html', 'project-brief.html', 'bank-loan-business-plans.html',
     'immigration-business-plans.html', 'investor-business-plan.html',
-    'financial-modeling.html', 'pricing.html', 'case-studies.html',
+    'strategic-business-plan.html', 'financial-modeling.html', 'pricing.html', 'case-studies.html',
     'testimonials.html', 'about-business-plan.html', 'blog-learning-hub.html',
-    'business-plan-essentials.html'
+    'business-plan-essentials.html', 'business-plan-template.html',
+    'business-plan-generator.html', 'industry-business-plans.html', 'contact.html'
   ];
   for (const href of expectedLinks) {
     await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible();
