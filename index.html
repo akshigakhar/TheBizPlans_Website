@@ -19,26 +19,77 @@
   {"@context":"https://schema.org","@type":"Organization","@id":"https://thebizplans.com/#organization","name":"The Biz Plans","description":"A Canadian business plan writing and consulting firm preparing business plans, financial projections and supporting research for financing, investment, acquisitions and growth.","url":"https://thebizplans.com/","logo":"https://thebizplans.com/img/bizplanlogo.png","telephone":"+1-647-896-8362","email":"info@thebizplans.com","address":{"@type":"PostalAddress","streetAddress":"51 Burnhamill Pl","addressLocality":"Toronto","addressRegion":"ON","postalCode":"M9C 3S3","addressCountry":"CA"},"areaServed":{"@type":"Country","name":"Canada"},"founder":{"@type":"Person","@id":"https://thebizplans.com/#atul-jagga","name":"Atul Jagga","jobTitle":"Founder & Lead Consultant","url":"https://thebizplans.com/about-business-plan.html#atul-jagga","worksFor":{"@id":"https://thebizplans.com/#organization"}},"sameAs":["https://www.instagram.com/thebizplans/","https://www.facebook.com/people/The-biz-plans/61550125095965/","https://www.linkedin.com/company/thebizplans"]}
   </script>
   <link rel="icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link rel="stylesheet" href="css/homepage-redesign.css">
-  <script src="js/homepage-nav.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="/" aria-label="The Biz Plans home"><img src="img/bizplanlogo.png" alt="The Biz Plans" width="72" height="72"></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
-      <nav id="primary-menu" class="primary-nav" aria-label="Primary navigation">
-        <details><summary>Services</summary><div class="menu-panel"><a href="services.html">Business Plan Writing Services</a><a href="bank-loan-business-plans.html">Bank Loan Business Plans</a><a href="investor-business-plan.html">Investor Business Plans</a><a href="strategic-business-plan.html">Strategic Business Plans</a><a href="financial-modeling.html">Financial Modelling</a><a href="business-plan-review.html">Business Plan Review</a><a class="menu-all" href="services.html">View All Services →</a></div></details>
-        <details><summary>Financing</summary><div class="menu-panel"><a href="small-business-financing-canada.html">Financing Resource Centre</a><a href="bank-loan-business-plans.html">Bank Loan Business Plans</a><a href="canada-small-business-financing-program.html">Government Financing</a><a href="canadian-bank-loan-business-plan-guide.html">Bank Financing Guides</a></div></details>
-        <details><summary>Industries</summary><div class="menu-panel"><a href="industry-business-plans.html">Industry Business Plans</a><a href="construction-business-plans.html">Popular: Construction</a><a class="menu-all" href="industry-business-plans.html">View All Industries →</a></div></details>
-        <details><summary>Free Tools</summary><div class="menu-panel"><a href="business-plan-template.html">Free Business Plan Templates</a><a href="business-plan-generator.html">Free Business Plan Generator</a></div></details>
-        <details><summary>Learn</summary><div class="menu-panel"><a href="blog-learning-hub.html">Learning Centre</a><a href="business-plan-essentials.html">Business Plan Essentials</a><a href="chapter-3-market-research.html">Market Research</a><a href="chapter-7-financial-forecasting.html">Financial Projections</a><a href="business-plan-glossary.html">Business Plan Glossary</a><a href="faqs.html">FAQs</a></div></details>
-        <details><summary>About</summary><div class="menu-panel menu-right"><a href="about-business-plan.html">About &amp; Credentials</a><a href="case-studies.html">Case Studies</a><a href="testimonials.html">Testimonials</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a></div></details>
-        <a class="button nav-cta" href="https://calendly.com/atul_jagga/business-plan-free-consult" target="_blank" rel="noopener">Book a Consult</a>
-      </nav>
-    </div>
-  </header>
+  <div class="container-fluid sticky-top global-header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark p-0" aria-label="Primary navigation">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+        <img src="img/bizplanlogo.png" alt="The Biz Plans logo" width="90" height="90" class="me-2" loading="lazy">
+      </a>
+      <button class="navbar-toggler ms-auto me-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav list-unstyled ms-auto align-items-lg-center">
+          <li class="nav-item dropdown">
+            <a href="services.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu bg-light mt-2">
+              <li><a href="services.html" class="dropdown-item">Business Plan Writing Services</a></li>
+              <li><a href="bank-loan-business-plans.html" class="dropdown-item">Bank Loan Business Plans</a></li>
+              <li><a href="investor-business-plan.html" class="dropdown-item">Investor Business Plans</a></li>
+              <li><a href="strategic-business-plan.html" class="dropdown-item">Strategic Business Plans</a></li>
+              <li><a href="financial-modeling.html" class="dropdown-item">Financial Modelling</a></li>
+              <li><a href="business-plan-review.html" class="dropdown-item">Business Plan Review</a></li>
+              <li><a href="services.html" class="dropdown-item fw-bold">View All Services</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="small-business-financing-canada.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Financing</a>
+            <ul class="dropdown-menu bg-light mt-2">
+              <li><a href="small-business-financing-canada.html" class="dropdown-item">Financing Resource Centre</a></li>
+              <li><a href="bank-loan-business-plans.html" class="dropdown-item">Bank Loan Business Plans</a></li>
+              <li><a href="canada-small-business-financing-program.html" class="dropdown-item">Government Financing</a></li>
+              <li><a href="canadian-bank-loan-business-plan-guide.html" class="dropdown-item">Bank Financing Guides</a></li>
+              <li><a href="small-business-financing-canada.html" class="dropdown-item fw-bold">View All Financing</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="industry-business-plans.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Industries</a>
+            <ul class="dropdown-menu bg-light mt-2">
+              <li><a href="industry-business-plans.html" class="dropdown-item">Industry Business Plans</a></li>
+              <li><a href="construction-business-plans.html" class="dropdown-item">Construction</a></li>
+              <li><a href="daycare-business-plans.html" class="dropdown-item">Daycare</a></li>
+              <li><a href="food-franchise-business-plans.html" class="dropdown-item">Food Franchise</a></li>
+              <li><a href="medical-services-business-plans.html" class="dropdown-item">Medical Services</a></li>
+              <li><a href="trucking-business-plans.html" class="dropdown-item">Trucking</a></li>
+              <li><a href="industry-business-plans.html" class="dropdown-item fw-bold">View All Industries</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="business-plan-template.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Free Tools</a>
+            <ul class="dropdown-menu bg-light mt-2"><li><a href="business-plan-template.html" class="dropdown-item">Free Business Plan Templates</a></li><li><a href="business-plan-generator.html" class="dropdown-item">Free Business Plan Generator</a></li></ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="blog-learning-hub.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Learn</a>
+            <ul class="dropdown-menu bg-light mt-2 dropdown-menu-end">
+              <li><a href="blog-learning-hub.html" class="dropdown-item">Learning Centre</a></li><li><a href="business-plan-essentials.html" class="dropdown-item">Business Plan Essentials</a></li><li><a href="chapter-3-market-research.html" class="dropdown-item">Market Research</a></li><li><a href="chapter-7-financial-forecasting.html" class="dropdown-item">Financial Projections</a></li><li><a href="business-plan-glossary.html" class="dropdown-item">Business Plan Glossary</a></li><li><a href="faqs.html" class="dropdown-item">FAQs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a href="about-business-plan.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+            <ul class="dropdown-menu bg-light mt-2 dropdown-menu-end"><li><a href="about-business-plan.html" class="dropdown-item">About &amp; Credentials</a></li><li><a href="case-studies.html" class="dropdown-item">Case Studies</a></li><li><a href="testimonials.html" class="dropdown-item">Testimonials</a></li><li><a href="pricing.html" class="dropdown-item">Pricing</a></li><li><a href="contact.html" class="dropdown-item">Contact</a></li></ul>
+          </li>
+          <li class="nav-item"><a href="contact.html" class="btn btn-light rounded-pill ms-lg-2 nav-cta">Book a Consult</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
 
   <main id="main">
     <section id="hero" class="hero">
@@ -65,5 +116,6 @@
 
   <footer class="site-footer"><div class="wrap footer-grid"><div><img src="img/bizplanlogo.png" alt="The Biz Plans" width="80" height="80" loading="lazy" decoding="async"><p>Professional business planning and financial modelling from Toronto, serving clients across Canada.</p></div><nav aria-label="Footer services"><h2>Services</h2><a href="services.html">Business Plan Writing</a><a href="bank-loan-business-plans.html">Bank Loan Plans</a><a href="investor-business-plan.html">Investor Plans</a><a href="strategic-business-plan.html">Strategic Plans</a><a href="financial-modeling.html">Financial Modelling</a></nav><nav aria-label="Footer financing"><h2>Financing</h2><a href="small-business-financing-canada.html">Financing Centre</a><a href="canada-small-business-financing-program.html">Government Programs</a><a href="canadian-bank-loan-business-plan-guide.html">Bank Guides</a><a href="immigration-business-plans.html">Immigration Plans</a></nav><nav aria-label="Footer resources"><h2>Resources</h2><a href="industry-business-plans.html">All Industries</a><a href="business-plan-template.html">Free Templates</a><a href="business-plan-generator.html">Free Generator</a><a href="blog-learning-hub.html">Learning Centre</a><a href="business-plan-glossary.html">Glossary</a></nav><nav id="locations-footer" aria-label="Footer locations"><h2>Locations</h2><a href="toronto-business-plan-writers.html">Toronto</a><a href="vancouver-business-plan-writers.html">Vancouver</a><a href="calgary-business-plan-writers.html">Calgary</a><a href="ottawa-business-plan-writers.html">Ottawa</a><a href="edmonton-business-plan-writers.html">Edmonton</a><a href="sitemap.xml">All Pages &amp; Locations</a></nav><nav aria-label="Footer company"><h2>Company</h2><a href="about-business-plan.html">About &amp; Credentials</a><a href="case-studies.html">Case Studies</a><a href="testimonials.html">Testimonials</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a></nav><nav aria-label="Footer legal"><h2>Legal</h2><a href="editorial-policy.html">Editorial Policy</a><a href="privacy-policy.html">Privacy Policy</a><a href="refund-policy.html">Refund Policy</a><a href="terms.html">Terms</a></nav></div><div class="wrap footer-bottom"><span>© The Biz Plans</span><a href="https://www.linkedin.com/company/thebizplans" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.facebook.com/people/The-biz-plans/61550125095965/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/thebizplans/" target="_blank" rel="noopener noreferrer">Instagram</a></div></footer>
   <script>(function(){function load(src){var s=document.createElement('script');s.src=src;s.async=true;document.head.appendChild(s)}window.addEventListener('load',function(){var schedule=window.requestIdleCallback||function(cb){setTimeout(cb,1500)};schedule(function(){window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});load('https://www.googletagmanager.com/gtm.js?id=GTM-NNJ2WX8Q')})},{once:true})}());</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>
 </html>
