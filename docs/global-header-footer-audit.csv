@@ -1,0 +1,19 @@
+URL,Header Consistent,Footer Consistent,Primary Nav Count,Dropdown Caret Removed,Mobile Nav Checked,Footer Checked,Hub Dependency,Inbound Internal Links,Crawl Depth,Orphan Risk,Notes
+/,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,17,0,LOW,Canonical shared shell; static validation completed
+/services.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,57,1,LOW,Canonical shared shell; static validation completed
+/bank-loan-business-plans.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,47,1,LOW,Canonical shared shell; static validation completed
+/royal-bank-of-canada.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,3,1,WEAKLY LINKED,Canonical shared shell; static validation completed
+/business-development-bank-of-canada.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,4,1,LOW,Canonical shared shell; static validation completed
+/canada-small-business-financing-program.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,21,1,LOW,Canonical shared shell; static validation completed
+/industry-business-plans.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Industry hub,87,1,LOW,Canonical shared shell; static validation completed
+/trucking-business-plans.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,8,1,LOW,Canonical shared shell; static validation completed
+/toronto-business-plan-writers.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,6,1,LOW,Canonical shared shell; static validation completed
+/vancouver-business-plan-writers.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,5,1,LOW,Canonical shared shell; static validation completed
+/immigration-business-plans.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Immigration hub,15,2,LOW,Canonical shared shell; static validation completed
+/blog-learning-hub.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Learning hub,14,1,LOW,Canonical shared shell; static validation completed
+/about-business-plan.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,34,1,LOW,Canonical shared shell; static validation completed
+/case-studies.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,31,1,LOW,Canonical shared shell; static validation completed
+/pricing.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,21,1,LOW,Canonical shared shell; static validation completed
+/contact.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,73,1,LOW,Canonical shared shell; static validation completed
+/business-plan-template.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,8,1,LOW,Canonical shared shell; static validation completed
+/business-plan-generator.html,Yes,Yes,7,Yes,Static responsive CSS,Yes,Global shell / contextual links,8,1,LOW,Canonical shared shell; static validation completed

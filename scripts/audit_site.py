@@ -186,7 +186,7 @@ for page in pages:
     # indexable-page canonical and on-page SEO contract.
     if "noindex" in parser.robots:
         continue
-    header = re.search(r'<div class="container-fluid sticky-top">.*?</nav>\s*</div>\s*</div>', source, re.S)
+    header = re.search(r'<div class="container-fluid sticky-top(?: global-header)?">.*?</nav>\s*</div>\s*</div>', source, re.S)
     footer = re.search(r"<footer\b.*?</footer>", source, re.S)
     if not header or not footer:
         errors.append(f"{page.name}: missing shared header or footer")
