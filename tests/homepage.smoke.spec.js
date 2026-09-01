@@ -31,15 +31,18 @@ test('mobile navigation exposes accessible state and opens', async ({ page }) =>
   await expect(page.locator('#navbarCollapse')).toHaveClass(/show/);
 });
 
-test('global consultation menu button uses the established contact workflow', async ({ page }) => {
+test('global consultation links direct visitors to Calendly', async ({ page }) => {
     await page.goto('/');
 
+    const calendlyUrl = 'https://calendly.com/atul_jagga/business-plan-free-consult';
     const consultButtons = page.locator('.nav-cta');
     await expect(consultButtons).toHaveCount(1);
     for (const button of await consultButtons.all()) {
-        await expect(button).toHaveAttribute('href', 'contact.html');
+        await expect(button).toHaveAttribute('href', calendlyUrl);
     }
 
+    await expect(page.locator('footer').getByRole('link', { name: 'Book a Consult', exact: true }))
+        .toHaveAttribute('href', calendlyUrl);
     await expect(page.locator('footer').getByRole('link', { name: 'Contact', exact: true }))
         .toHaveAttribute('href', 'contact.html');
 });

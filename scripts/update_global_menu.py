@@ -67,7 +67,7 @@ MENU = """<div class="container-fluid sticky-top global-header">
             <a href="about-business-plan.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">About</a>
             <ul class="dropdown-menu bg-light mt-2 dropdown-menu-end"><li><a href="about-business-plan.html" class="dropdown-item">About &amp; Credentials</a></li><li><a href="case-studies.html" class="dropdown-item">Case Studies</a></li><li><a href="testimonials.html" class="dropdown-item">Testimonials</a></li><li><a href="pricing.html" class="dropdown-item">Pricing</a></li><li><a href="contact.html" class="dropdown-item">Contact</a></li></ul>
           </li>
-          <li class="nav-item"><a href="contact.html" class="btn btn-light rounded-pill ms-lg-2 nav-cta">Book a Consult</a></li>
+          <li class="nav-item"><a href="https://calendly.com/atul_jagga/business-plan-free-consult" class="btn btn-light rounded-pill ms-lg-2 nav-cta">Book a Consult</a></li>
         </ul>
       </div>
     </nav>
