@@ -25,13 +25,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.min.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
 <!-- Customized Bootstrap Stylesheet -->
 <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
 
 <!-- Template Stylesheet -->
-<link rel="preload" href="css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+<link rel="preload" href="css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="css/internal-pages.css" rel="stylesheet"><noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
 
 <style>
   /* Make the hero shorter on this chapter page */
@@ -61,7 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark p-0" aria-label="Primary navigation">
       <a href="/" class="navbar-brand d-flex align-items-center">
-        <img src="img/bizplanlogo.png" alt="The Biz Plans logo" width="90" height="90" class="me-2" loading="lazy">
+        <img src="img/bizplanlogo.png" alt="The Biz Plans logo" width="90" height="90" class="me-2" loading="eager" fetchpriority="high">
       </a>
       <button class="navbar-toggler ms-auto me-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -515,11 +515,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="lib/wow/wow.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/counterup/counterup.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="js/main.min.js"></script>
 <section class="container py-5" aria-labelledby="answer-csbfp"><div class="border-start border-4 border-primary ps-4"><p class="section-kicker">Direct answer</p><h2 id="answer-csbfp" class="h3">Who is eligible for the Canada Small Business Financing Program?</h2><p>Eligibility depends on the current federal program rules, the borrower, the business activity and the proposed costs. A participating financial institution—not The Biz Plans—assesses the application and makes the credit decision. Review the current government criteria and confirm cost eligibility with the selected lender before committing funds.</p><p class="mb-0">If professional preparation is appropriate, review our <a href="services.html">business plan preparation services</a>.</p></div></section>
 </body>

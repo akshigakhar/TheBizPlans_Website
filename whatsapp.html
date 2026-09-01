@@ -15,6 +15,7 @@
     if (message) destination.searchParams.set('text', message);
     window.location.replace(destination.toString());
   </script>
+  <link href="css/internal-pages.css" rel="stylesheet">
 </head>
 <body>
   <main>
@@ -26,7 +27,7 @@
   <div class="container">
     <div class="site-footer__grid">
       <section class="site-footer__brand" aria-labelledby="footer-brand-heading">
-        <img src="img/bizplanlogo.png" alt="The Biz Plans" width="96" height="96" loading="lazy" decoding="async">
+        <img src="img/bizplanlogo.png" alt="The Biz Plans" width="96" height="96" loading="eager" decoding="async" fetchpriority="high">
         <h2 id="footer-brand-heading">The Biz Plans</h2>
         <ul class="site-footer__contact">
           <li>Toronto, Ontario, Canada</li>
