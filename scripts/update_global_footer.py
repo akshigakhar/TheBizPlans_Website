@@ -12,23 +12,35 @@ def links(items: list[tuple[str, str]]) -> str:
     return "\n".join(f'              <li><a href="{href}">{label}</a></li>' for label, href in items)
 
 
-def group(title: str, items: list[tuple[str, str]]) -> str:
+def group(title: str, items: list[tuple[str, str]], visible: int | None = None, disclosure_label: str | None = None) -> str:
+    group_id = title.lower().replace(" ", "-")
+    visible = visible or len(items)
+    primary, additional = items[:visible], items[visible:]
+    additional_markup = ""
+    if additional:
+        disclosure_label = disclosure_label or title
+        additional_id = f"footer-{group_id}-additional"
+        additional_markup = f'''\n            <li class="site-footer__additional" id="{additional_id}" hidden><ul>
+{links(additional)}
+            </ul></li>
+            <li class="site-footer__more-item"><button class="site-footer__more" type="button" aria-expanded="false" aria-controls="{additional_id}" data-label-more="See All {disclosure_label}" data-label-less="Show Fewer {disclosure_label}">See All {disclosure_label}</button></li>'''
     return f'''        <nav class="site-footer__group" aria-label="{title}">
           <h2>{title}</h2>
-          <ul>
-{links(items)}
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-{group_id}-links">{title}</button>
+          <ul id="footer-{group_id}-links" class="site-footer__links">
+{links(primary)}{additional_markup}
           </ul>
         </nav>'''
 
 
 GROUPS = [
     ("Services", [("Business Plan Writing Services", "services.html"), ("Bank Loan Business Plans", "bank-loan-business-plans.html"), ("Investor Business Plans", "investor-business-plan.html"), ("Strategic Business Plans", "strategic-business-plan.html"), ("Financial Modelling", "financial-modeling.html"), ("Business Plan Review", "business-plan-review.html")]),
-    ("Financing", [("Financing Resource Centre", "small-business-financing-canada.html"), ("Bank Loan Business Plans", "bank-loan-business-plans.html"), ("CSBFP", "canada-small-business-financing-program.html"), ("BDC", "business-development-bank-of-canada.html"), ("RBC", "royal-bank-of-canada.html"), ("TD", "td-canada-trust.html"), ("Scotiabank", "scotiabank.html"), ("View All Financing Resources", "small-business-financing-canada.html")]),
-    ("Industries", [("Industry Business Plans", "industry-business-plans.html"), ("Construction", "construction-business-plans.html"), ("Daycare", "daycare-business-plans.html"), ("Food Franchise", "food-franchise-business-plans.html"), ("Medical Services", "medical-services-business-plans.html"), ("Trucking", "trucking-business-plans.html"), ("Brewery", "brewery-business-plans.html"), ("Fintech", "fintech-business-plans.html"), ("Innovation", "innovation-business-plan.html"), ("Marine", "marine-business-plans.html"), ("Mobile App", "mobile-app-business-plans.html"), ("Recruiting", "recruiting-business-plans.html"), ("Telecom", "telecom-business-plans.html"), ("View All Industries", "industry-business-plans.html")]),
-    ("Free Resources", [("Free Business Plan Templates", "business-plan-template.html"), ("Free Business Plan Generator", "business-plan-generator.html"), ("Business Plan Essentials", "business-plan-essentials.html"), ("Business Plan Glossary", "business-plan-glossary.html"), ("Learning Centre", "blog-learning-hub.html"), ("FAQs", "faqs.html")]),
-    # There is no indexable city hub. Keep every city reachable here until one
-    # exists rather than presenting a misleading “View All Locations” link.
-    ("Locations", [("Toronto", "toronto-business-plan-writers.html"), ("Vancouver", "vancouver-business-plan-writers.html"), ("Calgary", "calgary-business-plan-writers.html"), ("Ottawa", "ottawa-business-plan-writers.html"), ("Edmonton", "edmonton-business-plan-writers.html"), ("Montreal", "montreal-business-plan-writers.html"), ("Mississauga", "mississauga-business-plan-writers.html"), ("Brampton", "brampton-business-plan-writers.html"), ("Vaughan", "vaughan-business-plan-writers.html"), ("Markham", "markham-business-plan-writers.html"), ("Richmond Hill", "richmond-hill-business-plan-writers.html"), ("Oakville", "oakville-business-plan-writers.html"), ("Oshawa", "oshawa-business-plan-writers.html"), ("Burlington", "burlington-business-plan-writers.html"), ("Pickering", "pickering-business-plan-writers.html"), ("Ajax", "ajax-business-plan-writers.html"), ("Whitby", "whitby-business-plan-writers.html"), ("Winnipeg", "winnipeg-business-plan-writers.html"), ("Quebec City", "quebec-city-business-plan-writers.html"), ("Hamilton", "hamilton-business-plan-writers.html"), ("Kitchener-Waterloo", "kitchener-waterloo-business-plan-writers.html"), ("Halifax", "halifax-business-plan-writers.html"), ("Victoria", "victoria-business-plan-writers.html"), ("Saskatoon", "saskatoon-business-plan-writers.html"), ("Regina", "regina-business-plan-writers.html"), ("St. John's", "st-johns-business-plan-writers.html"), ("New York City", "new-york-city-business-plan-writers.html"), ("Los Angeles", "los-angeles-business-plan-writers.html"), ("Chicago", "chicago-business-plan-writers.html"), ("Houston", "houston-business-plan-writers.html"), ("Phoenix", "phoenix-business-plan-writers.html"), ("Philadelphia", "philadelphia-business-plan-writers.html"), ("San Antonio", "san-antonio-business-plan-writers.html"), ("San Diego", "san-diego-business-plan-writers.html"), ("Dallas", "dallas-business-plan-writers.html"), ("San Jose", "san-jose-business-plan-writers.html")]),
+    ("Financing", [("Financing Resource Centre", "small-business-financing-canada.html"), ("Bank Loan Business Plans", "bank-loan-business-plans.html"), ("CSBFP", "canada-small-business-financing-program.html"), ("BDC", "business-development-bank-of-canada.html"), ("RBC", "royal-bank-of-canada.html"), ("TD", "td-canada-trust.html"), ("Scotiabank", "scotiabank.html"), ("CIBC", "cibc.html"), ("FCC", "farm-credit-canada.html")], 5, "Financing Resources"),
+    ("Industries", [("Industry Business Plans", "industry-business-plans.html"), ("Construction", "construction-business-plans.html"), ("Daycare", "daycare-business-plans.html"), ("Food Franchise", "food-franchise-business-plans.html"), ("Medical Services", "medical-services-business-plans.html"), ("Trucking", "trucking-business-plans.html"), ("Brewery", "brewery-business-plans.html"), ("Fintech", "fintech-business-plans.html"), ("Innovation", "innovation-business-plan.html"), ("Marine", "marine-business-plans.html"), ("Mobile App", "mobile-app-business-plans.html"), ("Recruiting", "recruiting-business-plans.html"), ("Telecom", "telecom-business-plans.html")], 6),
+    ("Free Resources", [("Free Business Plan Templates", "business-plan-template.html"), ("Free Business Plan Generator", "business-plan-generator.html"), ("Business Plan Essentials", "business-plan-essentials.html"), ("Learning Centre", "blog-learning-hub.html")]),
+    # There is no city hub, so keep every city in the DOM behind an in-place
+    # disclosure rather than pointing the control at an invented URL.
+    ("Locations", [("Toronto", "toronto-business-plan-writers.html"), ("Vancouver", "vancouver-business-plan-writers.html"), ("Calgary", "calgary-business-plan-writers.html"), ("Ottawa", "ottawa-business-plan-writers.html"), ("Edmonton", "edmonton-business-plan-writers.html"), ("Montreal", "montreal-business-plan-writers.html"), ("Mississauga", "mississauga-business-plan-writers.html"), ("Brampton", "brampton-business-plan-writers.html"), ("Vaughan", "vaughan-business-plan-writers.html"), ("Markham", "markham-business-plan-writers.html"), ("Richmond Hill", "richmond-hill-business-plan-writers.html"), ("Oakville", "oakville-business-plan-writers.html"), ("Oshawa", "oshawa-business-plan-writers.html"), ("Burlington", "burlington-business-plan-writers.html"), ("Pickering", "pickering-business-plan-writers.html"), ("Ajax", "ajax-business-plan-writers.html"), ("Whitby", "whitby-business-plan-writers.html"), ("Winnipeg", "winnipeg-business-plan-writers.html"), ("Quebec City", "quebec-city-business-plan-writers.html"), ("Hamilton", "hamilton-business-plan-writers.html"), ("Kitchener-Waterloo", "kitchener-waterloo-business-plan-writers.html"), ("Halifax", "halifax-business-plan-writers.html"), ("Victoria", "victoria-business-plan-writers.html"), ("Saskatoon", "saskatoon-business-plan-writers.html"), ("Regina", "regina-business-plan-writers.html"), ("St. John's", "st-johns-business-plan-writers.html"), ("New York City", "new-york-city-business-plan-writers.html"), ("Los Angeles", "los-angeles-business-plan-writers.html"), ("Chicago", "chicago-business-plan-writers.html"), ("Houston", "houston-business-plan-writers.html"), ("Phoenix", "phoenix-business-plan-writers.html"), ("Philadelphia", "philadelphia-business-plan-writers.html"), ("San Antonio", "san-antonio-business-plan-writers.html"), ("San Diego", "san-diego-business-plan-writers.html"), ("Dallas", "dallas-business-plan-writers.html"), ("San Jose", "san-jose-business-plan-writers.html")], 4),
     ("Company", [("About &amp; Credentials", "about-business-plan.html"), ("Case Studies", "case-studies.html"), ("Testimonials", "testimonials.html"), ("Pricing", "pricing.html"), ("Contact", "contact.html"), ("Book a Consult", "contact.html")]),
     ("Legal", [("Editorial Policy", "editorial-policy.html"), ("Privacy Policy", "privacy-policy.html"), ("Refund Policy", "refund-policy.html"), ("Terms and Conditions", "terms.html")]),
 ]
@@ -48,12 +60,13 @@ FOOTER = f'''<footer id="footer" class="site-footer">
           <a href="https://www.instagram.com/thebizplans/" target="_blank" rel="noopener noreferrer" aria-label="The Biz Plans on Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
         </div>
       </section>
-{chr(10).join(group(title, items) for title, items in GROUPS)}
+{chr(10).join(group(*group_data) for group_data in GROUPS)}
     </div>
     <div class="site-footer__bottom">
       <p>© The Biz Plans</p>
     </div>
   </div>
+  <script src="js/footer-navigation.js" defer></script>
 </footer>'''
 
 FOOTER_PATTERN = re.compile(r'<footer\b[^>]*>.*?</footer>', re.DOTALL)

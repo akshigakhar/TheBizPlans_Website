@@ -406,7 +406,8 @@
       </section>
         <nav class="site-footer__group" aria-label="Services">
           <h2>Services</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-services-links">Services</button>
+          <ul id="footer-services-links" class="site-footer__links">
               <li><a href="services.html">Business Plan Writing Services</a></li>
               <li><a href="bank-loan-business-plans.html">Bank Loan Business Plans</a></li>
               <li><a href="investor-business-plan.html">Investor Business Plans</a></li>
@@ -417,26 +418,33 @@
         </nav>
         <nav class="site-footer__group" aria-label="Financing">
           <h2>Financing</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-financing-links">Financing</button>
+          <ul id="footer-financing-links" class="site-footer__links">
               <li><a href="small-business-financing-canada.html">Financing Resource Centre</a></li>
               <li><a href="bank-loan-business-plans.html">Bank Loan Business Plans</a></li>
               <li><a href="canada-small-business-financing-program.html">CSBFP</a></li>
               <li><a href="business-development-bank-of-canada.html">BDC</a></li>
               <li><a href="royal-bank-of-canada.html">RBC</a></li>
+            <li class="site-footer__additional" id="footer-financing-additional" hidden><ul>
               <li><a href="td-canada-trust.html">TD</a></li>
               <li><a href="scotiabank.html">Scotiabank</a></li>
-              <li><a href="small-business-financing-canada.html">View All Financing Resources</a></li>
+              <li><a href="cibc.html">CIBC</a></li>
+              <li><a href="farm-credit-canada.html">FCC</a></li>
+            </ul></li>
+            <li class="site-footer__more-item"><button class="site-footer__more" type="button" aria-expanded="false" aria-controls="footer-financing-additional" data-label-more="See All Financing Resources" data-label-less="Show Fewer Financing Resources">See All Financing Resources</button></li>
           </ul>
         </nav>
         <nav class="site-footer__group" aria-label="Industries">
           <h2>Industries</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-industries-links">Industries</button>
+          <ul id="footer-industries-links" class="site-footer__links">
               <li><a href="industry-business-plans.html">Industry Business Plans</a></li>
               <li><a href="construction-business-plans.html">Construction</a></li>
               <li><a href="daycare-business-plans.html">Daycare</a></li>
               <li><a href="food-franchise-business-plans.html">Food Franchise</a></li>
               <li><a href="medical-services-business-plans.html">Medical Services</a></li>
               <li><a href="trucking-business-plans.html">Trucking</a></li>
+            <li class="site-footer__additional" id="footer-industries-additional" hidden><ul>
               <li><a href="brewery-business-plans.html">Brewery</a></li>
               <li><a href="fintech-business-plans.html">Fintech</a></li>
               <li><a href="innovation-business-plan.html">Innovation</a></li>
@@ -444,27 +452,29 @@
               <li><a href="mobile-app-business-plans.html">Mobile App</a></li>
               <li><a href="recruiting-business-plans.html">Recruiting</a></li>
               <li><a href="telecom-business-plans.html">Telecom</a></li>
-              <li><a href="industry-business-plans.html">View All Industries</a></li>
+            </ul></li>
+            <li class="site-footer__more-item"><button class="site-footer__more" type="button" aria-expanded="false" aria-controls="footer-industries-additional" data-label-more="See All Industries" data-label-less="Show Fewer Industries">See All Industries</button></li>
           </ul>
         </nav>
         <nav class="site-footer__group" aria-label="Free Resources">
           <h2>Free Resources</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-free-resources-links">Free Resources</button>
+          <ul id="footer-free-resources-links" class="site-footer__links">
               <li><a href="business-plan-template.html">Free Business Plan Templates</a></li>
               <li><a href="business-plan-generator.html">Free Business Plan Generator</a></li>
               <li><a href="business-plan-essentials.html">Business Plan Essentials</a></li>
-              <li><a href="business-plan-glossary.html">Business Plan Glossary</a></li>
               <li><a href="blog-learning-hub.html">Learning Centre</a></li>
-              <li><a href="faqs.html">FAQs</a></li>
           </ul>
         </nav>
         <nav class="site-footer__group" aria-label="Locations">
           <h2>Locations</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-locations-links">Locations</button>
+          <ul id="footer-locations-links" class="site-footer__links">
               <li><a href="toronto-business-plan-writers.html">Toronto</a></li>
               <li><a href="vancouver-business-plan-writers.html">Vancouver</a></li>
               <li><a href="calgary-business-plan-writers.html">Calgary</a></li>
               <li><a href="ottawa-business-plan-writers.html">Ottawa</a></li>
+            <li class="site-footer__additional" id="footer-locations-additional" hidden><ul>
               <li><a href="edmonton-business-plan-writers.html">Edmonton</a></li>
               <li><a href="montreal-business-plan-writers.html">Montreal</a></li>
               <li><a href="mississauga-business-plan-writers.html">Mississauga</a></li>
@@ -497,11 +507,14 @@
               <li><a href="san-diego-business-plan-writers.html">San Diego</a></li>
               <li><a href="dallas-business-plan-writers.html">Dallas</a></li>
               <li><a href="san-jose-business-plan-writers.html">San Jose</a></li>
+            </ul></li>
+            <li class="site-footer__more-item"><button class="site-footer__more" type="button" aria-expanded="false" aria-controls="footer-locations-additional" data-label-more="See All Locations" data-label-less="Show Fewer Locations">See All Locations</button></li>
           </ul>
         </nav>
         <nav class="site-footer__group" aria-label="Company">
           <h2>Company</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-company-links">Company</button>
+          <ul id="footer-company-links" class="site-footer__links">
               <li><a href="about-business-plan.html">About &amp; Credentials</a></li>
               <li><a href="case-studies.html">Case Studies</a></li>
               <li><a href="testimonials.html">Testimonials</a></li>
@@ -512,7 +525,8 @@
         </nav>
         <nav class="site-footer__group" aria-label="Legal">
           <h2>Legal</h2>
-          <ul>
+          <button class="site-footer__category-toggle" type="button" aria-expanded="true" aria-controls="footer-legal-links">Legal</button>
+          <ul id="footer-legal-links" class="site-footer__links">
               <li><a href="editorial-policy.html">Editorial Policy</a></li>
               <li><a href="privacy-policy.html">Privacy Policy</a></li>
               <li><a href="refund-policy.html">Refund Policy</a></li>
@@ -524,6 +538,7 @@
       <p>© The Biz Plans</p>
     </div>
   </div>
+  <script src="js/footer-navigation.js" defer></script>
 </footer>
 
   <!-- Structured Data -->
