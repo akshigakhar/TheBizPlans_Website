@@ -76,6 +76,10 @@ h6,
     min-height: 75px;
 }
 
+.global-header {
+    background: #101836;
+}
+
 /*** Global footer ***/
 .site-footer {
     padding: clamp(3.5rem, 7vw, 6rem) 0 0;
@@ -157,38 +161,40 @@ h6,
     height: auto;
 }
 
-.navbar .navbar-nav .nav-link {
-    margin-right: 14px;
+.global-header .navbar .navbar-nav .nav-link {
+    margin-right: 10px;
     padding: 0;
-	color: rgba(37, 36, 36, 0.95);
+	color: rgba(255, 255, 255, .92);
 	font-weight:900;
-	font-size: 20px;
+	font-size: 15px;
     outline: none;
 }
 
-.navbar .navbar-nav .nav-link:hover,
-.navbar .navbar-nav .nav-link.active {
-    color: rgba(37, 36, 36, 1);
+.global-header .navbar .navbar-nav .nav-link:hover,
+.global-header .navbar .navbar-nav .nav-link.active {
+    color: #fff;
 }
 
-.navbar .dropdown-toggle::after {
-    border: none;
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    vertical-align: middle;
-    margin-left: 8px;
+.global-header .navbar .dropdown-toggle::after {
+    display: none;
+}
+
+.global-header .navbar a:focus-visible,
+.global-header .navbar button:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav {
+    .global-header .navbar .navbar-nav {
         padding: 0 15px;
         background: var(--primary);
     }
 
-    .navbar .navbar-nav .nav-link  {
+    .global-header .navbar .navbar-nav .nav-link  {
         margin-right: 0;
-        padding: 10px 0;
+        padding: 12px 0;
+        font-size: 16px;
     }
 }
 
