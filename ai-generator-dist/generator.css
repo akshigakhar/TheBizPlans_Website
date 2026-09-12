@@ -1,0 +1,45 @@
+#business-plan-generator-app { color: #17243d; font-family: Arial, sans-serif; max-width: 100%; }
+#business-plan-generator-app, #business-plan-generator-app * { box-sizing: border-box; }
+#business-plan-generator-app .generator-shell { background: #fff; border: 1px solid #dce3ec; border-radius: 18px; box-shadow: 0 16px 42px rgba(18, 35, 65, .1); margin: 0 auto; max-width: 1180px; overflow: hidden; }
+#business-plan-generator-app .generator-intro { align-items: start; background: #f5f8fc; display: flex; gap: 24px; justify-content: space-between; padding: 28px 32px; }
+#business-plan-generator-app .generator-intro h2, #business-plan-generator-app .generator-draft h3 { color: #102448; font-size: clamp(1.45rem, 3vw, 2rem); margin: 10px 0 6px; }
+#business-plan-generator-app .generator-intro p, #business-plan-generator-app .generator-help { margin: 0; }
+#business-plan-generator-app .generator-badge { background: #dcecff; border-radius: 999px; color: #164b86; display: inline-block; font-size: .78rem; font-weight: 700; padding: 5px 10px; }
+#business-plan-generator-app .generator-progress { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid #e4e9ef; }
+#business-plan-generator-app .generator-progress button { align-items: center; background: #fff; border: 0; color: #526176; display: flex; font: inherit; font-weight: 700; gap: 8px; justify-content: center; min-height: 64px; padding: 10px; }
+#business-plan-generator-app .generator-progress button.is-active { background: #eaf4ff; color: #0869b4; }
+#business-plan-generator-app .generator-progress span { align-items: center; border: 1px solid currentColor; border-radius: 50%; display: inline-flex; height: 28px; justify-content: center; width: 28px; }
+#business-plan-generator-app .generator-form, #business-plan-generator-app .generator-draft { padding: 32px; }
+#business-plan-generator-app .generator-form fieldset { border: 0; margin: 0; min-width: 0; padding: 0; }
+#business-plan-generator-app .generator-form legend { color: #102448; font-size: 1.55rem; font-weight: 700; margin-bottom: 4px; }
+#business-plan-generator-app .generator-fields { display: grid; gap: 20px; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
+#business-plan-generator-app .generator-fields label { color: #263a5a; display: flex; flex-direction: column; font-size: .94rem; font-weight: 700; gap: 8px; min-width: 0; }
+#business-plan-generator-app .generator-fields label:first-child { grid-column: 1 / -1; }
+#business-plan-generator-app .generator-fields input, #business-plan-generator-app .generator-fields textarea { background: #fff; border: 1px solid #b9c5d4; border-radius: 9px; color: #17243d; font: inherit; font-weight: 400; max-width: 100%; padding: 12px 14px; resize: vertical; width: 100%; }
+#business-plan-generator-app .generator-fields input:focus, #business-plan-generator-app .generator-fields textarea:focus { border-color: #0878ca; box-shadow: 0 0 0 3px rgba(8, 120, 202, .15); outline: 0; }
+#business-plan-generator-app .generator-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; margin-top: 28px; }
+#business-plan-generator-app .generator-button, #business-plan-generator-app .generator-link-button { border-radius: 999px; cursor: pointer; font: inherit; font-weight: 700; }
+#business-plan-generator-app .generator-button { background: #0878ca; border: 1px solid #0878ca; color: #fff; padding: 11px 22px; }
+#business-plan-generator-app .generator-button-secondary { background: #fff; color: #164b86; }
+#business-plan-generator-app .generator-link-button { background: transparent; border: 0; color: #164b86; padding: 6px; white-space: nowrap; }
+#business-plan-generator-app .generator-notice { background: #fff8df; border-left: 4px solid #e1aa19; padding: 14px 16px; }
+#business-plan-generator-app .generator-draft-heading { align-items: start; display: flex; gap: 20px; justify-content: space-between; }
+#business-plan-generator-app .generator-draft-heading .generator-actions { margin-top: 0; }
+#business-plan-generator-app .generator-draft article { border-top: 1px solid #e3e8ef; padding-top: 18px; }
+#business-plan-generator-app .generator-draft h4 { color: #183c68; margin-bottom: 6px; }
+#business-plan-generator-app .generator-draft article p { white-space: pre-line; }
+@media (max-width: 767px) {
+  #business-plan-generator-app .generator-intro, #business-plan-generator-app .generator-draft-heading { flex-direction: column; }
+  #business-plan-generator-app .generator-intro, #business-plan-generator-app .generator-form, #business-plan-generator-app .generator-draft { padding: 22px 18px; }
+  #business-plan-generator-app .generator-progress { grid-template-columns: repeat(2, 1fr); }
+  #business-plan-generator-app .generator-progress button { font-size: .82rem; min-height: 52px; }
+  #business-plan-generator-app .generator-fields { grid-template-columns: 1fr; }
+  #business-plan-generator-app .generator-fields label:first-child { grid-column: auto; }
+  #business-plan-generator-app .generator-actions { justify-content: stretch; }
+  #business-plan-generator-app .generator-actions .generator-button { flex: 1 1 auto; }
+}
+@media print {
+  body > * { display: none !important; }
+  body > main, body > main .business-plan-generator-tool, #business-plan-generator-app, #business-plan-generator-app .generator-shell, #business-plan-generator-app .generator-draft { display: block !important; box-shadow: none; border: 0; }
+  #business-plan-generator-app .generator-intro, #business-plan-generator-app .generator-progress, #business-plan-generator-app .generator-actions { display: none !important; }
+}
