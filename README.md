@@ -18,3 +18,5 @@ Never put private credentials in a `VITE_` variable; Vite exposes those values t
 ### Vercel settings
 
 Keep the project Root Directory blank (the repository root). `vercel.json` supplies `npm run build` as the Build Command and `site-dist` as the Output Directory. Do not override those fields in the Vercel dashboard. Redeploy after this commit reaches the configured production branch.
+
+If Vercel reports `No Output Directory named "site-dist" found` immediately after a short Vite build, the project is using `ai-generator` as its Root Directory. In **Settings → Build and Deployment**, change Root Directory back to the repository root (`./`), select **Other** as the framework preset, and remove dashboard overrides for Build Command and Output Directory. Redeploy without the build cache. A correct log runs the root `thebizplans-website` build and ends with `Staged the static website in site-dist for Vercel.`
