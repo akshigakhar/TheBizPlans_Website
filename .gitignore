@@ -7,3 +7,4 @@ ai-generator/.vite/
 .env.*
 !.env.example
 *.log
+site-dist/
