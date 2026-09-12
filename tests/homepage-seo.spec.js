@@ -42,6 +42,5 @@ test('commercial journey and homepage links work at desktop, tablet and mobile w
     await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible();
   }
   await expect(page.locator('a[href="https://calendly.com/atul_jagga/business-plan-free-consult"]').first()).toBeVisible();
-  await expect(page.getByRole('contentinfo').getByRole('link', { name: 'GetListed.Business directory' }))
-    .toHaveAttribute('href', 'https://getlisted.business');
+  await expect(page.locator('a[href="https://getlisted.business"]')).toHaveCount(0);
 });
