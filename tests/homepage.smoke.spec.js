@@ -47,14 +47,13 @@ test('global consultation links direct visitors to Calendly', async ({ page }) =
         .toHaveAttribute('href', 'contact.html');
 });
 
-test('homepage highlights the founder, free generator and book', async ({ page }) => {
+test('homepage highlights the founder and keeps planning resources available', async ({ page }) => {
   await page.goto('/');
 
-  await expect(page.getByRole('heading', { name: /Your Plan Is Led by Atul Jagga/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Founder-Led Business Plan and Financial Work' })).toBeVisible();
   await expect(page.locator('.credential-badges')).toContainText('CPA');
-  await expect(page.getByRole('link', { name: 'Start the Free Generator' }))
+  await expect(page.getByRole('link', { name: 'Free Business Plan Generator', exact: true }).last())
     .toHaveAttribute('href', 'business-plan-generator.html');
-  await expect(page.getByRole('heading', { name: /Business Plan Essentials/ })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Explore the Book' }))
+  await expect(page.getByRole('link', { name: 'Business Plan Essentials', exact: true }).last())
     .toHaveAttribute('href', 'business-plan-essentials.html');
 });

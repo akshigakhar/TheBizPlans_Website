@@ -7,7 +7,7 @@ test('homepage preserves primary SEO signals and valid structured data', async (
   await expect(page.locator('h1')).toHaveText('Professional Business Plan Writers in Canada');
   await expect(page.locator('link[rel="canonical"]')).toHaveCount(1);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://thebizplans.com/');
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Professional business plan writers serving Canada/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', 'Professional business plan writers and consultants serving Canada. Business plans, market research and integrated financial projections for financing, investment, acquisitions and growth.');
   await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
 
   const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
@@ -42,5 +42,6 @@ test('commercial journey and homepage links work at desktop, tablet and mobile w
     await expect(page.locator(`a[href="${href}"]`).first()).toBeVisible();
   }
   await expect(page.locator('a[href="https://calendly.com/atul_jagga/business-plan-free-consult"]').first()).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Request a Project Assessment' })).toHaveCount(2);
   await expect(page.locator('a[href="https://getlisted.business"]')).toHaveCount(0);
 });
