@@ -1,2 +1,9 @@
 __pycache__/
 *.py[cod]
+node_modules/
+ai-generator/node_modules/
+ai-generator/.vite/
+.env
+.env.*
+!.env.example
+*.log

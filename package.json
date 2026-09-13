@@ -2,7 +2,9 @@
   "name": "thebizplans-website",
   "private": true,
   "scripts": {
-    "test:smoke": "playwright test"
+    "build": "npm run build:generator",
+    "test:smoke": "playwright test",
+    "build:generator": "npm --prefix ai-generator install && npm --prefix ai-generator run build:bundle"
   },
   "devDependencies": {
     "@playwright/test": "1.54.1"
