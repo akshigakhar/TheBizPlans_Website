@@ -1,3 +1,27 @@
-# TheBizPlanAI embedded application
+# Free Business Plan Generator
 
-Run `npm install`, `npm run type-check`, `npm test`, and `npm run build`. The app uses hash-assisted internal state, browser `localStorage`, and browser print/PDF export. It has no authentication, API, Supabase, or Vercel dependency. Replace this source with the canonical `TheBizPlans_AI` source after completing the end-user checklist in the root README if exact repository parity is required.
+A public, browser-only React application for writing a business plan, calculating three-year financial projections, and downloading PDF and Excel files.
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+No environment variables or external services are required. Drafts are saved in browser `localStorage`; business-plan data is not sent to or stored by a server.
+
+## Production build
+
+```bash
+npm install
+npm run type-check
+npm test
+npm run build
+```
+
+The website integration writes the generated bundle to `../ai-generator-dist/`, which is published with the static website to the S3 bucket. PDF and Excel files are generated and downloaded entirely in the browser.
+
+## Application boundaries
+
+The free generator intentionally has no authentication, accounts, database, payment service, subscriptions, administrative portal, or narrative-generation API. Its runtime dependencies are limited to the React UI, icons, and Vite build tooling.
