@@ -26,6 +26,9 @@ test('generator landing uses the available page width without breaking its hero 
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/business-plan-generator.html');
 
+  await expect(page.locator('.free-landing .landing-nav')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Start My Free Plan' })).toHaveCount(0);
+
   const layout = await page.locator('.business-plan-generator-tool').evaluate((tool) => {
     const hero = tool.querySelector('.free-landing .hero');
     const heading = tool.querySelector('.hero-copy h1');
