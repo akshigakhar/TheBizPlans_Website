@@ -21,3 +21,34 @@ test('generator saves answers, navigates, and does not overflow at responsive wi
   await page.getByRole('button', { name: /Business/ }).click();
   await expect(page.getByLabel('Business name')).toHaveValue('Sample Company');
 });
+
+test('generator landing uses the available page width without breaking its hero layout', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/business-plan-generator.html');
+
+  await expect(page.locator('.free-landing .landing-nav')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Start My Free Plan' })).toHaveCount(0);
+
+  const layout = await page.locator('.business-plan-generator-tool').evaluate((tool) => {
+    const hero = tool.querySelector('.free-landing .hero');
+    const heading = tool.querySelector('.hero-copy h1');
+    const preview = tool.querySelector('.plan-preview');
+    const toolBounds = tool.getBoundingClientRect();
+    const heroBounds = hero.getBoundingClientRect();
+    const headingBounds = heading.getBoundingClientRect();
+    const previewBounds = preview.getBoundingClientRect();
+
+    return {
+      toolWidth: toolBounds.width,
+      heroWidth: heroBounds.width,
+      headingWidth: headingBounds.width,
+      previewWidth: previewBounds.width,
+      viewportWidth: document.documentElement.clientWidth,
+    };
+  });
+
+  expect(layout.toolWidth).toBe(layout.viewportWidth);
+  expect(layout.heroWidth).toBe(layout.viewportWidth);
+  expect(layout.headingWidth).toBeGreaterThan(450);
+  expect(layout.previewWidth).toBeGreaterThan(400);
+});
