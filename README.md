@@ -1,24 +1,23 @@
 # The Biz Plans website
 
-## AI generator
+## Embedded AI generator
 
-The React source lives in `ai-generator/` and mounts into `business-plan-generator.html`. Run `npm run build:generator` from the repository root. The S3 workflow does not run Node, so commit the resulting `ai-generator-dist/` files before deploying. Vercel runs the root `npm run build` command and publishes the staged `site-dist/` directory.
+The React source lives in `ai-generator/`, mounts into `business-plan-generator.html`, and builds to `ai-generator-dist/`. Build it from the repository root with:
 
-Never put private credentials in a `VITE_` variable; Vite exposes those values to browsers. This implementation requires no environment variables or external API credentials.
+```bash
+npm run build
+```
 
-### Owner deployment checklist
+The production workflow builds the generator and uploads the static website directly to the existing S3 bucket. Vercel is not part of the production architecture. The workflow deliberately excludes React source, dependencies, tests, and other development-only files from S3 while publishing `ai-generator-dist/` with the website.
 
-1. In a network-enabled checkout, replace the scaffold in `ai-generator/` with the canonical `TheBizPlans_AI` repository source (keep the guarded `business-plan-generator-app` mount and embedded Vite output settings).
-2. Copy the AI repository's `.env.example` values into local/CI environment variables. Only use browser-safe public values; move secret-backed operations to a backend endpoint.
-3. Run `cd ai-generator && npm install && npm run type-check && npm test && npm run build`.
-4. Confirm `ai-generator-dist/generator.js` and `generator.css` changed, then test `business-plan-generator.html` locally at desktop and mobile widths.
-5. Commit both `ai-generator/` and `ai-generator-dist/`, merge the PR to `main`, and let `.github/workflows/deploy-s3.yml` upload the static files.
-6. Keep the existing AI repository and Vercel deployment available until production testing is complete.
+Never put private credentials in a `VITE_` variable because Vite exposes those values to browsers. Secret-backed AI operations must use a protected backend endpoint.
 
-### Vercel settings
+### Replacing the scaffold with the canonical AI application
 
-Keep the project Root Directory blank (the repository root). `vercel.json` supplies `npm run build` as the Build Command and `site-dist` as the Output Directory. Do not override those fields in the Vercel dashboard. Redeploy after this commit reaches the configured production branch.
-
-If Vercel reports `No Output Directory named "site-dist" found` immediately after a short Vite build, the project is using `ai-generator` as its Root Directory. In **Settings → Build and Deployment**, change Root Directory back to the repository root (`./`), select **Other** as the framework preset, and remove dashboard overrides for Build Command and Output Directory. Redeploy without the build cache. A correct log runs the root `thebizplans-website` build and ends with `Staged the static website in site-dist for Vercel.`
-
-For compatibility with an existing Vercel project whose Root Directory remains `ai-generator`, the nested `npm run build` also stages the complete website into `ai-generator/site-dist`. The preferred configuration is still the repository root, but either Root Directory now produces the `site-dist` folder Vercel expects.
+1. Replace the contents of `ai-generator/` with the canonical `TheBizPlans_AI` source, excluding `node_modules`, `.git`, `.vercel`, build output, and all `.env` files.
+2. Preserve the guarded `business-plan-generator-app` mount and the Vite output directory `../ai-generator-dist`.
+3. Audit every `VITE_` variable and move private credentials or privileged operations behind an appropriate backend endpoint.
+4. Run `cd ai-generator && npm install && npm run type-check && npm test && npm run build`.
+5. Test `business-plan-generator.html` locally, including APIs, authentication, saving, export, refresh, mobile layouts, and browser back/forward.
+6. Push the website branch and merge it to `main`; `.github/workflows/deploy-s3.yml` will build and publish the generator with the website.
+7. Keep the old AI repository and Vercel deployment available until the S3-hosted production page is verified.

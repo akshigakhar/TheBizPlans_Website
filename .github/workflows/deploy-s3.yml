@@ -16,6 +16,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build the embedded AI generator
+        run: npm run build
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -32,4 +40,14 @@ jobs:
             --exclude ".gitignore" \
             --exclude ".gitattributes" \
             --exclude ".htaccess" \
-            --exclude "README.md"
+            --exclude "README.md" \
+            --exclude "node_modules/*" \
+            --exclude "ai-generator/*" \
+            --exclude "site-dist/*" \
+            --exclude "package.json" \
+            --exclude "package-lock.json" \
+            --exclude "playwright.config.js" \
+            --exclude "tests/*" \
+            --exclude "scripts/*" \
+            --exclude "docs/*" \
+            --exclude "scss/*"
