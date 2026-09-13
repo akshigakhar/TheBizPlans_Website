@@ -2,7 +2,10 @@
   "name": "thebizplans-website",
   "private": true,
   "scripts": {
-    "test:smoke": "playwright test"
+    "build": "npm run build:generator && npm run stage:site",
+    "test:smoke": "playwright test",
+    "build:generator": "npm --prefix ai-generator install && npm --prefix ai-generator run build:bundle",
+    "stage:site": "node scripts/build-vercel-site.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.54.1"
