@@ -12,12 +12,22 @@ The production workflow builds the generator and uploads the static website dire
 
 Never put private credentials in a `VITE_` variable because Vite exposes those values to browsers. Secret-backed AI operations must use a protected backend endpoint.
 
-### Replacing the scaffold with the canonical AI application
+### Maintaining the generator
 
-1. Replace the contents of `ai-generator/` with the canonical `TheBizPlans_AI` source, excluding `node_modules`, `.git`, `.vercel`, build output, and all `.env` files.
-2. Preserve the guarded `business-plan-generator-app` mount and the Vite output directory `../ai-generator-dist`.
-3. Audit every `VITE_` variable and move private credentials or privileged operations behind an appropriate backend endpoint.
-4. Run `cd ai-generator && npm install && npm run type-check && npm test && npm run build`.
-5. Test `business-plan-generator.html` locally, including APIs, authentication, saving, export, refresh, mobile layouts, and browser back/forward.
-6. Push the website branch and merge it to `main`; `.github/workflows/deploy-s3.yml` will build and publish the generator with the website.
-7. Keep the old AI repository and Vercel deployment available until the S3-hosted production page is verified.
+The canonical public generator is integrated in `ai-generator/`. Keep the guarded
+`business-plan-generator-app` mount and the Vite output directory
+`../ai-generator-dist` when updating it. Before publishing an update, run:
+
+```bash
+cd ai-generator
+npm install
+npm run type-check
+npm test
+npm run build
+```
+
+Then test `business-plan-generator.html` locally, including draft persistence,
+financial calculations, PDF and workbook exports, refresh, mobile layouts, and
+browser back/forward navigation. The generator is deliberately browser-only; do
+not add private credentials to `VITE_` variables or introduce privileged browser
+operations.
