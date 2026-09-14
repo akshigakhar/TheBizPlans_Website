@@ -20,3 +20,20 @@ test('site organization structured data includes a complete postal address', asy
         addressCountry: 'CA'
     });
 });
+
+test('business plan generator uses webpage structured data without unsupported ratings', async ({ page }) => {
+    await page.goto('/business-plan-generator.html');
+
+    const structuredData = await page.locator('script[type="application/ld+json"]').allTextContents();
+    const nodes = structuredData.flatMap((json) => {
+        const data = JSON.parse(json);
+        return data['@graph'] || [data];
+    });
+    const generatorPage = nodes.find((node) => node.url === 'https://thebizplans.com/business-plan-generator.html');
+
+    expect(generatorPage).toMatchObject({
+        '@type': 'WebPage',
+        name: 'AI Business Plan Generator | TheBizPlanAI'
+    });
+    expect(nodes.some((node) => ['SoftwareApplication', 'WebApplication'].includes(node['@type']))).toBe(false);
+});
