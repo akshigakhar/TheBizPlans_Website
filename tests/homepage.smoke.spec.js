@@ -15,7 +15,7 @@ test('homepage uses the shared Bootstrap header plus its local page stylesheet',
   await page.goto('/');
   await expect(page.locator('link[href="css/bootstrap.min.css"]')).toHaveCount(1);
   await expect(page.locator('link[href="css/style.min.css"]')).toHaveCount(1);
-  await expect(page.locator('link[href="css/homepage-redesign.css"]')).toHaveCount(1);
+  await expect(page.locator('link[href="css/homepage-redesign.min.css"]')).toHaveCount(1);
   await expect(page.locator('link[href*="fonts.googleapis.com"]')).toHaveCount(0);
   await expect(page.locator('script[src*="bootstrap"]')).toHaveCount(1);
     await expect(page.locator('script[src*="owl"]')).toHaveCount(0);
