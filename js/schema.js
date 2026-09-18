@@ -122,7 +122,7 @@
       addressRegion: 'ON', postalCode: 'M9C 3S3', addressCountry: 'CA'
     },
     founder: { '@id': PERSON_ID },
-    sameAs: ['https://www.instagram.com/thebizplans/', 'https://www.facebook.com/people/The-biz-plans/61550125095965/', 'https://www.linkedin.com/company/thebizplans']
+    sameAs: ['https://www.instagram.com/thebizplans/', 'https://www.facebook.com/people/The-biz-plans/61550125095965/', 'https://www.linkedin.com/company/the-biz-plans/']
   }, {
     '@type': 'Person', '@id': PERSON_ID, name: 'Atul Jagga', url: `${SITE_URL}about-business-plan.html#atul-jagga`,
     jobTitle: 'Founder and Lead Consultant', worksFor: { '@id': ORGANIZATION_ID },
