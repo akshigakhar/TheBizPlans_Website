@@ -34,6 +34,21 @@ def canonical_url(page: Path) -> str:
     return f"{ORIGIN}/" if page.name == "index.html" else f"{ORIGIN}/{page.name}"
 
 
+def last_modified(page: Path) -> str:
+    """Return the last committed content date in the sitemap's W3C format."""
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%cs", "--", page.name],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    value = result.stdout.strip()
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        raise ValueError(f"{page.name}: cannot determine last modification date from Git")
+    return value
+
+
 def set_canonical(source: str, url: str, page: Path) -> str:
     tag = f'<link rel="canonical" href="{url}">'
     pattern = re.compile(r'<link\b(?=[^>]*\brel=["\'][^"\']*\bcanonical\b[^"\']*["\'])[^>]*>', re.I)
