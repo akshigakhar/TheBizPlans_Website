@@ -182,8 +182,12 @@ for page in pages:
     source = page.read_text(encoding="utf-8")
     parser = AuditParser()
     parser.feed(source)
+    expected = HOST + ("/" if page.name == "index.html" else "/" + page.name)
+    if parser.canonicals != [expected]:
+        errors.append(f"{page.name}: canonical must be {expected}")
     # Utility pages intentionally excluded from search results are outside the
-    # indexable-page canonical and on-page SEO contract.
+    # indexable-page on-page SEO contract. They still require a canonical so
+    # hostname and protocol variants do not create duplicate URL signals.
     if "noindex" in parser.robots:
         continue
     header = re.search(r'<div class="container-fluid sticky-top(?: global-header)?">.*?</nav>\s*</div>\s*</div>', source, re.S)
@@ -218,11 +222,7 @@ for page in pages:
             value = image.get(dimension, "")
             if not value.isdigit() or int(value) < 1:
                 unoptimized_images.append(f"{page.name}: {src} has no valid {dimension}")
-    expected = HOST + ("/" if page.name == "index.html" else "/" + page.name)
-    if parser.canonicals != [expected]:
-        errors.append(f"{page.name}: canonical must be {expected}")
-    else:
-        canonical_urls.add(expected)
+    canonical_urls.add(expected)
     required_css = {"css/bootstrap.min.css", "css/style.min.css"}
     if not required_css.issubset(parser.styles):
         errors.append(f"{page.name}: missing shared CSS")
@@ -325,7 +325,13 @@ for source, target in internal_links:
         errors.append(f"{source}: internal link points through redirect {target}")
 
 namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-sitemap = {node.text for node in ET.parse(ROOT / "sitemap.xml").findall(".//s:loc", namespace)}
+sitemap_root = ET.parse(ROOT / "sitemap.xml")
+sitemap = {node.text for node in sitemap_root.findall(".//s:loc", namespace)}
+for entry in sitemap_root.findall(".//s:url", namespace):
+    location = entry.findtext("s:loc", namespaces=namespace) or "(missing loc)"
+    lastmod = entry.findtext("s:lastmod", namespaces=namespace) or ""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", lastmod):
+        errors.append(f"sitemap URL has missing or invalid lastmod: {location}")
 sitemap_redirect_sources = {
     url
     for url in sitemap
