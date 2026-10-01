@@ -7,6 +7,7 @@ from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 import re
+import subprocess
 import sys
 from urllib.parse import unquote, urlsplit
 
@@ -61,9 +62,25 @@ def local_html_target(raw: str) -> str | None:
     return path if path.endswith(".html") else None
 
 
-def generated_sitemap(indexed_pages: list[Path]) -> str:
+def last_modified(page: Path) -> str:
+    """Return the last committed date so sitemap output stays reproducible."""
+    result = subprocess.run(
+        ["git", "log", "-1", "--format=%cs", "--", page.name],
+        cwd=ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip() or "2026-10-01"
+
+
+def generated_sitemap(pages: list[Path]) -> str:
     entries = "\n".join(
-        f"  <url>\n    <loc>{escape(canonical_url(page))}</loc>\n  </url>" for page in indexed_pages
+        "  <url>\n"
+        f"    <loc>{escape(canonical_url(page))}</loc>\n"
+        f"    <lastmod>{last_modified(page)}</lastmod>\n"
+        "  </url>"
+        for page in pages
     )
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -105,7 +122,6 @@ def main() -> int:
 
     pages = sorted(ROOT.glob("*.html"), key=lambda page: (page.name != "index.html", page.name))
     page_names = {page.name for page in pages}
-    indexed_pages: list[Path] = []
     stale: list[str] = []
     broken: list[str] = []
 
@@ -113,19 +129,13 @@ def main() -> int:
         source = page.read_text(encoding="utf-8")
         parser = PageParser()
         parser.feed(source)
-        is_indexable = "noindex" not in parser.robots
-        if is_indexable:
-            indexed_pages.append(page)
         for raw in parser.links:
             target = local_html_target(raw)
             if target and target not in page_names:
                 broken.append(f"{page.name}: {raw}")
-        # Deliberate utility/noindex pages do not need canonical enforcement.
-        # Their robots directive, rather than a canonical hint, controls indexing.
-        if is_indexable:
-            update(page, set_canonical(source, canonical_url(page), page), args.check, stale)
+        update(page, set_canonical(source, canonical_url(page), page), args.check, stale)
 
-    update(ROOT / "sitemap.xml", generated_sitemap(indexed_pages), args.check, stale)
+    update(ROOT / "sitemap.xml", generated_sitemap(pages), args.check, stale)
     update(ROOT / "robots.txt", generated_robots(), args.check, stale)
 
     if broken:
@@ -136,7 +146,7 @@ def main() -> int:
         print("Run: python3 scripts/generate_seo.py", file=sys.stderr)
         return 1
     action = "Checked" if args.check else "Generated"
-    print(f"{action} canonicals for {len(pages)} pages; sitemap contains {len(indexed_pages)} indexable pages.")
+    print(f"{action} canonicals and sitemap metadata for {len(pages)} pages.")
     return 0
 
 
