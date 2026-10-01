@@ -13,11 +13,11 @@ test('homepage preserves primary SEO signals and valid structured data', async (
   const jsonLd = await page.locator('script[type="application/ld+json"]').allTextContents();
   expect(() => jsonLd.map(JSON.parse)).not.toThrow();
   const nodes = jsonLd.map(JSON.parse).flatMap(data => data['@graph'] || [data]);
-  const organizations = nodes.filter(node => node['@type'] === 'Organization');
-  expect(organizations).toHaveLength(1);
-  expect(organizations[0].url).toBe('https://thebizplans.com/');
-  expect(organizations[0]['@id']).toBe('https://thebizplans.com/#organization');
-  expect(organizations[0].founder['@id']).toBe('https://thebizplans.com/#atul-jagga');
+  const professionalServices = nodes.filter(node => node['@type'] === 'ProfessionalService');
+  expect(professionalServices).toHaveLength(1);
+  expect(professionalServices[0].url).toBe('https://thebizplans.com/');
+  expect(professionalServices[0]['@id']).toBe('https://thebizplans.com/#organization');
+  expect(professionalServices[0].founder['@id']).toBe('https://thebizplans.com/#atul-jagga');
 });
 
 test('commercial journey and homepage links work at desktop, tablet and mobile widths', async ({ page }) => {
