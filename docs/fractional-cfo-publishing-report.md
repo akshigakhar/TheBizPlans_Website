@@ -2,11 +2,11 @@
 
 Prepared October 26, 2026.
 
-**Status: published to GitHub main; S3 deployment workflow triggered.** Production URL: `https://thebizplans.com/fractional-cfo-services.html`. Direct live HTTP and browser verification remain unavailable from this environment.
+**Status: published to GitHub main and successfully deployed to S3.** Production URL: `https://thebizplans.com/fractional-cfo-services.html`. Direct live HTTP and browser verification remain unavailable from this environment.
 
 Shell Git failed because its configured proxy was unreachable, and its CLI token was invalid. The connected GitHub app successfully published the page and scoped updates to the services hub and sitemap, preserving current remote content. Remote commits: `9e7ec200030b5401918d10dd6f603b773af5047d`, `ac4da8297c99539648a8048754fccbf8fcf246f0`, `bd79f87e45fd3d1b21500a689ad415d19b35cfb7`.
 
-Deployment run: https://github.com/akshigakhar/TheBizPlans_Website/actions/runs/40372413367 .
+Successful deployment: https://github.com/akshigakhar/TheBizPlans_Website/actions/runs/40372585602 .
 
 ## Delivered
 
@@ -29,7 +29,7 @@ Deployment run: https://github.com/akshigakhar/TheBizPlans_Website/actions/runs/
 
 Moneris, Payfirma and business-case work on $0.5M+ projects were omitted: no supporting founder claim was found in the repository. Bank-project experience is described as documented project work, not employment or executive leadership at those banks. No invented prices, delivery timelines, statistics, client counts, funding totals, testimonials, security promises or financing guarantees were added. Pricing remains scope-dependent and quote-based, with CAD confirmation.
 
-CSBFP and BDC repaired files exist and are linked. Their live publication could not be confirmed because outbound access was unavailable; verify them during the production handoff. The page does not claim that the business or engagement is eligible for either program.
+CSBFP and BDC repaired files exist and are linked. Their repair was merged to main before this change and is included in the successful S3 deployment. Direct HTTP verification remains unavailable. The page does not claim that the business or engagement is eligible for either program.
 
 ## Validation
 
@@ -156,3 +156,7 @@ All targets below exist locally. No missing target required remapping. Duplicate
 | Privacy Policy | `privacy-policy.html` | Exists |
 | Refund Policy | `refund-policy.html` | Exists |
 | Terms and Conditions | `terms.html` | Exists |
+
+## Remote publishing follow-up
+
+The connected GitHub app verified the uploaded CFO page matches the checked local source exactly. S3 deployment succeeded. Remote SEO generation exposed stale modification dates for the five previously merged Prompt 35 repair files; these dates were updated to October 26, 2026, preserving the generator’s sorted sitemap order. Final content commit: `a08ef730c1e6e41aabaeaa61ef719de6f7ae5d81`. Direct HTTP/browser QA remains unverified. Full-site audit findings described above remain outside this page change.
