@@ -89,7 +89,7 @@ Passed:
 - Desktop (1440px) and mobile (390px): no horizontal overflow; mobile menu opens; no page JavaScript errors.
 - Reciprocal industry/service mappings, Learning Centre inbound link and sitemap entry verified.
 
-The full `python scripts/audit_site.py` does **not** pass because of pre-existing findings. Compared against the unchanged repository, it reports the same missing workbook `downloads/free-financial-projections-template-3yr.xlsx` twice on `free-business-plan-template.html`, existing eager-logo/image findings and shared-header/footer variants. The new page inherits the shared header's eager logo, which adds the corresponding existing-style audit warning. No broken link or local asset was introduced by the hub. The template guide itself exists; its spreadsheet download needs separate repair.
+The full `python scripts/audit_site.py` does **not** pass because of pre-existing findings. Compared against the unchanged repository, it reports the same missing workbook `downloads/free-financial-projections-template-3yr.xlsx` twice on `free-business-plan-template.html`, retired external URLs on the pre-existing startup-visa page, existing eager-logo/image findings and shared-header/footer variants. The new page inherits the shared header's eager logo, which adds the corresponding existing-style audit warning. No broken link or local asset was introduced by the hub. The template guide itself exists; its spreadsheet download needs separate repair.
 
 ## Deployment
 
