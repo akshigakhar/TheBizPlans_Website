@@ -20,81 +20,126 @@
   <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
   <link rel="preload" href="css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
   <link href="css/internal-pages.min.css" rel="stylesheet">
-  <script src="js/schema.min.js" defer></script>
   <style>.service-annotation{border-left:4px solid #0d6efd;background:#f3f7ff;padding:1rem 1.25rem}.service-photo{width:100%;height:250px;object-fit:cover}.toc a{text-decoration:none}.service-list li,.process-list li{margin-bottom:1rem}.comparison-table th:first-child{min-width:9rem}.author-card img{width:120px;height:120px;object-fit:cover}</style>
-  <script type="application/ld+json">{
-    "@context":"https://schema.org","@type":"Service","name":"Business Plan Writing Services","serviceType":"Business plan writing and consulting","url":"https://thebizplans.com/business-plan-writing-services.html","provider":{"@type":"Organization","@id":"https://thebizplans.com/#organization","name":"The Biz Plans","url":"https://thebizplans.com/"},"areaServed":{"@type":"Country","name":"Canada"},"offers":{"@type":"Offer","price":"4000","priceCurrency":"CAD","description":"Basic Plan: Financials + Write-Up; applicable taxes excluded."}
-  }</script>
-  <script type="application/ld+json">{
-    "@context":"https://schema.org","@type":"Person","@id":"https://thebizplans.com/about-business-plan.html#atul-jagga","name":"Atul Jagga","honorificSuffix":"CPA Ontario","jobTitle":"Founder","worksFor":{"@type":"Organization","name":"The Biz Plans"},"url":"https://thebizplans.com/about-business-plan.html","alumniOf":{"@type":"CollegeOrUniversity","name":"University of British Columbia"}
-  }</script>
-  <script type="application/ld+json">{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "How much does a business plan writer cost?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The site's Basic Plan — Financials + Write-Up — is $4,000 CAD plus applicable taxes. It combines the written document with integrated multi-year projections. Highly complex, multi-entity, or rush engagements may require a custom quote. We confirm scope and fees in advance so you can compare the actual deliverables, research, modelling, and review included rather than comparing page counts."
-      }
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Business Plan Writing Services",
+      "serviceType": "Business plan writing and consulting",
+      "url": "https://thebizplans.com/business-plan-writing-services.html",
+      "provider": {
+        "@id": "https://thebizplans.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Canada"
+      },
+      "@id": "https://thebizplans.com/business-plan-writing-services.html#service"
     },
     {
-      "@type": "Question",
-      "name": "How long does it take to write a business plan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It depends on complexity and how quickly you can provide your numbers — straightforward plans move faster than investor rounds with original market research. We'll give you a firm timeline with your quote, before you commit to anything. The site does not promise a standard turnaround because research needs, source-data readiness, business complexity, and review cycles determine the responsible schedule."
-      }
+      "@type": "Organization",
+      "@id": "https://thebizplans.com/#organization",
+      "name": "The Biz Plans",
+      "url": "https://thebizplans.com/"
     },
     {
-      "@type": "Question",
-      "name": "What's included in a professional business plan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The full document: executive summary, market analysis, company description, organization, products and services, marketing and operations plans, three-year financial projections (income, cash flow, balance sheet), and the funding request. Every plan we deliver includes documented assumptions, so a lender can follow the math instead of taking it on faith. The final emphasis reflects whether the reader is a bank, investor, or acquisition lender."
-      }
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": "https://thebizplans.com/#atul-jagga",
+      "name": "Atul Jagga",
+      "honorificSuffix": "CPA Ontario",
+      "jobTitle": "Founder",
+      "worksFor": {
+        "@id": "https://thebizplans.com/#organization"
+      },
+      "url": "https://thebizplans.com/about-business-plan.html",
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of British Columbia"
+      },
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "CPA Ontario"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "RCIC-IRB"
+        }
+      ]
     },
     {
-      "@type": "Question",
-      "name": "What experience do you have with lender-facing business plans?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Atul Jagga, CPA Ontario, has corporate finance and consulting experience involving RBC, BMO and CIBC. Since 2016, he has written bank-financing and investor business plans for Canadian startups and small businesses. We connect the funding request, use of funds, repayment assumptions and integrated projections. This experience does not imply lender endorsement or guarantee approval; the lender makes its own credit decision."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you guarantee my loan or investment will be approved?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No — and you should distrust anyone who promises that. No writer controls a lender's credit decision. What we guarantee is the quality of the case: a plan built on your real numbers, structured the way underwriters read, with financials a CPA stands behind. That materially improves your odds; it can't remove the lender's judgment. Your lender remains responsible for its own policies and decision."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you work with clients outside Toronto?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes — we're based in Toronto and work with founders across Canada. Discovery calls are remote, and the plans are built for Canadian lenders, CRA rules, and programs like the CSBFP wherever they apply. The relevant program, lender, province, business structure, and GST/HST treatment are considered in context rather than assumed to be identical for every founder."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What do you need from me to start?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your actual numbers: what you're raising or borrowing and why, your cost structure, pricing, and pipeline — plus access to you for questions while we model. The plan is only as good as its inputs, so the discovery process is thorough by design. If you're still at the idea stage, the free generator is the better first step. Quotes, records, and named sources help make assumptions defensible."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I get started?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Request a free quote — tell us what the money is for and we'll scope the plan, give you a firm price and timeline, and answer your questions. No obligation. Or start free with the AI business plan generator and come back when the stakes are high. Sharing the intended reader, funding request, business stage, deadline, and available records makes that first scope more useful."
-      }
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a business plan writer cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cost depends on the research, financial modelling, business complexity and review included in the engagement. We confirm scope and fees in advance so you can compare actual deliverables rather than page counts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to write a business plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on complexity and how quickly you can provide your numbers — straightforward plans move faster than investor rounds with original market research. We'll give you a firm timeline with your quote, before you commit to anything. The site does not promise a standard turnaround because research needs, source-data readiness, business complexity, and review cycles determine the responsible schedule."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's included in a professional business plan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The full document: executive summary, market analysis, company description, organization, products and services, marketing and operations plans, three-year financial projections (income, cash flow, balance sheet), and the funding request. Every plan we deliver includes documented assumptions, so a lender can follow the math instead of taking it on faith. The final emphasis reflects whether the reader is a bank, investor, or acquisition lender."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What experience do you have with lender-facing business plans?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atul Jagga, CPA Ontario, has corporate finance and consulting experience involving RBC, BMO and CIBC. Since 2016, he has written bank-financing and investor business plans for Canadian startups and small businesses. We connect the funding request, use of funds, repayment assumptions and integrated projections. This experience does not imply lender endorsement or guarantee approval; the lender makes its own credit decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you guarantee my loan or investment will be approved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Preparing a business plan does not guarantee a loan or investment decision. The plan connects the funding request, use of funds, documented assumptions and projections for review. The lender or investor makes its own assessment and decision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with clients outside Toronto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes — we're based in Toronto and work with founders across Canada. Discovery calls are remote, and the plans are built for Canadian lenders, CRA rules, and programs like the CSBFP wherever they apply. The relevant program, lender, province, business structure, and GST/HST treatment are considered in context rather than assumed to be identical for every founder."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you need from me to start?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your actual numbers: what you're raising or borrowing and why, your cost structure, pricing, and pipeline — plus access to you for questions while we model. The plan is only as good as its inputs, so the discovery process is thorough by design. If you're still at the idea stage, the free generator is the better first step. Quotes, records, and named sources help make assumptions defensible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Request a free quote — tell us what the money is for and we'll scope the plan, give you a firm price and timeline, and answer your questions. No obligation. Or start free with the AI business plan generator and come back when the stakes are high. Sharing the intended reader, funding request, business stage, deadline, and available records makes that first scope more useful."
+          }
+        }
+      ]
     }
   ]
 }</script>
@@ -168,9 +213,9 @@
 <main>
 <section class="container py-5"><div class="row g-5"><article class="col-lg-8">
 <p class="lead">Our <strong>business plan writing services</strong> give Canadian founders a bank-ready, investor-ready business plan written by a CPA — not a template, not a gig-worker draft, and not software output you have to finish yourself. Every plan is built around the two documents a lender actually reads: the financial projections and the funding request.</p>
-<p>If you're borrowing, raising, or acquiring, the plan is the first thing the money reads. We make sure it survives that reading.</p>
+<p>If you're borrowing, raising, or acquiring, the plan is the first thing the money reads. The narrative and projections need to address the questions that reader will assess.</p>
 <p><em>Prefer to draft it yourself first? Our <a href="business-plan-generator.html">free AI business plan generator</a> is the honest starting point — and we're here when the stakes are high.</em></p>
-<p>Founders who want to hire a business plan writer often need more than polished prose. They need a business plan consultant who can connect the request to credible operating assumptions, explain the repayment source, and make the narrative agree with the model. That is the purpose of this focused service.</p>
+<p>Founders hiring a <a href="/">professional business plan writer</a> often need more than polished prose. They need a business plan consultant who can connect the request to credible operating assumptions, explain the repayment source, and make the narrative agree with the model. That is the purpose of this focused service.</p>
 <nav class="toc border rounded-3 p-4 my-5" aria-label="Table of contents"><p class="h4 fw-bold">Table of contents</p><ul class="mb-0"><li><a href="#included">What's included</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#why-the-biz-plans">Why The Biz Plans</a></li><li><a href="#done-for-you">Done-for-you vs. free AI generator</a></li><li><a href="#who-this-is-for">Who this is for</a></li><li><a href="#cost">How much does a business plan writer cost?</a></li><li><a href="#timeline">How long does it take?</a></li><li><a href="#professional-plan">What's included in a professional business plan?</a></li><li><a href="#faqs">FAQs</a></li></ul></nav>
 <h2 id="included">What's included in our business plan writing services</h2>
 <ul class="service-list mt-4">
@@ -179,29 +224,30 @@
 <li><strong>Acquisition and growth plans</strong> — for buyers acquiring a business and operators planning expansion. Purchase-price justification, integration costs, and combined projections. The work distinguishes historical performance from forward-looking assumptions and identifies the operating changes behind the forecast.</li>
 <li><strong>Integrated financial projections</strong> — three-year income statement, cash-flow statement, and balance sheet that tie together. Assumptions documented, so a lender can follow the math. Revenue drivers, staffing, operating expenses, capital requirements, financing, and cash timing are developed as one model rather than disconnected schedules.</li>
 <li><strong>Market research</strong> — competitor mapping, demand sizing from named sources, and positioning. Real research, not adjective paragraphs. Sources and dates make the evidence reviewable, while the analysis explains what that evidence means for customers, pricing, capacity, and the forecast.</li></ul>
-<p class="service-annotation"><em>Why this matters: most cheap “business plan writers” sell you a formatted document. What gets funded is the financial logic underneath it — and that's the part a CPA builds differently.</em></p>
+<p class="service-annotation"><em>Why this matters: most cheap “business plan writers” sell you a formatted document. The financial logic should be clear enough for the intended reader to assess alongside the written narrative.</em></p>
 <figure class="my-5"><img src="img/service-financial-modeling.jpg" class="service-photo rounded" width="900" height="600" loading="lazy" alt="Integrated income statement cash flow and balance sheet projections for a Canadian business plan"><figcaption class="small text-muted mt-2">Narrative assumptions and the financial model are developed as one connected case.</figcaption></figure>
+<p>The agreed deliverables bring these elements together: the written case explains the business, the research supports market assumptions, and the model shows how operating decisions affect cash flow. Confirm which appendices, source material and financial schedules belong in your scope before drafting begins. Review the narrative and projections together so a change in one is reflected in the other.</p>
 <h2 id="how-it-works">How it works</h2><ol class="process-list mt-4">
 <li><strong>Discovery call.</strong> We learn what the money is for — loan, raise, acquisition — because the plan's structure depends on the audience. A bank plan and an investor plan are different documents. We also identify the decision-maker, requested amount, available records, and the questions the completed plan must answer.</li>
 <li><strong>Research and financial modeling.</strong> We build your projections from your actual numbers — quotes, wage rates, rent, pipeline — plus market research from named sources. This is the bulk of the work, and it's the part that can't be templated. Where an input is still an estimate, it is treated as an assumption to test and document rather than disguised as a fact.</li>
 <li><strong>Draft and review.</strong> You review the draft, we revise. The financials have to reflect your reality, so your input here is what makes the plan defensible in a lender meeting. Review also checks that the operating plan, market evidence, funding request, and model tell the same story.</li>
-<li><strong>Final lender-ready plan.</strong> A finished document with projections, funding request, and appendices — ready to submit, and ready for the questions that follow submission. The sequence is complete only when key assumptions can be located and explained by the founder who will present the plan.</li></ol>
+<li><strong>Final lender-ready plan.</strong> A finished document with projections, funding request, and appendices — ready to submit, and ready for the questions that follow submission. The sequence is complete only when key assumptions can be located and explained by the founder who will present the plan.</li></ol><p>Before final delivery, review client-supplied facts against the available records and distinguish estimates from confirmed inputs. Questions raised during review may require an assumption to be explained or revised. The agreed review process establishes how those comments are incorporated into the written plan and financial schedules.</p>
 </article><aside class="col-lg-4"><div class="conversion-card"><h3 class="h4">A focused writing service</h3><p>This page covers done-for-you plan development for financing, investment, acquisitions, and growth. For the broader service catalogue, including immigration, modelling, review, and strategy, visit the <a href="services.html">services hub</a>.</p><img src="img/services-overview.jpg" class="img-fluid rounded" width="640" height="427" loading="lazy" alt="Business plan consultant organizing research strategy and financial deliverables"></div></aside></div></section>
 <section class="container-fluid bg-primary text-white py-5" aria-label="Request a business plan quote"><div class="container"><div class="row align-items-center g-4"><div class="col-lg-8"><h3 class="h2 text-white">Ready to scope your professional plan?</h3><p class="text-white mb-0">Tell us what the money is for and what information you already have. We'll confirm the appropriate deliverables, price, and schedule before you commit.</p></div><div class="col-lg-4 text-lg-end"><a href="project-brief.html" class="btn btn-light rounded-pill px-4">Request a free quote</a></div></div></div></section>
-<section class="container py-5"><div class="row g-5 align-items-center"><div class="col-lg-7"><h2 id="why-the-biz-plans">Why The Biz Plans</h2><p>Most business plan writers have never sat near a credit decision. Atul Jagga has spent 20+ years in corporate finance and consulting, involving RBC, BMO, and CIBC — he knows what an underwriter looks for because he's worked in the world that produces underwriters. He's a CPA Ontario with an MBA in Finance &amp; Strategy from UBC, and since 2016 he has written bank-financing and investor business plans for Canadian startups and small businesses through The Biz Plans.</p><p>That background changes the product. Our plans don't just describe a business — they make a financial case: the ask, the use of funds, and the repayment source, in that order, with projections a banker can audit. It's the difference between a document and an argument.</p><p>That practitioner voice matters in a lender meeting. A clear plan does not hide risk or pretend every forecast is certain; it identifies the assumptions that drive the result and gives the founder a case they can explain. Read more about <a href="about-business-plan.html">Atul's credentials and approach</a>.</p></div><div class="col-lg-5"><img src="img/atul-jagga-profile.jpg" class="img-fluid rounded shadow" width="600" height="600" loading="lazy" alt="Atul Jagga CPA Ontario founder and business plan consultant in Toronto"></div></div></section>
-<section class="bg-light py-5"><div class="container"><h2 id="done-for-you">Done-for-you vs. the free AI generator</h2><p>Honest guidance, because we'd rather have your trust than your money:</p><div class="table-responsive"><table class="table table-bordered bg-white comparison-table"><thead><tr><th scope="col">Choice</th><th scope="col">Free AI generator</th><th scope="col">Done-for-you service</th></tr></thead><tbody><tr><th scope="row">Best for</th><td>Early exploration, internal planning, learning the structure</td><td>Bank loans, investor rounds, acquisitions — when money is on the line</td></tr><tr><th scope="row">Financials</th><td>Structured first draft from your inputs</td><td>Fully modeled, CPA-reviewed, lender-formatted</td></tr><tr><th scope="row">Market research</th><td>Framework and prompts</td><td>Real research from named sources</td></tr><tr><th scope="row">Cost</th><td>Free</td><td>$4,000 CAD + applicable tax for the Basic Plan (Financials + Write-Up); custom quote for highly complex, multi-entity, or rush engagements</td></tr><tr><th scope="row">Your time</th><td>A few hours of your input</td><td>Discovery + review rounds</td></tr></tbody></table></div>
+<section class="container py-5"><div class="row g-5 align-items-center"><div class="col-lg-7"><h2 id="why-the-biz-plans">Why The Biz Plans</h2><p>Atul Jagga has spent 20+ years in corporate finance and consulting, involving RBC, BMO, and CIBC — he knows what an underwriter looks for because he's worked in the world that produces underwriters. He's a CPA Ontario with an MBA in Finance &amp; Strategy from UBC, and since 2016 he has written bank-financing and investor business plans for Canadian startups and small businesses through The Biz Plans.</p><p>That background changes the product. Our plans don't just describe a business — they make a financial case: the ask, the use of funds, and the repayment source, in that order, with projections a banker can audit. It's the difference between a document and an argument.</p><p>That practitioner voice matters in a lender meeting. A clear plan does not hide risk or pretend every forecast is certain; it identifies the assumptions that drive the result and gives the founder a case they can explain. Read more about <a href="about-business-plan.html">Atul's credentials and approach</a>.</p></div><div class="col-lg-5"><img src="img/atul-jagga-profile.jpg" class="img-fluid rounded shadow" width="600" height="600" loading="lazy" alt="Atul Jagga CPA Ontario founder and business plan consultant in Toronto"></div></div></section>
+<section class="bg-light py-5"><div class="container"><h2 id="done-for-you">Done-for-you vs. the free AI generator</h2><p>Honest guidance, because we'd rather have your trust than your money:</p><div class="table-responsive"><table class="table table-bordered bg-white comparison-table"><thead><tr><th scope="col">Choice</th><th scope="col">Free AI generator</th><th scope="col">Done-for-you service</th></tr></thead><tbody><tr><th scope="row">Best for</th><td>Early exploration, internal planning, learning the structure</td><td>Bank loans, investor rounds, acquisitions — when money is on the line</td></tr><tr><th scope="row">Financials</th><td>Structured first draft from your inputs</td><td>Fully modeled, CPA-reviewed, lender-formatted</td></tr><tr><th scope="row">Market research</th><td>Framework and prompts</td><td>Real research from named sources</td></tr><tr><th scope="row">Cost</th><td>Free</td><td>Scoped quote based on deliverables, research, modelling and review</td></tr><tr><th scope="row">Your time</th><td>Your input and draft review</td><td>Discovery + review rounds</td></tr></tbody></table></div>
 <p class="service-annotation"><em>Why this matters: we'd rather you start free and come to us when the stakes justify it than sell you a plan you don't need. Many clients do exactly that — draft with the generator, then hire us to make it lender-grade.</em></p>
 <div class="conversion-card mt-4"><div class="row align-items-center g-4"><div class="col-md-8"><h3 class="h4">Start with the right level of help</h3><p class="mb-0">Try the free starting point: AI business plan generator. When the money is real, request a free quote.</p></div><div class="col-md-4 text-md-end"><a href="business-plan-generator.html" class="btn btn-primary rounded-pill">Use the free AI generator</a></div></div></div></div></section>
-<section class="container py-5"><div class="row g-5"><div class="col-lg-8"><h2 id="who-this-is-for">Who this is for</h2><ul class="service-list"><li><strong>Founders seeking bank financing</strong> — term loans, lines of credit, equipment financing, CSBFP-backed borrowing. If a lender will read it, it needs to be built like a lender reads.</li><li><strong>Entrepreneurs raising capital</strong> — angels, seed rounds, partner buy-ins. Investors fund clarity; a plan that can't explain the return in two pages won't survive the first meeting.</li><li><strong>Buyers acquiring a business</strong> — lenders financing acquisitions want to see purchase-price justification and combined projections, not just the target's history.</li><li><strong>Operators planning growth</strong> — expansion, new locations, new lines. A plan turns “we should grow” into numbers a bank or partner can evaluate.</li></ul><p>If that's not you — if you're validating an idea or planning for yourself — start with the <a href="business-plan-generator.html">free generator</a>. It's genuinely useful, and it's free.</p><p>For an example of how planning choices become a complete narrative, see the <a href="blog-sample-coffee-shop-business-plan.html">sample coffee shop business plan</a>. For lender review criteria, read <a href="how-banks-evaluate-business-plans.html">how banks evaluate business plans</a>.</p></div><div class="col-lg-4"><img src="img/why-bizplans.jpg" class="service-photo rounded" width="640" height="427" loading="lazy" alt="Canadian founders discussing a bank-ready business plan with a professional advisor"></div></div></section>
-<section class="container py-5 pt-0"><h2 id="cost">How much does a business plan writer cost?</h2><p>The site's Basic Plan — Financials + Write-Up — is $4,000 CAD plus applicable taxes. It includes a cohesive written business plan and integrated multi-year financial projections. Highly complex, multi-entity, or rush engagements may require a custom quote; scope and fees are confirmed in advance. See the <a href="pricing.html">current pricing and package details</a>.</p><p>Price should be evaluated against scope, not page count. Confirm who develops the model, what research is included, how assumptions are documented, and what review cycle is part of the engagement. A lower price for prose alone is not equivalent to a connected narrative and financial model.</p>
+<section class="container py-5"><div class="row g-5"><div class="col-lg-8"><h2 id="who-this-is-for">Who this is for</h2><p>The common starting point is a defined decision: financing a purchase, explaining an investment case, acquiring an operating business or assessing expansion. Tell us the intended reader and what information is already available. That context helps establish which research, written sections and projections are relevant, rather than assuming every venture needs the same document.</p><ul class="service-list"><li><strong>Founders seeking bank financing</strong> — term loans, lines of credit, equipment financing, CSBFP-backed borrowing. If a lender will read it, it needs to be built like a lender reads.</li><li><strong>Entrepreneurs raising capital</strong> — angels, seed rounds, partner buy-ins. Investors fund clarity; a plan that can't explain the return in two pages won't survive the first meeting.</li><li><strong>Buyers acquiring a business</strong> — lenders financing acquisitions want to see purchase-price justification and combined projections, not just the target's history.</li><li><strong>Operators planning growth</strong> — expansion, new locations, new lines. A plan turns “we should grow” into numbers a bank or partner can evaluate.</li></ul><p>If that's not you — if you're validating an idea or planning for yourself — start with the <a href="business-plan-generator.html">free generator</a>. It's genuinely useful, and it's free.</p><p>For an example of how planning choices become a complete narrative, see the <a href="blog-sample-coffee-shop-business-plan.html">sample coffee shop business plan</a>. For lender review criteria, read <a href="how-banks-evaluate-business-plans.html">how banks evaluate business plans</a>.</p></div><div class="col-lg-4"><img src="img/why-bizplans.jpg" class="service-photo rounded" width="640" height="427" loading="lazy" alt="Canadian founders discussing a bank-ready business plan with a professional advisor"></div></div></section>
+<section class="container py-5 pt-0"><h2 id="cost">How much does a business plan writer cost?</h2><p>Fees depend on the written plan, research, integrated projections and review required. Scope and fees are confirmed in advance. See the <a href="pricing.html">current pricing and package details</a>.</p><p>Price should be evaluated against scope, not page count. Confirm who develops the model, what research is included, how assumptions are documented, and what review cycle is part of the engagement. A lower price for prose alone is not equivalent to a connected narrative and financial model.</p>
 <h2 id="timeline" class="mt-5">How long does it take to write a business plan?</h2><p>It depends on complexity and how quickly you can provide your numbers — straightforward plans move faster than investor rounds with original market research. We'll give you a firm timeline with your quote, before you commit to anything.</p><p>The sequence starts with discovery and source collection, then moves through research, modelling, drafting, review, and final delivery. The site does not publish a standard number of days or weeks because research needs, data readiness, business complexity, and review cycles differ. The agreed schedule is therefore set after the deliverables and available inputs are assessed.</p>
 <h2 id="professional-plan" class="mt-5">What's included in a professional business plan?</h2><p>The full document: executive summary, market analysis, company description, organization, products and services, marketing and operations plans, three-year financial projections (income, cash flow, balance sheet), and the funding request. Every plan we deliver includes documented assumptions, so a lender can follow the math instead of taking it on faith.</p><p>The precise emphasis changes with the reader. A bank-facing document makes repayment capacity, use of funds, owner contribution, and downside questions easy to find. An investor-facing plan gives more attention to the growth case, milestones, return logic, and capital needed to reach the next stage without disconnecting those claims from the model.</p></section>
 <section class="page-faq py-5 bg-light" aria-labelledby="faqs"><div class="container"><h2 id="faqs">Frequently asked questions</h2><div class="row g-4 mt-2">
-<div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white" open><summary class="fw-bold"><h3 class="d-inline h5">How much does a business plan writer cost?</h3></summary><p class="mt-3">The site's Basic Plan — Financials + Write-Up — is $4,000 CAD plus applicable taxes. It combines the written document with integrated multi-year projections. Highly complex, multi-entity, or rush engagements may require a custom quote. We confirm scope and fees in advance so you can compare the actual deliverables, research, modelling, and review included rather than comparing page counts.</p></details></div>
+<div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white" open><summary class="fw-bold"><h3 class="d-inline h5">How much does a business plan writer cost?</h3></summary><p class="mt-3">Cost depends on the research, financial modelling, business complexity and review included in the engagement. We confirm scope and fees in advance so you can compare actual deliverables rather than page counts.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">How long does it take to write a business plan?</h3></summary><p class="mt-3">It depends on complexity and how quickly you can provide your numbers — straightforward plans move faster than investor rounds with original market research. We'll give you a firm timeline with your quote, before you commit to anything. The site does not promise a standard turnaround because research needs, source-data readiness, business complexity, and review cycles determine the responsible schedule.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">What's included in a professional business plan?</h3></summary><p class="mt-3">The full document: executive summary, market analysis, company description, organization, products and services, marketing and operations plans, three-year financial projections (income, cash flow, balance sheet), and the funding request. Every plan we deliver includes documented assumptions, so a lender can follow the math instead of taking it on faith. The final emphasis reflects whether the reader is a bank, investor, or acquisition lender.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">What experience do you have with lender-facing business plans?</h3></summary><p class="mt-3">Atul Jagga, CPA Ontario, has corporate finance and consulting experience involving RBC, BMO and CIBC. Since 2016, he has written bank-financing and investor business plans for Canadian startups and small businesses. We connect the funding request, use of funds, repayment assumptions and integrated projections. This experience does not imply lender endorsement or guarantee approval; the lender makes its own credit decision.</p></details></div>
-<div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">Do you guarantee my loan or investment will be approved?</h3></summary><p class="mt-3">No — and you should distrust anyone who promises that. No writer controls a lender's credit decision. What we guarantee is the quality of the case: a plan built on your real numbers, structured the way underwriters read, with financials a CPA stands behind. That materially improves your odds; it can't remove the lender's judgment. Your lender remains responsible for its own policies and decision.</p></details></div>
+<div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">Do you guarantee my loan or investment will be approved?</h3></summary><p class="mt-3">No. Preparing a business plan does not guarantee a loan or investment decision. The plan connects the funding request, use of funds, documented assumptions and projections for review. The lender or investor makes its own assessment and decision.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">Do you work with clients outside Toronto?</h3></summary><p class="mt-3">Yes — we're based in Toronto and work with founders across Canada. Discovery calls are remote, and the plans are built for Canadian lenders, CRA rules, and programs like the CSBFP wherever they apply. The relevant program, lender, province, business structure, and GST/HST treatment are considered in context rather than assumed to be identical for every founder.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">What do you need from me to start?</h3></summary><p class="mt-3">Your actual numbers: what you're raising or borrowing and why, your cost structure, pricing, and pipeline — plus access to you for questions while we model. The plan is only as good as its inputs, so the discovery process is thorough by design. If you're still at the idea stage, the <a href="business-plan-generator.html">free generator</a> is the better first step. Quotes, records, and named sources help make assumptions defensible.</p></details></div>
 <div class="col-lg-6"><details class="h-100 border rounded p-4 bg-white"><summary class="fw-bold"><h3 class="d-inline h5">How do I get started?</h3></summary><p class="mt-3"><a href="project-brief.html">Request a free quote</a> — tell us what the money is for and we'll scope the plan, give you a firm price and timeline, and answer your questions. No obligation. Or start free with the <a href="business-plan-generator.html">AI business plan generator</a> and come back when the stakes are high. Sharing the intended reader, funding request, business stage, deadline, and available records makes that first scope more useful.</p></details></div>
@@ -360,4 +406,172 @@
     </div>
   </div>
   <script src="js/footer-navigation.min.js" defer></script>
-</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script></body></html>
+</footer><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script><script>
+(function () {
+  'use strict';
+
+  const SITE_URL = 'https://thebizplans.com/';
+  const ORGANIZATION_ID = `${SITE_URL}#organization`;
+  const PERSON_ID = `${SITE_URL}#atul-jagga`;
+  const path = window.location.pathname;
+  const fileName = path.split('/').pop() || 'index.html';
+  const isHome = path === '/' || fileName === 'index.html';
+  const pageUrl = isHome ? SITE_URL : `${SITE_URL}${fileName}`;
+  const pageName = (
+    document.querySelector('h1')?.textContent ||
+    document.querySelector('meta[property="og:title"]')?.content ||
+    document.title.split('|')[0]
+  ).replace(/\s+/g, ' ').trim();
+  const description = document.querySelector('meta[name="description"]')?.content || '';
+  const ogType = document.querySelector('meta[property="og:type"]')?.content;
+  const ogImage = document.querySelector('meta[property="og:image"]')?.content;
+
+  const crumb = (name, file) => ({ name, url: file ? `${SITE_URL}${file}` : SITE_URL });
+  const industryNames = [
+    'beauty-salon', 'cannabis', 'construction', 'daycare', 'grocery', 'hvac',
+    'logistics', 'manufacturing', 'nail-salon', 'pharmacy', 'plumbing', 'trucking'
+  ];
+  const industry = industryNames.find((name) => fileName.startsWith(`${name}-`));
+
+  function getBreadcrumbs() {
+    const items = [crumb('Home')];
+    const add = (name, file) => items.push(crumb(name, file));
+    const financingPages = /^(bank-loan-business-plans|black-entrepreneurship|business-development-bank-of-canada|canada-small-business-financing-program|canadian-agricultural-loans-act|canadian-bank-loan-business-plan-guide|cibc|desjardins|export-development-canada|farm-credit-canada|futurpreneur|how-banks-evaluate-business-plans|indigenous-aboriginal-entrepreneurship|national-bank-of-canada|private-lender-alternative-financing|royal-bank-of-canada|scotiabank|small-business-financing-canada|td-canada-trust|vancity-business-plan|women-entrepreneurship-loan-fund)\.html$/;
+    const immigrationPages = /^(aaip-entrepreneur-business-plan|bcpnp-business-plan|ict-business-plan|immigration-business-plans|indigenous-business-plan|innovation-business-plan|lmia-owner-operator-business-plan|mpnp-business-plan|nbpnp-business-plan|nsnp-business-plan|oinp-business-plan|self-employed-business-plan|sinp-business-plan|startup-visa-business-plan)\.html$/;
+    const servicePages = /^(business-plan-review|financial-modeling|investor-business-plan|marketing-growth-strategy|services|strategic-business-plan)\.html$/;
+    const learningPages = /^(authoritative-resources|blog-|books|business-plan-comparisons|business-plan-cost-timeline-checklist|business-plan-essentials|business-plan-glossary|chapter-|faqs|financial-due-diligence-essentials)/;
+
+    if (industry || /^(brewery|fintech|food-franchise|marine|medical-services|mobile-app|recruiting|telecom)-business-plans\.html$/.test(fileName)) {
+      add('Industries', 'industry-business-plans.html');
+      if (industry && fileName !== `${industry}-business-plans.html`) {
+        const label = industry.replace(/(^|-)(\w)/g, (_, separator, letter) => `${separator ? ' ' : ''}${letter.toUpperCase()}`);
+        add(`${label} Business Plans`, `${industry}-business-plans.html`);
+      }
+    } else if (fileName === 'industry-business-plans.html') {
+      // Home is the only ancestor of this section landing page.
+    } else if (financingPages.test(fileName)) {
+      if (fileName !== 'bank-loan-business-plans.html') add('Financing Resource Centre', 'bank-loan-business-plans.html');
+    } else if (immigrationPages.test(fileName)) {
+      if (fileName !== 'immigration-business-plans.html') add('Immigration Business Plans', 'immigration-business-plans.html');
+    } else if (servicePages.test(fileName)) {
+      if (fileName !== 'services.html') add('Services', 'services.html');
+    } else if (learningPages.test(fileName)) {
+      if (fileName !== 'blog-learning-hub.html') add('Learning Centre', 'blog-learning-hub.html');
+      if (fileName.startsWith('chapter-')) add('Business Plan Essentials', 'business-plan-essentials.html');
+    } else if (/^(toronto|vancouver)-business-plan-writers\.html$/.test(fileName)) {
+      add('About', 'about-business-plan.html');
+    }
+
+    items.push({ name: pageName, url: pageUrl, current: true });
+    return items;
+  }
+
+  const breadcrumbs = isHome ? [] : getBreadcrumbs();
+
+  // Remove legacy breadcrumbs so there is one visible trail and one structured
+  // trail, both generated from the hierarchy above.
+  if (!isHome) {
+    document.querySelectorAll('nav[aria-label="Breadcrumb"], nav[aria-label="breadcrumb"], .cluster-breadcrumb').forEach((node) => node.remove());
+    document.querySelectorAll('script[type="application/ld+json"]').forEach((script) => {
+      try {
+        const data = JSON.parse(script.textContent);
+        if (Array.isArray(data['@graph'])) {
+          data['@graph'] = data['@graph'].filter((node) => node['@type'] !== 'BreadcrumbList');
+          script.textContent = JSON.stringify(data);
+        } else if (data['@type'] === 'BreadcrumbList') {
+          script.remove();
+        }
+      } catch (error) {
+        console.warn('Unable to read existing structured data.', error);
+      }
+    });
+
+    const nav = document.createElement('nav');
+    nav.className = 'site-breadcrumb';
+    nav.setAttribute('aria-label', 'Breadcrumb');
+    const list = document.createElement('ol');
+    breadcrumbs.forEach((item) => {
+      const listItem = document.createElement('li');
+      if (item.current) {
+        listItem.textContent = item.name;
+        listItem.setAttribute('aria-current', 'page');
+      } else {
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.textContent = item.name;
+        listItem.appendChild(link);
+      }
+      list.appendChild(listItem);
+    });
+    nav.appendChild(list);
+    const menu = document.querySelector('.sticky-top');
+    if (menu) menu.insertAdjacentElement('afterend', nav);
+    else document.body.insertAdjacentElement('afterbegin', nav);
+  }
+
+  const existingTypes = new Set();
+  document.querySelectorAll('script[type="application/ld+json"]').forEach((script) => {
+    try {
+      const visit = (value) => {
+        if (!value || typeof value !== 'object') return;
+        const types = Array.isArray(value['@type']) ? value['@type'] : [value['@type']];
+        types.filter(Boolean).forEach((type) => existingTypes.add(type));
+        Object.values(value).forEach(visit);
+      };
+      visit(JSON.parse(script.textContent));
+    } catch (_) { /* The warning was emitted during normalization above. */ }
+  });
+
+  const graph = [{
+    '@type': 'Organization', '@id': ORGANIZATION_ID, name: 'The Biz Plans', url: SITE_URL,
+    description: 'A Canadian business plan writing and consulting firm preparing business plans, financial projections and supporting research for financing, investment, acquisitions and growth.',
+    logo: `${SITE_URL}img/bizplanlogo.png`, email: 'info@thebizplans.com', telephone: '+1-647-896-8362',
+    address: {
+      '@type': 'PostalAddress', streetAddress: '51 Burnhamill Pl', addressLocality: 'Toronto',
+      addressRegion: 'ON', postalCode: 'M9C 3S3', addressCountry: 'CA'
+    },
+    founder: { '@id': PERSON_ID },
+    sameAs: ['https://www.instagram.com/thebizplans/', 'https://www.facebook.com/people/The-biz-plans/61550125095965/', 'https://www.linkedin.com/company/the-biz-plans/']
+  }, {
+    '@type': 'Person', '@id': PERSON_ID, name: 'Atul Jagga', url: `${SITE_URL}about-business-plan.html#atul-jagga`,
+    jobTitle: 'Founder and Lead Consultant', worksFor: { '@id': ORGANIZATION_ID },
+    knowsAbout: ['Business planning', 'Financial modelling', 'Market research', 'Business financing'],
+    sameAs: ['https://www.linkedin.com/in/atul-jagga-68208827/']
+  }].filter((node) => !existingTypes.has(node['@type']));
+  const addUnlessPresent = (node) => {
+    const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+    if (!types.some((type) => existingTypes.has(type))) graph.push(node);
+  };
+
+  if (isHome) {
+    addUnlessPresent({ '@type': 'WebSite', '@id': `${SITE_URL}#website`, url: SITE_URL, name: 'The Biz Plans', publisher: { '@id': ORGANIZATION_ID } });
+  } else {
+    // The current page intentionally has no `item`, matching its unlinked HTML state.
+    graph.push({
+      '@type': 'BreadcrumbList', '@id': `${pageUrl}#breadcrumb`,
+      itemListElement: breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem', position: index + 1, name: item.name,
+        ...(!item.current ? { item: item.url } : {})
+      }))
+    });
+    const reviewedGuides = new Set([
+      'canadian-bank-loan-business-plan-guide.html', 'how-banks-evaluate-business-plans.html',
+      'royal-bank-of-canada.html', 'business-development-bank-of-canada.html',
+      'canada-small-business-financing-program.html', 'td-canada-trust.html', 'scotiabank.html'
+    ]);
+    const isArticle = fileName.startsWith('blog-') || fileName.startsWith('chapter-') || reviewedGuides.has(fileName) || ogType === 'article';
+    const isAbout = fileName === 'about-business-plan.html';
+    const isService = /business-plan|services|financial-modeling|marketing-growth-strategy|pricing/.test(fileName) || /business plans?|business planning/i.test(pageName);
+    if (isArticle) addUnlessPresent({ '@type': 'Article', '@id': `${pageUrl}#article`, headline: pageName, description, mainEntityOfPage: pageUrl, ...(ogImage ? { image: ogImage } : {}), author: { '@id': PERSON_ID }, reviewedBy: { '@id': PERSON_ID }, publisher: { '@id': ORGANIZATION_ID }, about: { '@id': ORGANIZATION_ID }, inLanguage: 'en-CA' });
+    else if (isAbout) addUnlessPresent({ '@type': 'AboutPage', '@id': `${pageUrl}#webpage`, url: pageUrl, name: pageName, description, mainEntity: { '@id': ORGANIZATION_ID }, about: [{ '@id': ORGANIZATION_ID }, { '@id': PERSON_ID }], isPartOf: { '@id': `${SITE_URL}#website` }, inLanguage: 'en-CA' });
+    else if (isService) addUnlessPresent({ '@type': 'Service', '@id': `${pageUrl}#service`, name: pageName, description, url: pageUrl, provider: { '@id': ORGANIZATION_ID }, areaServed: { '@type': 'Country', name: 'Canada' } });
+    else addUnlessPresent({ '@type': 'WebPage', '@id': `${pageUrl}#webpage`, url: pageUrl, name: pageName, description, isPartOf: { '@id': `${SITE_URL}#website` }, about: { '@id': ORGANIZATION_ID }, inLanguage: 'en-CA' });
+  }
+
+  const schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+  document.head.appendChild(schema);
+})();
+
+</script></body></html>
