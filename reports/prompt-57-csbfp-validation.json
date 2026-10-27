@@ -1,0 +1,88 @@
+{
+  "beforeWordsExcludingTables": 3028,
+  "afterWordsExcludingTables": 4267,
+  "sections": [
+    {
+      "heading": "What is the CSBFP?",
+      "words": 78
+    },
+    {
+      "heading": "Who qualifies for a Canada Small Business Financing loan?",
+      "words": 289
+    },
+    {
+      "heading": "How Much Can You Borrow Through CSBFP?",
+      "words": 422
+    },
+    {
+      "heading": "Illustrative example: financing a defined equipment purchase",
+      "words": 301
+    },
+    {
+      "heading": "What a CSBFP loan can and cannot fund",
+      "words": 250
+    },
+    {
+      "heading": "CSBFP vs. a regular bank loan",
+      "words": 6
+    },
+    {
+      "heading": "How to apply for CSBFP through a lender",
+      "words": 413
+    },
+    {
+      "heading": "Do You Need a Business Plan for a CSBFP Loan?",
+      "words": 124
+    },
+    {
+      "heading": "What Should a CSBFP Business Plan Include?",
+      "words": 296
+    },
+    {
+      "heading": "What Makes a CSBFP Business Plan Different From a Regular Business Plan?",
+      "words": 252
+    },
+    {
+      "heading": "Financial Projections for a CSBFP Loan",
+      "words": 218
+    },
+    {
+      "heading": "Documents to Prepare Before Applying",
+      "words": 336
+    },
+    {
+      "heading": "Common Problems That Can Weaken a Financing Application",
+      "words": 140
+    },
+    {
+      "heading": "How The Biz Plans Can Help With a CSBFP Financing Application",
+      "words": 154
+    },
+    {
+      "heading": "Frequently Asked Questions",
+      "words": 568
+    },
+    {
+      "heading": "Related Financing Resources",
+      "words": 130
+    },
+    {
+      "heading": "Build a plan that matches the financing request",
+      "words": 35
+    },
+    {
+      "heading": "Speak with a business plan expert",
+      "words": 47
+    }
+  ],
+  "faqCount": 12,
+  "title": "Canada Small Business Financing Program (CSBFP) Guide",
+  "titleLength": 53,
+  "h1": [
+    "Canada Small Business Financing Program (CSBFP): Loan & Business Plan Guide"
+  ],
+  "contextualInboundPages": 48,
+  "allInboundPages": 270,
+  "uniqueInternalDestinations": 90,
+  "checks": "word count, unchanged H1/title, FAQ JSON parity, local links/fragments, unique IDs, unchanged sitemap passed"
+}
