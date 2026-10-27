@@ -8,7 +8,7 @@ All 15 plans were created in queue order. Each has its own HTML page, downloadab
 
 No standalone master-template file was found. The existing daycare sample and documented painting-series structure supplied the template: shared navigation, hero, breadcrumb, two-column article/sidebar, numbered ten-section plan, annotation blocks, responsive financial tables, funding CTA, source appendix, five FAQs, existing author card, footer and print styling. Sections are executive summary; company overview; services and revenue model; market analysis; operations; marketing; management; financial projections; funding request; appendix. Each fictional business is explicitly labelled SAMPLE. Financial figures and commercial assumptions are explicitly illustrative.
 
-Every plan links to the existing sample hub, generator, services, CSBFP hub and TAM/SAM/SOM glossary. All internal link targets and fragments in the new pages were checked against the checkout, including the generated PDFs. The hub now contains 31 cards, up from 16, preserving all existing entries. The 15 new cards follow the queue order in a new industry-library section, and all ItemList positions were renumbered consecutively. The sitemap retains all existing URLs and adds each canonical once in alphabetical order with 2026-10-26 dates.
+Every plan links to the existing sample hub, generator, services, CSBFP hub and TAM/SAM/SOM glossary. All internal link targets and fragments in the new pages were checked against the checkout, including the generated PDFs. The hub now contains 31 cards, up from 16, preserving all existing entries. The 15 new cards follow the queue order in a new industry-library section, and all ItemList positions were renumbered consecutively. The sitemap retains all existing URLs and adds each canonical once in alphabetical order with commit-derived 2026-10-27 dates (Git metadata; research and page publication remain October 26 in America/Toronto).
 
 ## Official-source verification
 
@@ -25,7 +25,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - All 15 PDFs exported from final page content, with selectable text, ten sections, five financial tables, appendix and FAQs. Each is ten pages, with SAMPLE/illustrative page footers and portable production-domain document links. Representative first and financial-table pages were visually inspected.
 - `git diff --check` passed. New pages have no broken local links, missing fragments, placeholder tokens or invented keyword-volume claims.
 - The repository-wide audit is not clean: existing findings include a missing financial workbook on the free-template page, retired external links on the startup-visa page, and shared header/footer variants. The new pages inherit the template’s eager header logo, which the audit flags as not lazy-loaded. No new broken-link or JSON-LD finding remains.
-- `generate_seo.py --check` reports sitemap staleness because new uncommitted pages receive its fallback date (2026-10-01), while the new entries correctly use the build date. The generator was not run to replace correct dates with fallback dates. Sitemap URL membership, uniqueness, ordering and dates were checked independently. Recheck generated SEO after committing with full history; deployment was not performed.
+- After committing the new pages, the sitemap was regenerated from Git modification dates. `generate_seo.py --check` passes. Sitemap URL membership, uniqueness and ordering were also checked independently. Deployment was not performed.
 
 ## 1. Gym
 
@@ -35,7 +35,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,618. Title: 33 characters. Meta: 143 characters.
 - **Official sources used:** [Ontario — Joining a gym or fitness club](https://www.ontario.ca/page/joining-gym-or-fitness-club); [City of Toronto — Business Regulations, Licences & Permits](https://www.toronto.ca/business-economy/new-businesses-startups/business-regulations/).
 - **Figures/requirements omitted or left qualitative:** Licence fees, presale trust mechanics and cancellation exceptions beyond the verified Ontario summary are omitted; counsel must determine the applicable details.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/gym-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -47,7 +47,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,595. Title: 40 characters. Meta: 150 characters.
 - **Official sources used:** [City of Toronto — Personal service settings licensing](https://www.toronto.ca/services-payments/permits-licences-bylaws/body-piercing-electrolysis-hair-salon-nail-shop-tattoo-and-waxing/); [Ontario — O. Reg. 136/18, Personal Service Settings](https://www.ontario.ca/laws/regulation/180136).
 - **Figures/requirements omitted or left qualitative:** Municipal fees, notice-period numbers and trade-qualification details are not quoted; the actual licence and staffing arrangement require confirmation.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/hair-salon-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -59,7 +59,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,594. Title: 41 characters. Meta: 151 characters.
 - **Official sources used:** [WSIB — Register with us](https://www.wsib.ca/en/businesses/registration-and-coverage/register-us); [WSIB — Questions and answers: Clearances](https://www.wsib.ca/en/clearancefaqs).
 - **Figures/requirements omitted or left qualitative:** WSIB premium rates, snow-depth triggers described as law, pesticide entitlements and universal clearance exemptions are omitted; snow triggers are negotiated commercial terms.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/landscaping-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -71,7 +71,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,599. Title: 46 characters. Meta: 156 characters.
 - **Official sources used:** [WSIB — Register with us](https://www.wsib.ca/en/businesses/registration-and-coverage/register-us); [City of Toronto — Business Regulations, Licences & Permits](https://www.toronto.ca/business-economy/new-businesses-startups/business-regulations/).
 - **Figures/requirements omitted or left qualitative:** No mandatory bond amount, insurance minimum or WSIB premium rate is asserted; bonded/insured wording is conditional on actual cover.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/cleaning-company-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -83,7 +83,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,592. Title: 46 characters. Meta: 156 characters.
 - **Official sources used:** [Skilled Trades Ontario — Automotive Service Technician](https://www.skilledtradesontario.ca/trade-information/automotive-service-technician/); [City of Toronto — Business Regulations, Licences & Permits](https://www.toronto.ca/business-economy/new-businesses-startups/business-regulations/).
 - **Figures/requirements omitted or left qualitative:** Trade-training hour counts, municipal repair-garage fees, environmental thresholds and certification claims for unrelated repair activities are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/auto-repair-shop-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -95,7 +95,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,520. Title: 40 characters. Meta: 150 characters.
 - **Official sources used:** [Canada Revenue Agency — GST/HST on imports and exports](https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/charge-collect-imports-exports.html).
 - **Figures/requirements omitted or left qualitative:** GST/HST numeric registration thresholds, United States sales-tax thresholds, duty/de minimis figures and guaranteed export zero-rating are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/ecommerce-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -107,7 +107,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,623. Title: 50 characters. Meta: 160 characters.
 - **Official sources used:** [Ontario — Construction Act, section 22](https://www.ontario.ca/laws/statute/90c30); [WSIB — Questions and answers: Clearances](https://www.wsib.ca/en/clearancefaqs).
 - **Figures/requirements omitted or left qualitative:** Bond limits, surety premiums, universal lien deadlines and automatic holdback-release dates are omitted. The existing blog-sample-construction-business-plan.html is retained as a separate older example.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/construction-company-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -119,7 +119,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,608. Title: 43 characters. Meta: 153 characters.
 - **Official sources used:** [RCDSO — Become a dentist](https://www.rcdso.org/en-ca/become-a-dentist); [RCDSO — Health Profession Corporations](https://www.rcdso.org/en-ca/permits-and-renewals/health-profession-corporations); [RCDSO — Infection Prevention and Control](https://www.rcdso.org/standards-guidelines-resources/standards-guidelines-advisories/infection-prevention-and-control).
 - **Figures/requirements omitted or left qualitative:** Professional fees, imaging approval details, clinical staffing ratios and dental reimbursement rates are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/dental-clinic-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -131,7 +131,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,556. Title: 38 characters. Meta: 148 characters.
 - **Official sources used:** [Ontario College of Pharmacists — Opening a Community Pharmacy](https://ocpinfo.com/pharmacies/opening-a-community-pharmacy/); [Ontario College of Pharmacists — Community Pharmacy Assessments](https://ocpinfo.com/pharmacies/operating-a-community-pharmacy/community-pharmacy-assessments/).
 - **Figures/requirements omitted or left qualitative:** Dispensing fees, reimbursement rates, accreditation fees and promised assessment durations are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/pharmacy-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -143,7 +143,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,686. Title: 42 characters. Meta: 152 characters.
 - **Official sources used:** [Ontario — Where to buy alcoholic beverages](https://www.ontario.ca/page/where-buy-alcoholic-beverages); [Ontario — O. Reg. 746/21, Licensing](https://www.ontario.ca/laws/regulation/210746); [AGCO — List of Convenience and Grocery Store Retail Licences](https://www.agco.ca/en/alcohol/list-convenience-and-grocery-store-retail-licences).
 - **Figures/requirements omitted or left qualitative:** Licence fees, store-size and assortment thresholds, alcohol-strength limits, permitted hours, rollout dates, delivery entitlements and any right to sell spirits are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/liquor-store-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -155,7 +155,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,558. Title: 42 characters. Meta: 152 characters.
 - **Official sources used:** [City of Vaughan — Pet Shop, Pet Grooming, Kennel and Boarding Facility permit](https://www.vaughan.ca/business/business-licensing-and-permits/pet-shop-pet-grooming-kennel-and-boarding-facility-permit).
 - **Figures/requirements omitted or left qualitative:** Kennel fees, statutory animal capacity, staffing ratios, vaccination mandates and Ontario-wide licence claims are omitted; operator intake policies need veterinary and municipal review.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/pet-grooming-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -167,7 +167,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,524. Title: 40 characters. Meta: 150 characters.
 - **Official sources used:** [City of Toronto — Business Regulations, Licences & Permits](https://www.toronto.ca/business-economy/new-businesses-startups/business-regulations/).
 - **Figures/requirements omitted or left qualitative:** Water, sewer, gas and electricity tariffs, mandatory staffing claims and municipal machine-capacity limits are omitted pending site-specific confirmation.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/laundromat-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -179,7 +179,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,611. Title: 37 characters. Meta: 147 characters.
 - **Official sources used:** [Ontario — O. Reg. 746/21, Licensing](https://www.ontario.ca/laws/regulation/210746); [Canada Revenue Agency — ED200-1, Licensing requirements for manufacturers of beer](https://www.canada.ca/en/revenue-agency/services/tax/technical-information/excise-duty/excise-duty-circulars/ed200-1-licensing-requirements-manufacturers-beer-malt-liquor-wort-yeast-malt-products.html).
 - **Figures/requirements omitted or left qualitative:** Excise duty rates, small-brewer thresholds, provincial beer-tax rates, mandatory production volumes and obsolete by-the-glass licence descriptions are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/brewery-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -191,7 +191,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,637. Title: 41 characters. Meta: 151 characters.
 - **Official sources used:** [Ontario — O. Reg. 746/21, Licensing](https://www.ontario.ca/laws/regulation/210746); [City of Toronto — Business Regulations, Licences & Permits](https://www.toronto.ca/business-economy/new-businesses-startups/business-regulations/).
 - **Figures/requirements omitted or left qualitative:** Occupancy limits, liquor-service hours, caterer notice-period figures and statutory cancellation percentages are omitted; deposit dates and percentages are explicitly fictional operator proposals.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/event-venue-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -203,7 +203,7 @@ The liquor sample is a proposed licensed convenience-market format, with actual 
 - **Words excluding tables:** 3,599. Title: 51 characters. Meta: 154 characters.
 - **Official sources used:** [RECO — Opening a brokerage or branch office](https://www.reco.on.ca/agents-and-brokerages/info-for-brokerages/opening-a-brokerage-or-branch-office/); [Ontario — Trust in Real Estate Services Act, 2002](https://www.ontario.ca/laws/statute/02r30).
 - **Figures/requirements omitted or left qualitative:** Registration fees, statutory trust-deposit deadlines, standard commission rates, agent earnings and compulsory split percentages are omitted.
-- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-26.
+- **Hub/sitemap edits:** one new card in `sample-business-plans.html`, an upward hub link on this plan, one canonical sitemap entry dated 2026-10-27 from Git metadata.
 - **PDF:** `downloads/real-estate-brokerage-business-plan-sample.pdf` (10 pages).
 - **Checklist:** template structure followed; Canada angle addressed with sourced or qualitative regulatory treatment; financials labelled illustrative; Article/FAQPage/Person schema checked; hub card and upward link present; sitemap entry present; no placeholders; no invented keyword volume.
 
@@ -215,4 +215,4 @@ Queue item 7 was built as `blog-sample-construction-company-business-plan.html`,
 
 Plans created: **15 HTML pages and 15 complete PDFs**. Plans deferred: **0**. Hub cards added: **15**. Sitemap URLs added: **15**. No already-covered industry listed in Section A was rebuilt. All pre-existing sample pages remain unchanged. No individual keyword search volumes were invented or published, and the supplied competitor traffic figures were not repurposed as industry demand claims.
 
-Changes are ready for review in the repository. They have not been committed, pushed, merged or deployed. A change archive was also assembled in the working directory for packaging. The configured chat output directory was unavailable in this cloud filesystem; the final chat report therefore supplies the requested inventory inline. The repository files rely on the existing site’s shared assets.
+Changes are committed on `seo/prompt54-sample-plan-queue` for pull-request review. They have not been merged or deployed. A change archive was also assembled in the working directory for packaging. The configured chat output directory was unavailable in this cloud filesystem; the final chat report therefore supplies the requested inventory inline. The repository files rely on the existing site’s shared assets.
