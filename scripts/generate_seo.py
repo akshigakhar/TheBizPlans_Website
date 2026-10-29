@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
@@ -34,21 +35,6 @@ def canonical_url(page: Path) -> str:
     return f"{ORIGIN}/" if page.name == "index.html" else f"{ORIGIN}/{page.name}"
 
 
-def last_modified(page: Path) -> str:
-    """Return the last committed content date in the sitemap's W3C format."""
-    result = subprocess.run(
-        ["git", "log", "-1", "--format=%cs", "--", page.name],
-        cwd=ROOT,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    value = result.stdout.strip()
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
-        raise ValueError(f"{page.name}: cannot determine last modification date from Git")
-    return value
-
-
 def set_canonical(source: str, url: str, page: Path) -> str:
     tag = f'<link rel="canonical" href="{url}">'
     pattern = re.compile(r'<link\b(?=[^>]*\brel=["\'][^"\']*\bcanonical\b[^"\']*["\'])[^>]*>', re.I)
@@ -78,7 +64,29 @@ def local_html_target(raw: str) -> str | None:
 
 
 def last_modified(page: Path) -> str:
-    """Return the last committed date so sitemap output stays reproducible."""
+    """Use editorial modification dates for blog posts, Git dates elsewhere."""
+    if page.name.startswith("blog-") and page.name != "blog-learning-hub.html":
+        source = page.read_text(encoding="utf-8")
+        def article_dates(value):
+            if isinstance(value, dict):
+                types = value.get("@type", [])
+                types = [types] if isinstance(types, str) else types
+                if any(kind in {"Article", "BlogPosting"} for kind in types):
+                    date = value.get("dateModified") or value.get("datePublished")
+                    if date:
+                        yield date
+                for child in value.values():
+                    yield from article_dates(child)
+            elif isinstance(value, list):
+                for child in value:
+                    yield from article_dates(child)
+        dates = []
+        for block in re.findall(r'<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', source, re.S | re.I):
+            dates.extend(article_dates(json.loads(block)))
+        if dates:
+            if len(set(dates)) != 1 or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", dates[0]):
+                raise ValueError(f"{page.name}: inconsistent editorial modification dates")
+            return dates[0]
     result = subprocess.run(
         ["git", "log", "-1", "--format=%cs", "--", page.name],
         cwd=ROOT,
@@ -158,12 +166,14 @@ def main() -> int:
 
     sitemap = generated_sitemap(pages)
     if args.pages:
-        # Keep existing entries verbatim; regenerate only explicitly selected pages.
+        # Preserve the URL set; refresh existing entries for selected pages only.
         existing = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
         entries = {re.search(r"<loc>(.*?)</loc>", block).group(1): block
                    for block in re.findall(r"  <url>\n.*?</url>", existing, re.S)}
         for block in re.findall(r"  <url>\n.*?</url>", sitemap, re.S):
-            entries[re.search(r"<loc>(.*?)</loc>", block).group(1)] = block
+            url = re.search(r"<loc>(.*?)</loc>", block).group(1)
+            if url in entries:
+                entries[url] = block
         sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                    + "\n".join(entries[url] for url in sorted(entries)) + "\n</urlset>\n")
