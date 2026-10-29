@@ -42,11 +42,11 @@ test('contact form submits without leaving the contact page', async ({ page }) =
     await expect(page.getByRole('status')).toHaveText('Thank you! Your message has been sent.');
 });
 
-test('WhatsApp calls to action use a crawlable on-site redirect with fragment parameters', async ({ page }) => {
+test('WhatsApp calls to action use the public business click-to-chat URL', async ({ page }) => {
     await page.goto('/contact.html');
 
     await expect(page.getByRole('link', { name: 'Connect on WhatsApp' }))
-        .toHaveAttribute('href', /^whatsapp\.html#text=/);
+        .toHaveAttribute('href', 'https://wa.me/16478968362');
 });
 
 test('WhatsApp redirect remains crawlable but is excluded from search results', async ({ page }) => {
