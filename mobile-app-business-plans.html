@@ -3,11 +3,7 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NNJ2WX8Q');</script>
+  <script src="js/analytics.js" defer></script>
   <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <title>Mobile App Business Plans | The Biz Plans</title>
@@ -31,9 +27,7 @@
   <link href="img/favicon.ico" rel="icon">
 
   <!-- Google Web Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"></noscript>
+  <link rel="preload" href="fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/ubuntu-700.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/open-sans-600.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="fonts/ubuntu-500.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="css/fonts.css">
 
   <!-- Icon Font Stylesheet -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -42,11 +36,11 @@
   <!-- Libraries Stylesheet -->
 
   <!-- Customized Bootstrap Stylesheet -->
-  <link rel="preload" href="css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="css/bootstrap.min.css"></noscript>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
 
   <!-- Template Stylesheet -->
-  <link rel="preload" href="css/style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link href="css/internal-pages.min.css" rel="stylesheet"><noscript><link rel="stylesheet" href="css/style.min.css"></noscript>
+  <link rel="preload" href="css/style.min.css" as="style"><link rel="stylesheet" href="css/style.min.css">
+  <link href="css/internal-pages.min.css" rel="stylesheet">
   <script src="js/schema.min.js" defer></script>
   <script type="application/ld+json" data-page-faq>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What makes Mobile App Business Plans for Startup Founders and Digital Businesses different from a generic business plan?","acceptedAnswer":{"@type":"Answer","text":"An industry-specific plan reflects the venture's real revenue drivers, capacity limits, cost structure, regulations and customer buying process. Replacing labels in a generic template does not provide that operating detail."}},{"@type":"Question","name":"Which market research should be included?","acceptedAnswer":{"@type":"Answer","text":"Define the actual customer and service geography, estimate demand with cited sources, compare relevant competitors and explain how buyers choose. Connect the findings directly to pricing, sales volume and marketing assumptions."}},{"@type":"Question","name":"How should revenue be forecast?","acceptedAnswer":{"@type":"Answer","text":"Build revenue from measurable drivers such as customers, units, contracts, utilization or average transaction value. Explain ramp-up timing and test the result against capacity and credible market demand."}},{"@type":"Question","name":"Which operating costs are commonly overlooked?","acceptedAnswer":{"@type":"Answer","text":"Working capital, insurance, compliance, maintenance, professional fees, customer acquisition and hiring ramp-up are frequently understated. The relevant costs vary by industry, so document quotes and assumptions where possible."}},{"@type":"Question","name":"What risks should the plan address?","acceptedAnswer":{"@type":"Answer","text":"Prioritize risks that could materially affect demand, delivery, margins, staffing or compliance. For each significant risk, describe a practical mitigation or contingency rather than relying on a generic risk list."}},{"@type":"Question","name":"Can the same plan be used for lenders and investors?","acceptedAnswer":{"@type":"Answer","text":"The factual foundation can be shared, but the presentation should match the audience. Lenders focus on repayment and downside protection; investors also examine growth, defensibility, management and return potential."}}]}</script>
 </head>
@@ -56,8 +50,6 @@
   <!-- Spinner Start -->
 
   <!-- Spinner End -->
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- NAVBAR -->
   <div class="container-fluid sticky-top global-header">
@@ -124,7 +116,7 @@
       </div>
     </nav>
   </div>
-</div>
+</div><nav class="site-breadcrumb" aria-label="Breadcrumb"><ol><li><a href="https://thebizplans.com/">Home</a></li><li><a href="https://thebizplans.com/industry-business-plans.html">Industries</a></li><li aria-current="page">Mobile App Business Plans for Startup Founders and Digital Businesses</li></ol></nav>
 
   <!-- HERO SECTION -->
   <section id="hero" class="hero-section d-flex align-items-center text-white">
@@ -615,11 +607,10 @@
   </a>
 
   <!-- JavaScript Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
 
   <!-- Template Javascript -->
-  <script src="js/main.min.js"></script>
+  <script src="js/main.min.js" defer></script>
 
 </body>
 </html>

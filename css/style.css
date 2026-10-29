@@ -369,7 +369,8 @@ h6,
 }
 
 /* Skip layout and paint work for sections that are well below the viewport. */
-body > section:not(.hero-section) {
+/* Reserve intrinsic heights only below the first, visible section. */
+body > section:not(.hero-section):not(:first-of-type) {
   content-visibility: auto;
   contain-intrinsic-size: auto 800px;
 }

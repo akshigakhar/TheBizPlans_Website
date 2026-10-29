@@ -1,0 +1,31 @@
+/* Existing Google Fonts, served locally to avoid a stylesheet round trip. */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(../fonts/open-sans-400.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  font-display: swap;
+  src: url(../fonts/open-sans-600.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/ubuntu-500.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/ubuntu-700.woff2) format('woff2');
+}
