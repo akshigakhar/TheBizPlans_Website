@@ -133,10 +133,16 @@ def update(path: Path, content: str, check: bool, stale: list[str]) -> None:
 def main() -> int:
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("--check", action="store_true", help="fail instead of updating stale generated files")
+    arg_parser.add_argument("--pages", nargs="+", help="update only these pages and their sitemap entries, preserving unrelated metadata")
     args = arg_parser.parse_args()
 
     pages = sorted(ROOT.glob("*.html"), key=lambda page: (page.name != "index.html", page.name))
     page_names = {page.name for page in pages}
+    if args.pages:
+        unknown = set(args.pages) - page_names
+        if unknown:
+            arg_parser.error("Unknown pages: " + ", ".join(sorted(unknown)))
+        pages = [page for page in pages if page.name in args.pages]
     stale: list[str] = []
     broken: list[str] = []
 
@@ -150,7 +156,18 @@ def main() -> int:
                 broken.append(f"{page.name}: {raw}")
         update(page, set_canonical(source, canonical_url(page), page), args.check, stale)
 
-    update(ROOT / "sitemap.xml", generated_sitemap(pages), args.check, stale)
+    sitemap = generated_sitemap(pages)
+    if args.pages:
+        # Keep existing entries verbatim; regenerate only explicitly selected pages.
+        existing = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+        entries = {re.search(r"<loc>(.*?)</loc>", block).group(1): block
+                   for block in re.findall(r"  <url>\n.*?</url>", existing, re.S)}
+        for block in re.findall(r"  <url>\n.*?</url>", sitemap, re.S):
+            entries[re.search(r"<loc>(.*?)</loc>", block).group(1)] = block
+        sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
+                   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                   + "\n".join(entries[url] for url in sorted(entries)) + "\n</urlset>\n")
+    update(ROOT / "sitemap.xml", sitemap, args.check, stale)
     update(ROOT / "robots.txt", generated_robots(), args.check, stale)
 
     if broken:
