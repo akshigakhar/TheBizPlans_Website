@@ -62,7 +62,7 @@
   // Remove legacy breadcrumbs so there is one visible trail and one structured
   // trail, both generated from the hierarchy above.
   if (!isHome) {
-    document.querySelectorAll('nav[aria-label="Breadcrumb"], nav[aria-label="breadcrumb"], .cluster-breadcrumb').forEach((node) => node.remove());
+    document.querySelectorAll('nav[aria-label="Breadcrumb"]:not(.site-breadcrumb), nav[aria-label="breadcrumb"]:not(.site-breadcrumb), .cluster-breadcrumb').forEach((node) => node.remove());
     document.querySelectorAll('script[type="application/ld+json"]').forEach((script) => {
       try {
         const data = JSON.parse(script.textContent);
@@ -77,27 +77,29 @@
       }
     });
 
-    const nav = document.createElement('nav');
-    nav.className = 'site-breadcrumb';
-    nav.setAttribute('aria-label', 'Breadcrumb');
-    const list = document.createElement('ol');
-    breadcrumbs.forEach((item) => {
-      const listItem = document.createElement('li');
-      if (item.current) {
-        listItem.textContent = item.name;
-        listItem.setAttribute('aria-current', 'page');
-      } else {
-        const link = document.createElement('a');
-        link.href = item.url;
-        link.textContent = item.name;
-        listItem.appendChild(link);
-      }
-      list.appendChild(listItem);
-    });
-    nav.appendChild(list);
-    const menu = document.querySelector('.sticky-top');
-    if (menu) menu.insertAdjacentElement('afterend', nav);
-    else document.body.insertAdjacentElement('afterbegin', nav);
+    if (!document.querySelector('.site-breadcrumb')) {
+      const nav = document.createElement('nav');
+      nav.className = 'site-breadcrumb';
+      nav.setAttribute('aria-label', 'Breadcrumb');
+      const list = document.createElement('ol');
+      breadcrumbs.forEach((item) => {
+        const listItem = document.createElement('li');
+        if (item.current) {
+          listItem.textContent = item.name;
+          listItem.setAttribute('aria-current', 'page');
+        } else {
+          const link = document.createElement('a');
+          link.href = item.url;
+          link.textContent = item.name;
+          listItem.appendChild(link);
+        }
+        list.appendChild(listItem);
+      });
+      nav.appendChild(list);
+      const menu = document.querySelector('.sticky-top');
+      if (menu) menu.insertAdjacentElement('afterend', nav);
+      else document.body.insertAdjacentElement('afterbegin', nav);
+    }
   }
 
   const existingTypes = new Set();
