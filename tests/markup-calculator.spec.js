@@ -5,6 +5,7 @@ test('calculates both modes and rejects invalid or overflowing values locally', 
     page.on('pageerror', error => errors.push(error.message));
     await page.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
     await page.goto('/markup-calculator.html');
+    await expect(page.locator('h1')).toHaveCount(1);
     const result = id => page.locator(`#${id}-result`);
     await expect(result('markup')).toHaveText('50.00%');
     await expect(result('margin')).toHaveText('33.33%');
@@ -42,6 +43,7 @@ test('calculates both modes and rejects invalid or overflowing values locally', 
 
 test('FAQ schema matches visible answers and mobile layout fits', async ({ page }) => {
     await page.goto('/markup-calculator.html');
+    await expect(page.locator('h1')).toHaveCount(1);
     const faq = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.flatMap(node => JSON.parse(node.textContent)['@graph'] || []).find(item => item['@type'] === 'FAQPage'));
     expect(faq.mainEntity).toHaveLength(5);
     for (const question of faq.mainEntity) {
