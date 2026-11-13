@@ -92,7 +92,7 @@ test('startup line items start at zero, sum groups, add, edit, validate, remove'
   await expect(result(page)).toContainText('$1,300.00');
 });
 
-const slugs = ['business-calculators', 'break-even-calculator', 'loan-payment-calculator', 'csbfp-loan-calculator', 'markup-margin-calculator', 'startup-cost-calculator'];
+const slugs = ['business-calculators', 'break-even-calculator', 'loan-payment-calculator', 'csbfp-loan-calculator', 'markup-margin-calculator', 'startup-cost-calculator', 'ebitda-calculator'];
 test('all pages fit desktop and mobile, have local links and valid FAQ JSON-LD', async ({ page }) => {
   for (const slug of slugs) {
     await page.goto(`/${slug}.html`);
@@ -132,4 +132,40 @@ test('explanations, examples, FAQs and next steps remain readable with JavaScrip
     await expect(page.locator('main details').last()).toHaveAttribute('open', '');
   }
   await context.close();
+});
+
+
+test('EBITDA reconciles add-backs, optional fields, losses, zero revenue and invalid inputs', async ({ page }) => {
+  await page.goto('/ebitda-calculator.html');
+  await expect(result(page)).toContainText('$100,000.00');
+  await expect(result(page)).toContainText('20%');
+  await page.locator('#includes-da').uncheck();
+  await expect(result(page)).toContainText('$80,000.00');
+  await expect(result(page)).toContainText('16%');
+  await page.locator('#opex').fill('200000');
+  await expect(result(page)).toContainText('$100,000.00');
+  await page.locator('#includes-da').check();
+  await page.locator('#depreciation').fill('');
+  await page.locator('#amortisation').fill('');
+  await expect(result(page)).toContainText('$100,000.00');
+  await page.locator('#revenue').fill('100000');
+  await expect(result(page)).toContainText('-$300,000.00');
+  await expect(result(page)).toContainText('-300%');
+  await page.locator('#revenue').fill('0');
+  await expect(result(page)).toContainText('Undefined (zero revenue)');
+  await page.locator('#cogs').fill('-1');
+  await expect(result(page)).toContainText('unavailable');
+  await expect(page.locator('#cogs')).toHaveAttribute('aria-invalid', 'true');
+  await page.locator('#cogs').fill('0');
+  await page.locator('#revenue').fill('');
+  await expect(result(page)).toContainText('unavailable');
+  await page.locator('#revenue').fill('0');
+  await page.locator('#opex').fill('0');
+  await expect(result(page)).toContainText('$0.00');
+  const schema = JSON.parse(await page.locator('[data-page-faq]').textContent());
+  const faqs = page.locator('main details:not([open])');
+  for (let i = 0; i < schema.mainEntity.length; i++) {
+    await expect(faqs.nth(i).locator('summary')).toHaveText(schema.mainEntity[i].name);
+    await expect(faqs.nth(i).locator('p')).toHaveText(schema.mainEntity[i].acceptedAnswer.text);
+  }
 });
