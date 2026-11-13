@@ -44,6 +44,7 @@ test('calculates both modes and rejects invalid or overflowing values locally', 
 test('FAQ schema matches visible answers and mobile layout fits', async ({ page }) => {
     await page.goto('/markup-calculator.html');
     await expect(page.locator('h1')).toHaveCount(1);
+    await expect(page.getByRole('link', { name: 'Business calculators hub', exact: true })).toHaveAttribute('href', 'business-calculators.html');
     const faq = await page.locator('script[type="application/ld+json"]').evaluateAll(nodes => nodes.flatMap(node => JSON.parse(node.textContent)['@graph'] || []).find(item => item['@type'] === 'FAQPage'));
     expect(faq.mainEntity).toHaveLength(5);
     for (const question of faq.mainEntity) {
