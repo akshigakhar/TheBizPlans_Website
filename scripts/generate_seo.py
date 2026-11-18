@@ -87,14 +87,26 @@ def last_modified(page: Path) -> str:
             if len(set(dates)) != 1 or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", dates[0]):
                 raise ValueError(f"{page.name}: inconsistent editorial modification dates")
             return dates[0]
+    # Git still prints commit headers for ignored changes. A numstat row
+    # identifies commits that changed more than the shared footer link.
+    footer_link = (
+        r'^[[:space:]]*<li><a href="(services|/business-plan-writing-services)\.html">'
+        r'Business Plan Writing Services</a></li>[[:space:]]*$'
+    )
     result = subprocess.run(
-        ["git", "log", "-1", "--format=%cs", "--", page.name],
+        ["git", "log", "--format=%cs", "--numstat", "-I", footer_link, "--", page.name],
         cwd=ROOT,
-        check=False,
+        check=True,
         capture_output=True,
         text=True,
     )
-    return result.stdout.strip() or "2026-10-01"
+    date = ""
+    for line in result.stdout.splitlines():
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", line):
+            date = line
+        elif date and "\t" in line:
+            return date
+    raise ValueError(f"{page.name}: no modification date in Git history")
 
 
 def generated_sitemap(pages: list[Path]) -> str:
