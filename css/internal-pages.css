@@ -74,3 +74,17 @@ img { max-width: 100%; height: auto; }
 }
 /* Image-led split sections become full-width when decorative media is removed. */
 .row > [class*="col-"]:only-child { max-width: 900px; }
+
+/* Body typography needs the matching foreground in dark components. */
+.hero-section.text-white h1 { color: inherit; }
+.hero-section p { color: #d7e1f0; }
+.hero-section p a:not(.btn), .cluster-next p a:not(.btn) { color: #d7e1f0; }
+.bg-primary .text-white-50 { color: rgba(255, 255, 255, .9) !important; }
+.bg-primary.text-white h1, .bg-primary.text-white p, .bg-primary.text-white li { color: inherit; }
+.cta-block h3, .cta-block p, .cta-panel p, .cta-final p,
+.template-page .download-card p, .template-cta p { color: inherit; }
+.site-footer p, .site-footer li { color: inherit; }
+th a, th a:hover { color: #d7e1f0; }
+
+.bg-light .breadcrumb-item.active { color: #68717a !important; }
+#contact-form .btn-primary:disabled { background-color: var(--internal-navy); }
