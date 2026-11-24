@@ -46,13 +46,24 @@ function App(){
  </main>{toast&&<div className="toast"><Check size={18}/>{toast}</div>}</div>
 }
 function Brand(){return <div className="public-brand"><div className="logo"><FileChartColumn/></div><div>Business Plan <b>Builder</b></div></div>}
+function ConsultCTA() {
+ return <section className="conversion-card mx-auto mt-4 mb-0" aria-label="Professional business plan writing">
+  <h2 className="h4">Want this done for you?</h2>
+  <p>Atul Jagga, CPA &amp; RCIC-IRB, and the team write lender- and immigration-ready plans with full financial models.</p>
+  <div className="d-flex flex-wrap gap-2">
+   <a className="btn btn-primary rounded-pill" href="tel:+16478968362">Call +1-647-896-8362</a>
+   <a className="btn btn-outline-primary rounded-pill" href="/business-plan-writing-services.html">See business plan writing services</a>
+   <a className="btn btn-outline-primary rounded-pill" href="/pricing.html">See pricing</a>
+  </div>
+ </section>;
+}
 function Landing({onStart}) {
  return <div className="landing free-landing">
   <section className="hero">
    <div className="hero-copy"><span className="hero-pill">100% FREE BUSINESS PLANNING TOOL</span><h1>Free Business Plan Generator</h1><p>Create a professional business plan and financial projections online for free. No signup required.</p><div className="hero-actions"><button className="primary hero-cta" onClick={onStart}>Build My Business Plan <ArrowRight/></button><span>No email · No payment · Your work stays in your browser</span></div><div className="hero-trust"><span><Check/>100% Free</span><span><Check/>Built-in Financial Projections</span><span><Check/>PDF & Excel Downloads</span></div></div>
    <div className="plan-preview"><div className="preview-top"><FileChartColumn/><span>YOUR BUSINESS PLAN</span></div><h2>Your business, clearly planned.</h2><p>PROFESSIONAL BUSINESS PLAN</p><div className="preview-rule"/><div className="preview-content"><span>WHAT YOU GET</span><h3>A complete, editable plan you control.</h3>{['12 guided plan sections','36-month financial model','Professional PDF and Excel'].map(x=><p key={x}><Check size={16}/> {x}</p>)}</div></div>
   </section>
-  <section className="included"><div className="section-heading"><span className="eyebrow">SIMPLE FIVE-STEP PROCESS</span><h2>From idea to downloadable plan</h2></div><div className="benefit-grid">{NAV.map(([,x],i)=><article className="card" key={x}><b>{i+1}</b><h3>{x}</h3><p>{['Add a few reusable business details.','Write or paste your content with practical guidance.','Build projections with the complete financial model.','Check the complete plan before export.','Download a business plan PDF and financial workbook.'][i]}</p></article>)}</div></section>
+  <section className="included"><div className="section-heading"><span className="eyebrow">SIMPLE FIVE-STEP PROCESS</span><h2>From idea to downloadable plan</h2></div><div className="benefit-grid">{NAV.map(([,x],i)=><article className="card" key={x}><b>{i+1}</b><h3>{x}</h3><p>{['Add a few reusable business details.','Write or paste your content with practical guidance.','Build projections with the complete financial model.','Check the complete plan before export.','Download a business plan PDF and financial workbook.'][i]}</p></article>)}</div><ConsultCTA/></section>
  </div>;
 }
 function Flow({view,go}){const at=NAV.findIndex(([v])=>v===view);return <nav className="free-flow" aria-label="Business plan progress">{NAV.map(([v,label],i)=><button key={v} className={i===at?'active':i<at?'done':''} onClick={()=>go(v)}><span>{i<at?<Check/>:i+1}</span>{label}</button>)}</nav>}
@@ -342,8 +353,12 @@ function PlanReview({form,review,go}){
   {showOverview&&<section className="review-gallery-group"><h2>Business Plan</h2><div className="section-preview-grid">{visibleSections.map(([key,title],index)=>{const content=excerpt(form.sections?.[key]?.content),words=content?content.split(/\s+/).length:0;return <article className="section-preview-card" key={key}><header><span>{String(index+1).padStart(2,'0')}</span><h3>{title}</h3><button onClick={()=>go('plan')}>Edit</button></header><div className={'section-preview-copy'+(!content?' empty-section-copy':'')}>{content?<p>{content}</p>:<p>This section is ready for your content.</p>}</div><footer><span>{words} words</span><span>Page {firstPlanPage+index}</span></footer></article>})}</div></section>}
   {showFinancials&&<section className="review-gallery-group financial-projections-group"><h2>Financial Projections</h2><section className="paper review-financials"><div className="review-heading"><div><span className="eyebrow">FINANCIAL PROJECTIONS · PAGE {financialPage}</span><h2>Three-year financial overview</h2><p>Calculated from your revenue, expense, payroll, funding and financing assumptions.</p></div><button className="secondary" onClick={()=>go('financials')}>Edit financials</button></div>{years.length?<ResultsTable periods={years} monthlyView={false}/>:<p>Open Financial Projections to calculate your forecast.</p>}</section>{years.length&&<div className="review-statement-pages"><FinancialStatementsView projection={review.projection}/></div>}</section>}
   <div className="page-actions"><button className="secondary" onClick={()=>go('financials')}><ArrowLeft/> Back to Financials</button><button className="primary" onClick={()=>go('download')}>Continue to Download <ArrowRight/></button></div>
+  <ConsultCTA/>
  </div>
 }
 function DownloadPage({form,review,back,notify}){const valid=Boolean(review?.projection);const [generating,setGenerating]=useState('');const run=async(type,fn)=>{if(!valid){notify('Review your financial projections first');return}if(generating)return;setGenerating(type);try{await Promise.resolve().then(()=>fn(form,review));notify(type==='pdf'?'Business plan PDF downloaded':'Financial workbook downloaded')}catch(error){console.error(`Unable to generate ${type} export`,error);notify(type==='pdf'?'Unable to generate the PDF. Please try again.':'Unable to generate the Excel file. Please try again.')}finally{setGenerating('')}};return <div className="page download-page"><PageHead eyebrow="STEP 5 OF 5" title="Your business plan is ready" copy="Download both files immediately. No signup, email address or payment is required."/><div className="download-grid"><article className="card download-card"><div className="download-icon pdf"><FileText/></div><h2>Download Business Plan PDF</h2><p>A polished business document with cover page, table of contents, completed narrative sections, financial projections and page numbers.</p><button className="primary" disabled={Boolean(generating)} onClick={()=>run('pdf',downloadBusinessPlanPdf)}><Download/> {generating==='pdf'?'Generating…':'Download Business Plan PDF'}</button></article><article className="card download-card"><div className="download-icon excel"><FileSpreadsheet/></div><h2>Download Financial Projections Excel</h2><p>A real .xlsx workbook with assumptions, sources and uses, revenue, payroll, expenses and all three financial statements.</p><button className="primary excel-button" disabled={Boolean(generating)} onClick={()=>run('xlsx',downloadFinancialWorkbook)}><Download/> {generating==='xlsx'?'Generating…':'Download Financial Projections Excel'}</button></article></div><div className="download-assurance"><Check/> 100% free · Files are generated in your browser · Your information is not submitted</div><button className="secondary back-review" onClick={back}><ArrowLeft/> Back to Review</button></div>}
 const mountNode = document.getElementById('business-plan-generator-app');
-if (mountNode) createRoot(mountNode).render(<App/>);
+if (mountNode) {
+ mountNode.inert = false;
+ createRoot(mountNode).render(<App/>);
+}

@@ -1288,3 +1288,73 @@ article table td, article table th { vertical-align: top; }
 .source-panel .text-muted, .project-brief-tip .text-muted,
 .book-cover-placeholder .text-muted { color: #68717a !important; }
 .pricing-packages .text-muted { color: #5e6670 !important; }
+
+.mobile-consult-bar {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --mobile-consult-bar-space: var(--mobile-consult-bar-height, calc(56px + env(safe-area-inset-bottom, 0px)));
+    }
+
+    html:has(.has-mobile-consult-bar) {
+        scroll-padding-bottom: var(--mobile-consult-bar-space);
+    }
+
+    body.has-mobile-consult-bar {
+        padding-bottom: var(--mobile-consult-bar-space);
+    }
+
+    .has-mobile-consult-bar .whatsapp-float,
+    .has-mobile-consult-bar .back-to-top {
+        margin-bottom: var(--mobile-consult-bar-space);
+    }
+
+    .mobile-consult-bar {
+        position: fixed;
+        z-index: 1020;
+        inset: auto 0 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        padding: 6px max(6px, env(safe-area-inset-right, 0px))
+            calc(6px + env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px));
+        background: #fff;
+        box-shadow: 0 -2px 12px rgba(20, 24, 62, .15);
+    }
+
+    .mobile-consult-bar a {
+        display: grid;
+        place-items: center;
+        min-height: 44px;
+        padding: 4px;
+        border: 1px solid #1363c6;
+        border-radius: 8px;
+        background: #fff;
+        color: #1363c6;
+        font-size: .875rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .mobile-consult-bar .mobile-consult-bar__call {
+        background: #1363c6;
+        color: #fff;
+    }
+
+    .mobile-consult-bar a:hover,
+    .mobile-consult-bar a:focus-visible,
+    .mobile-consult-bar a:active {
+        border-color: #14183e;
+        background: #14183e;
+        color: #fff;
+    }
+
+    .mobile-consult-bar a:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: -4px;
+    }
+}
