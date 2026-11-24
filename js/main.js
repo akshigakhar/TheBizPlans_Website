@@ -70,6 +70,7 @@
                 }
 
                 contactForm.reset();
+                contactForm.dispatchEvent(new CustomEvent('contact-form-success', { bubbles: true }));
                 statusMessage.className = 'mt-3 mb-0 text-success';
                 statusMessage.textContent = 'Thank you! Your message has been sent.';
             } catch (error) {
