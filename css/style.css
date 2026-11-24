@@ -80,6 +80,41 @@ h6,
     background: #101836;
 }
 
+.global-header .navbar .navbar-phone {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 5px;
+    min-height: 40px;
+    margin-inline-start: 12px;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.global-header .navbar .navbar-phone:hover,
+.global-header .navbar .navbar-phone:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+}
+
+@media (max-width: 991.98px) {
+    .global-header .navbar > .navbar-brand {
+        margin-inline-end: 0;
+    }
+
+    .global-header .navbar .navbar-phone {
+        margin-inline-start: 8px;
+        font-size: .8125rem;
+    }
+
+    .global-header .navbar > .navbar-collapse {
+        order: 1;
+    }
+}
+
 /*** Global footer ***/
 .site-footer {
     padding: clamp(2.5rem, 5vw, 4rem) 0 0;
