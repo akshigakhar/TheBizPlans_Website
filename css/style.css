@@ -1133,6 +1133,7 @@ body > section:not(.hero-section):not(:first-of-type) {
 .cluster-side-links a[aria-current="page"] { border-left: 3px solid var(--primary); background: #eaf2ff; }
 .cluster-side-links strong, .cluster-side-links span { display: block; }
 .cluster-side-links span { margin-top: .2rem; color: #64748b; font-size: .77rem; }
+.cluster-side-links a[aria-current="page"] span { color: #5e6d83; }
 .cluster-note { margin-top: 3rem; padding: 1.25rem; border-left: 4px solid #e4ad29; background: #fff9e8; color: #55451e; }
 .cluster-table { margin: 1.5rem 0 2rem; border: 1px solid #dbe6f2; }
 .cluster-table th, .cluster-table td { padding: .9rem; vertical-align: middle; }
@@ -1246,3 +1247,9 @@ article table td, article table th { vertical-align: top; }
   .book-cover-home { width: min(100%, 240px); max-height: 385px; }
   .trust-card .btn { white-space: normal; }
 }
+
+/* Text on light panels and secondary outline buttons. */
+.btn-outline-secondary:not(:hover):not(:active):not(.active) { color: var(--primary); }
+.source-panel .text-muted, .project-brief-tip .text-muted,
+.book-cover-placeholder .text-muted { color: #68717a !important; }
+.pricing-packages .text-muted { color: #5e6670 !important; }
