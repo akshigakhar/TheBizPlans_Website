@@ -53,7 +53,7 @@ FOOTER = f'''<footer id="footer" class="site-footer">
         <h2 id="footer-brand-heading">The Biz Plans</h2>
         <ul class="site-footer__contact">
           <li>Toronto, Ontario, Canada</li>
-          <li><a href="https://wa.me/16478968362">Chat with us on WhatsApp</a></li>
+          <li><a href="/whatsapp.html">Chat on WhatsApp</a></li>
         </ul>
         <div class="site-footer__social" aria-label="Social media">
           <a href="https://www.linkedin.com/company/the-biz-plans/" target="_blank" rel="noopener noreferrer" aria-label="The Biz Plans on LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
@@ -95,20 +95,28 @@ def main() -> None:
     args = parser.parse_args()
     if args.contact_only:
         count = 0
-        item = '<li><a href="https://wa.me/16478968362">Chat with us on WhatsApp</a></li>'
+        item = '<li><a href="/whatsapp.html">Chat on WhatsApp</a></li>'
+        whatsapp_link = re.compile(
+            r'(<li><a href="(?:/whatsapp\.html|https://wa\.me/16478968362)">)'
+            r'(Chat with us on WhatsApp|Chat on WhatsApp)(</a></li>)'
+        )
         for page in ROOT.glob("*.html"):
             source = page.read_bytes().decode("utf-8")
             match = FOOTER_PATTERN.search(source)
             if not match:
                 continue  # Redirect pages do not have a shared footer.
             footer = match.group()
+            links = list(whatsapp_link.finditer(footer))
             if args.check:
-                assert footer.count(item) == 1, f"WhatsApp footer drift: {page.name}"
-            elif item not in footer:
-                footer, added = re.subn(r'(<ul class="site-footer__contact">.*?)(\s*</ul>)',
-                                       lambda m: m[1] + '\n          ' + item + m[2], footer, count=1, flags=re.S)
-                assert added == 1, f"Missing contact list: {page.name}"
-                page.write_bytes((source[:match.start()] + footer + source[match.end():]).encode("utf-8"))
+                assert len(links) == 1 and links[0][2] == 'Chat on WhatsApp', f"WhatsApp footer drift: {page.name}"
+            else:
+                updated = whatsapp_link.sub(lambda m: m[1] + 'Chat on WhatsApp' + m[3], footer)
+                if not links:
+                    updated, added = re.subn(r'(<ul class="site-footer__contact">.*?)(\s*</ul>)',
+                                             lambda m: m[1] + '\n          ' + item + m[2], footer, count=1, flags=re.S)
+                    assert added == 1, f"Missing contact list: {page.name}"
+                if updated != footer:
+                    page.write_bytes((source[:match.start()] + updated + source[match.end():]).encode("utf-8"))
             count += 1
         print(f"WhatsApp contact link verified in {count} existing footers")
         return
