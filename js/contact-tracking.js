@@ -1,6 +1,20 @@
 (function () {
     'use strict';
 
+    const measurementId = 'G-SM08Q6RPKW';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () {
+        window.dataLayer.push(arguments);
+    };
+    window.gtag('js', new Date());
+    // GTM owns pageviews. This Google tag is initialized for contact events.
+    window.gtag('config', measurementId, { send_page_view: false });
+
+    const googleTag = document.createElement('script');
+    googleTag.async = true;
+    googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.appendChild(googleTag);
+
     function track(eventName, linkUrl) {
         if (typeof window.gtag !== 'function') return;
 
