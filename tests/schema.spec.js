@@ -74,8 +74,8 @@ test('business plan generator uses webpage structured data without unsupported r
         name: 'Free AI Business Plan Generator | The Biz Plans'
     });
     expect(nodes.find((node) => node['@type'] === 'SoftwareApplication')).toMatchObject({
-        name: 'TheBizPlanAI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web',
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'CAD' }
+        name: 'TheBizPlanAI', applicationCategory: 'BusinessApplication', operatingSystem: 'Web', isAccessibleForFree: true,
+        offers: { '@type': 'Offer', price: 0, priceCurrency: 'CAD' }
     });
     expect(nodes.find((node) => node['@type'] === 'FAQPage').mainEntity).toHaveLength(6);
     expect(nodes.find((node) => node['@type'] === 'Person').name).toBe('Atul Jagga');

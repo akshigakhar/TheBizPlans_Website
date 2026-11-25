@@ -43,7 +43,7 @@ test('analytics waits for load and keeps queued events', async ({ page }) => {
     Object.defineProperty(document, 'readyState', { configurable: true, get: () => 'loading' });
     await new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = '/js/analytics.js'; script.onload = resolve; script.onerror = reject;
+      script.src = '/js/analytics.min.js'; script.onload = resolve; script.onerror = reject;
       document.head.appendChild(script);
     });
   });
