@@ -119,6 +119,11 @@ def lender_block(name, target):
 </section>'''
 
 def service_block(name, audience):
+    pricing = (
+        '$4,000 + tax for a complete business plan with financials. $2,500 + tax for a standalone financial model. Custom quote only for complex, multi-entity or rush work. See <a href="/pricing.html">Pricing</a>. We confirm the schedule after reviewing the scope.'
+        if name in {'Strategic business plans', 'Innovation business plans', 'Self-employed business plans'}
+        else 'Quoted after scope review. Complexity, research depth, forecast requirements and source-data readiness determine the fee and schedule.'
+    )
     return f'''<section class="commercial-pathway py-5" aria-labelledby="service-detail-{slug(name)}">
   <div class="container">
     <div class="row g-5">
@@ -129,7 +134,7 @@ def service_block(name, audience):
           <div class="col-md-6"><h3 class="h5">Who it is for</h3><p>Entrepreneurs and organizations preparing a documented case for {audience}.</p></div>
           <div class="col-md-6"><h3 class="h5">Deliverables</h3><p>A tailored narrative, cited market research, implementation plan and financial schedules appropriate to the engagement.</p></div>
           <div class="col-md-6"><h3 class="h5">Review process</h3><p>Discovery, evidence collection, drafting, financial reconciliation and a defined client review round before final delivery.</p></div>
-          <div class="col-md-6"><h3 class="h5">Pricing and timing</h3><p>Quoted after scope review. Complexity, research depth, forecast requirements and source-data readiness determine the fee and schedule.</p></div>
+          <div class="col-md-6"><h3 class="h5">Pricing and timing</h3><p>{pricing}</p></div>
         </div>
       </div>
       <div class="col-lg-5">
