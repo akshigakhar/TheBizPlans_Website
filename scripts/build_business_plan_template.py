@@ -20,7 +20,7 @@ styles=getSampleStyleSheet()
 styles['Normal'].fontSize=10
 styles['Normal'].leading=15
 styles['Title'].textColor=colors.HexColor('#173d64')
-story=[]
+story=[PageBreak()]
 def p(s,style='Normal'): story.append(Paragraph(s,styles[style])); story.append(Spacer(1,10))
 def table(headers, rows, widths=None):
     data=[[Paragraph(str(c),styles['Normal']) for c in headers]]+[[Paragraph(str(c),styles['Normal']) for c in row] for row in rows]
@@ -48,6 +48,22 @@ for i,(name,prompt) in enumerate(sections,1):
         table(['Check','Evidence to consider','Reference / date'],[['',r,''] for r in ['Owner and management CVs','Registration and ownership documents','Market sources and customer research','Competitor analysis and pricing evidence','Supplier quotations and equipment budgets','Lease or premises documentation','Licences, permits and insurance','Sales contracts or letters of intent (label status)','Detailed forecast workbook and assumptions','Funding sources and lender documents','Program-specific immigration evidence (if applicable)','Risk register and implementation timeline']],[45,300,135])
     else: lines(15 if name!='Market analysis' else 12)
     if i<len(sections): story.append(PageBreak())
+def cover(c, doc):
+    c.setFillColor(colors.HexColor('#173d64'))
+    c.setFont('Helvetica-Bold', 21)
+    c.drawString(54, 650, 'The Biz Plans — Business Plan Writers, Toronto')
+    c.setStrokeColor(colors.HexColor('#173d64'))
+    c.line(54, 630, 558, 630)
+    c.setFillColor(colors.HexColor('#14183e'))
+    c.setFont('Helvetica', 12)
+    c.drawString(54, 600, '+1-647-896-8362')
+    c.drawString(54, 576, 'https://thebizplans.com')
+    c.drawString(54, 540, 'Free 15-minute consultation: book via the contact page.')
+    c.linkURL('tel:+1-647-896-8362', (54, 597, 147, 612))
+    c.linkURL('https://thebizplans.com', (54, 573, 179, 588))
+    c.linkURL('https://thebizplans.com/contact.html', (54, 537, 353, 552))
+
+
 def footer(c,doc):
-    c.setFont('Helvetica',8); c.setFillColor(colors.HexColor('#173d64')); c.drawString(54,30,'The Biz Plans | thebizplans.com | Business Plan TEMPLATE'); c.drawRightString(558,30,str(doc.page))
-SimpleDocTemplate('downloads/canadian-business-plan-template.pdf',pagesize=letter,rightMargin=54,leftMargin=54,topMargin=50,bottomMargin=50,title='Canadian Business Plan Template',author='The Biz Plans').build(story,onFirstPage=footer,onLaterPages=footer)
+    c.setFont('Helvetica',8); c.setFillColor(colors.HexColor('#173d64')); c.drawString(54,30,'The Biz Plans | thebizplans.com | Business Plan TEMPLATE'); c.drawRightString(558,30,str(doc.page - 1))
+SimpleDocTemplate('downloads/canadian-business-plan-template.pdf',pagesize=letter,rightMargin=54,leftMargin=54,topMargin=50,bottomMargin=50,title='Canadian Business Plan Template',author='The Biz Plans').build(story,onFirstPage=cover,onLaterPages=footer)
