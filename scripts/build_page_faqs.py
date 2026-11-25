@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a visible, page-specific FAQ and matching FAQPage JSON-LD on every page.
+"""Build FAQ sections and matching FAQPage JSON-LD for supported page types.
 
 The generated copy is deliberately grouped by page intent rather than repeated sitewide.
 Run this script after adding or renaming a top-level HTML page. Existing generated blocks
@@ -49,14 +49,6 @@ def classify(filename: str) -> str:
 
 def questions(kind: str, topic: str):
     sets = {
-        "learning": [
-            (f"What is the main takeaway from {topic}?", f"The central lesson is to turn the topic into evidence, decisions and measurable assumptions rather than treating it as stand-alone prose. Apply it consistently across the market, operating and financial sections of the plan."),
-            (f"How does {topic} fit into a complete business plan?", "It should support the plan's overall logic: a defined customer need leads to a practical strategy, operating requirements and financial results. Review connected sections after making changes so the document does not contradict itself."),
-            ("What evidence should support this part of the plan?", "Use current, traceable sources appropriate to the claim, such as government data, industry publications, direct operating records and documented customer or competitor research. Label estimates and explain how they were calculated."),
-            ("Which mistakes reduce credibility?", "Common problems include generic claims, outdated statistics, unsupported market-share assumptions and numbers that do not match the written strategy. Specific sources and a clear chain of reasoning are more persuasive than excessive detail."),
-            ("How should this guidance be adapted for a lender or investor?", "A lender generally emphasizes repayment capacity, cash flow and downside protection, while an investor also evaluates growth, differentiation and potential return. Keep the underlying facts consistent while prioritizing the reader's decision criteria."),
-            ("When should this section be updated?", "Update it when pricing, customers, competition, funding needs or operating assumptions materially change. It should also be reviewed immediately before submission so dates, sources and financial figures remain aligned."),
-        ],
         "financing": [
             (f"What should a business plan for {topic} include?", "Include the amount requested, an itemized use of funds, owner contribution, market evidence, operating plan and integrated financial projections. The assumptions should demonstrate how the business expects to generate enough cash to meet its obligations."),
             ("How many years of financial projections are normally useful?", "A monthly cash-flow view for the near term and annual projections for later years are often useful, but the appropriate period depends on the lender, program and business stage. Confirm the recipient's current requirements before submitting."),
@@ -104,22 +96,6 @@ def questions(kind: str, topic: str):
             ("How can I ask a question about this policy?", "Use the contact details shown on this website and identify the policy and issue in question. Do not send unnecessary confidential or sensitive information in an initial message."),
             ("Can this policy change?", "The policy may be updated as practices or requirements change. Review the version available on the website when you use the site or engage a service."),
             ("Where can I find related policies?", "Links to privacy, terms and refund information appear in the website footer. Read all policies relevant to your interaction or engagement rather than relying on one page in isolation."),
-        ],
-        "company": [
-            (f"Who is {topic} intended for?", "It is designed for entrepreneurs and organizations that need clear, evidence-based business planning support. The appropriate service and deliverables depend on the decision-maker, business stage, available records and deadline."),
-            ("What information is needed to begin?", "Share the intended reader, purpose, deadline, business model, funding target and available financial or operating records. A concise initial brief helps identify the right scope and any evidence gaps."),
-            ("Are services based on a standard template?", "A consistent quality-control structure may be used, but the research, strategy, assumptions and financial model should reflect the individual venture and audience. Generic copy is not a substitute for verified client information."),
-            ("How are project timing and fees determined?", "They depend on scope, complexity, research depth, forecast requirements, data readiness and review needs. Confirm the current quote, deliverables and schedule before work begins."),
-            ("Can business planning guarantee funding or approval?", "No. Banks, investors, government bodies and other reviewers make independent decisions. Professional support can make a submission clearer and more consistent, but it cannot guarantee an outcome."),
-            ("How is quality checked before delivery?", "The narrative and financial schedules are reviewed for consistency, material claims are tied to appropriate evidence, and client-supplied facts require client verification. The exact review steps depend on the engagement scope."),
-        ],
-        "service": [
-            (f"What does {topic} include?", "The scope is tailored to the decision the work must support and may include discovery, market evidence, strategy, operating assumptions, financial analysis and review. Confirm the specific deliverables in the project proposal."),
-            ("Who is this service best suited for?", "It is most useful when an owner or organization needs a structured, evidence-based document for planning or an external decision. The intended reader and stage of the business determine the appropriate depth."),
-            ("What should a client prepare before starting?", "Prepare the objective, deadline, ownership and management details, product or service information, available research and financial records. Identify estimates clearly so they can be tested rather than presented as facts."),
-            ("How are financial assumptions developed?", "Assumptions should be built from pricing, demand, capacity, staffing, cost quotes and cash timing. Material inputs are documented and reconciled across the narrative and financial schedules."),
-            ("How long does the work take?", "Timing varies with complexity, research needs, source-data readiness and review cycles. A realistic schedule can be confirmed only after the required deliverables and available information are assessed."),
-            ("Does professional support guarantee a successful outcome?", "No. The relevant lender, investor, government body or management team makes the decision. Professional work improves clarity and analytical consistency but does not guarantee approval, funding or performance."),
         ],
     }
     return sets[kind]
@@ -172,15 +148,16 @@ def update(source: str, block: str) -> str:
 
 updated = 0
 for path in sorted(ROOT.glob("*.html")):
-    # The dedicated FAQ page already has 12 curated questions and FAQPage schema.
-    if path.name == "faqs.html":
+    kind = classify(path.name)
+    # Curated commercial FAQs and article-specific FAQs are maintained in their HTML.
+    if path.name in {"faqs.html", "testimonials.html"} or kind in {"learning", "company", "service"}:
         continue
     with path.open(encoding="utf-8", newline="") as handle:
         source = handle.read()
     topic = page_topic(source, path.name)
-    source = update(source, build_block(path.name, topic, questions(classify(path.name), topic)))
+    source = update(source, build_block(path.name, topic, questions(kind, topic)))
     with path.open("w", encoding="utf-8", newline="") as handle:
         handle.write(source)
     updated += 1
 
-print(f"Built six page-specific FAQs on {updated} pages; retained the curated FAQ hub.")
+print(f"Built FAQ sections and matching schema on {updated} supported pages.")
