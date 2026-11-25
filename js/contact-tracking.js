@@ -10,10 +10,30 @@
     // GTM owns pageviews. This Google tag is initialized for contact events.
     window.gtag('config', measurementId, { send_page_view: false });
 
-    const googleTag = document.createElement('script');
-    googleTag.async = true;
-    googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-    document.head.appendChild(googleTag);
+    const loadAfterPaint = document.currentScript?.hasAttribute('data-load-after-paint');
+    let googleTagRequested = false;
+
+    function loadGoogleTag() {
+        if (googleTagRequested) return;
+        googleTagRequested = true;
+        document.removeEventListener('pointerdown', loadGoogleTag, true);
+        document.removeEventListener('keydown', loadGoogleTag, true);
+
+        const googleTag = document.createElement('script');
+        googleTag.async = true;
+        googleTag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+        document.head.appendChild(googleTag);
+    }
+
+    if (loadAfterPaint) {
+        // Give rendering a turn, but start the request on early input and in background tabs.
+        document.addEventListener('pointerdown', loadGoogleTag, true);
+        document.addEventListener('keydown', loadGoogleTag, true);
+        window.requestAnimationFrame(() => window.requestAnimationFrame(loadGoogleTag));
+        window.setTimeout(loadGoogleTag, 1500);
+    } else {
+        loadGoogleTag();
+    }
 
     function track(eventName, linkUrl) {
         if (typeof window.gtag !== 'function') return;
@@ -21,6 +41,7 @@
         const parameters = { page_path: window.location.pathname };
         if (linkUrl !== undefined) parameters.link_url = linkUrl;
         window.gtag('event', eventName, parameters);
+        loadGoogleTag();
     }
 
     document.addEventListener('click', function (event) {
@@ -32,7 +53,8 @@
         const href = link.getAttribute('href');
         const destination = href.trim().toLowerCase();
         if (destination.startsWith('tel:')) track('click_to_call', href);
-        if (destination.includes('wa.me') || destination.includes('whatsapp.com')) {
+        if (destination.includes('wa.me') || destination.includes('whatsapp.com') ||
+            (link.origin === window.location.origin && link.pathname === '/whatsapp.html')) {
             track('whatsapp_click', href);
         }
         if (destination.includes('contact') ||
