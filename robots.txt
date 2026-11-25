@@ -9,4 +9,164 @@ Disallow: /scripts/
 Disallow: /scss/
 Disallow: /search
 
+User-agent: GPTBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Claude-User
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: CCBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: MistralAI-User
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: YouBot
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /*?*
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /docs/
+Disallow: /scripts/
+Disallow: /scss/
+Disallow: /search
+
 Sitemap: https://thebizplans.com/sitemap.xml
