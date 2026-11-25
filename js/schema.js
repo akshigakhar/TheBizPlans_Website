@@ -133,6 +133,7 @@
   }];
   const addUnlessPresent = (node) => {
     const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+    if (types.includes('Article') && fileName.startsWith('blog-') && existingTypes.has('BlogPosting')) return;
     if (!types.some((type) => existingTypes.has(type))) graph.push(node);
   };
 
