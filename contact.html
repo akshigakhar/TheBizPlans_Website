@@ -162,6 +162,30 @@
             <label for="contact-phone" class="form-label">Phone number <span aria-hidden="true">*</span></label>
             <input type="tel" class="form-control" id="contact-phone" name="phone" autocomplete="tel" maxlength="30" required>
           </div>
+          <div class="mb-3">
+            <label for="contact-purpose" class="form-label">What do you need? <span aria-hidden="true">*</span></label>
+            <select class="form-select form-control" id="contact-purpose" name="purpose" required>
+              <option value="" selected disabled>Select an option</option>
+              <option>Business plan for a bank loan (CSBFP / lender)</option>
+              <option>Business plan for investors</option>
+              <option>Business plan for immigration (PNP / E2 / SUV)</option>
+              <option>Financial model only</option>
+              <option>Pitch deck</option>
+              <option>Plan review / other</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="contact-source" class="form-label">How did you hear about us?</label>
+            <select class="form-select form-control" id="contact-source" name="source">
+              <option value="" selected>Select an option (optional)</option>
+              <option>Google search</option>
+              <option>Google Maps / Business Profile</option>
+              <option>ChatGPT or another AI assistant</option>
+              <option>Referral</option>
+              <option>LinkedIn</option>
+              <option>Other</option>
+            </select>
+          </div>
           <div class="mb-4">
             <label for="contact-message" class="form-label">Message <span aria-hidden="true">*</span></label>
             <textarea class="form-control" id="contact-message" name="message" rows="6" maxlength="5000" required></textarea>

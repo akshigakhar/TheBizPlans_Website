@@ -56,9 +56,10 @@
             }
 
             try {
+                const formData = new window.FormData(contactForm);
                 const response = await window.fetch(contactForm.action, {
                     method: contactForm.method,
-                    body: new window.FormData(contactForm),
+                    body: formData,
                     headers: {
                         Accept: 'application/json'
                     }
@@ -70,7 +71,13 @@
                 }
 
                 contactForm.reset();
-                contactForm.dispatchEvent(new CustomEvent('contact-form-success', { bubbles: true }));
+                contactForm.dispatchEvent(new CustomEvent('contact-form-success', {
+                    bubbles: true,
+                    detail: {
+                        purpose: formData.get('purpose'),
+                        source: formData.get('source')
+                    }
+                }));
                 statusMessage.className = 'mt-3 mb-0 text-success';
                 statusMessage.textContent = 'Thank you! Your message has been sent.';
             } catch (error) {

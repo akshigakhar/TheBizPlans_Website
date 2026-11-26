@@ -35,11 +35,10 @@
         loadGoogleTag();
     }
 
-    function track(eventName, linkUrl) {
+    function track(eventName, eventParameters) {
         if (typeof window.gtag !== 'function') return;
 
-        const parameters = { page_path: window.location.pathname };
-        if (linkUrl !== undefined) parameters.link_url = linkUrl;
+        const parameters = { page_path: window.location.pathname, ...eventParameters };
         window.gtag('event', eventName, parameters);
         loadGoogleTag();
     }
@@ -52,25 +51,35 @@
 
         const href = link.getAttribute('href');
         const destination = href.trim().toLowerCase();
-        if (destination.startsWith('tel:')) track('click_to_call', href);
+        if (destination.startsWith('tel:')) track('click_to_call', { link_url: href });
         if (destination.includes('wa.me') || destination.includes('whatsapp.com') ||
             (link.origin === window.location.origin && link.pathname === '/whatsapp.html')) {
-            track('whatsapp_click', href);
+            track('whatsapp_click', { link_url: href });
         }
         if (destination.includes('contact') ||
             /(^|\.)setmore\.com$/.test(link.hostname) ||
             destination.startsWith('https://calendly.com/atul_jagga/business-plan-free-consult')) {
-            track('book_consult_click', href);
+            track('book_consult_click', { link_url: href });
         }
     });
+
+    function trackFormSubmit(fields) {
+        const parameters = {};
+        if (fields?.purpose) parameters.purpose = fields.purpose;
+        if (fields?.source) parameters.source = fields.source;
+        track('contact_form_submit', parameters);
+    }
 
     document.addEventListener('submit', function (event) {
         if (!event.defaultPrevented && event.target.matches('form.contact-form:valid')) {
-            track('contact_form_submit');
+            trackFormSubmit({
+                purpose: event.target.elements.namedItem('purpose')?.value,
+                source: event.target.elements.namedItem('source')?.value
+            });
         }
     });
 
-    document.addEventListener('contact-form-success', function () {
-        track('contact_form_submit');
+    document.addEventListener('contact-form-success', function (event) {
+        trackFormSubmit(event.detail);
     });
 }());
