@@ -198,14 +198,13 @@ def main() -> int:
 
     sitemap = generated_sitemap(pages)
     if args.pages:
-        # Preserve the URL set; refresh existing entries for selected pages only.
+        # Add or refresh selected pages while preserving unrelated entries.
         existing = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
         entries = {re.search(r"<loc>(.*?)</loc>", block).group(1): block
-                   for block in re.findall(r"  <url>\n.*?</url>", existing, re.S)}
-        for block in re.findall(r"  <url>\n.*?</url>", sitemap, re.S):
+                   for block in re.findall(r"  <url>.*?</url>", existing, re.S)}
+        for block in re.findall(r"  <url>.*?</url>", sitemap, re.S):
             url = re.search(r"<loc>(.*?)</loc>", block).group(1)
-            if url in entries:
-                entries[url] = block
+            entries[url] = block
         sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
                    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                    + "\n".join(entries[url] for url in sorted(entries)) + "\n</urlset>\n")
